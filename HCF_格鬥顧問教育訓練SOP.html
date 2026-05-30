@@ -1,0 +1,509 @@
+<!-- HCF 格鬥顧問教育訓練 SOP -->
+<meta charset="utf-8">
+<title>HCF 格鬥顧問教育訓練 SOP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#C81015; --red-dk:#9B0B0F; --carbon:#111111; --chev:#333333; --iron:#4A4A4A;
+  --paper:#FBFAF8; --line:#E3E0DB; --ink:#1A1A1A; --mut:#6B6661;
+  --serif:"Noto Serif TC",serif; --sans:"Noto Sans TC",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:#2a2a2a;line-height:1.75;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:920px;margin:0 auto;background:var(--paper);
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:22px 22px;
+  box-shadow:0 0 60px rgba(0,0,0,.5)}
+.wrap{padding:0 46px 60px}
+h1,h2,h3,h4{font-family:var(--serif);line-height:1.25;margin:0}
+p{margin:.5em 0}
+a{color:var(--red)}
+
+/* COVER */
+.cover{background:var(--carbon);color:#fff;padding:52px 46px 40px;position:relative;overflow:hidden}
+.cover::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(115deg,rgba(255,255,255,.025) 0 2px,transparent 2px 26px);pointer-events:none}
+.cover::after{content:"";position:absolute;right:-70px;top:-70px;width:300px;height:300px;border:34px solid var(--red);
+  border-radius:50%;opacity:.16}
+.sysline{font-family:var(--sans);font-weight:700;letter-spacing:.32em;font-size:11px;color:var(--red);display:flex;align-items:center;gap:8px}
+.sysline .dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red)}
+.brand{font-family:var(--serif);font-weight:900;font-size:30px;letter-spacing:.06em;margin-top:14px}
+.brand small{font-family:var(--sans);font-weight:500;font-size:13px;color:#b9b4ae;letter-spacing:.2em;display:block;margin-top:2px}
+.cover h1{font-size:50px;font-weight:900;margin:22px 0 6px;letter-spacing:.02em}
+.cover .sub{font-size:16px;color:#d6d2cc;font-family:var(--sans);font-weight:500}
+.cover .meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px 26px;font-family:var(--sans);font-size:12px;color:#9a948d;letter-spacing:.04em}
+.cover .meta b{color:#fff;font-weight:700}
+.redbar{height:7px;background:linear-gradient(90deg,var(--red),var(--red-dk))}
+
+/* LEGEND */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 6px}
+.lg{flex:1 1 200px;border-radius:8px;padding:10px 14px;font-size:13px;font-weight:500;border-left:5px solid}
+.lg b{font-weight:700}
+.lg.s{background:#F2F1EF;border-color:var(--iron)} 
+.lg.m{background:#ECF6EE;border-color:#2E7D32}
+.lg.w{background:#FFF7E0;border-color:#E6A700}
+.lg.r{background:#FBECEC;border-color:var(--red)}
+
+/* SECTION */
+section{margin-top:46px}
+.sec-h{display:flex;align-items:baseline;gap:14px;border-bottom:3px solid var(--carbon);padding-bottom:8px;margin-bottom:18px}
+.sec-h .no{font-family:var(--serif);font-weight:900;font-size:34px;color:var(--red);line-height:1}
+.sec-h h2{font-size:25px;font-weight:900;color:var(--carbon)}
+.sec-h .en{margin-left:auto;font-family:var(--sans);font-size:11px;letter-spacing:.28em;color:var(--mut);font-weight:700;align-self:center}
+.lead{color:var(--chev);font-size:14.5px;margin:-4px 0 16px}
+
+h3.stg{font-size:19px;font-weight:700;color:var(--carbon);margin:24px 0 8px;display:flex;align-items:center;gap:10px}
+h3.stg .chip{font-family:var(--sans);font-weight:900;font-size:12px;color:#fff;background:var(--red);padding:3px 10px;border-radius:20px;letter-spacing:.05em}
+h4.q{font-size:15.5px;font-weight:700;color:var(--red-dk);margin:18px 0 4px}
+
+/* BLOCKS */
+.block{border-radius:10px;padding:14px 16px 14px;margin:10px 0;font-size:14px;position:relative}
+.block .tag{position:absolute;top:-10px;left:14px;font-size:10.5px;font-weight:900;letter-spacing:.08em;padding:2px 9px;border-radius:20px;color:#fff}
+.script{background:#F2F1EF;border:1px solid #DAD7D2;border-left:5px solid var(--iron)}
+.script .tag{background:var(--iron)}
+.script .say{font-family:var(--sans);color:#222;white-space:pre-line}
+.mind{background:#ECF6EE;border:1px solid #BFE0C5;border-left:5px solid #2E7D32;color:#1B5E20}
+.mind .tag{background:#2E7D32}
+.warn{background:#FFF7E0;border:1px solid #F0DA9C;border-left:5px solid #E6A700;color:#6E5200}
+.warn .tag{background:#C98A00}
+.rule{background:#FBECEC;border:1px solid #F0C9C9;border-left:5px solid var(--red);color:#7d1418}
+.rule .tag{background:var(--red)}
+.block b{font-weight:700}
+.cp{position:absolute;top:10px;right:10px;font-family:var(--sans);font-size:11px;font-weight:700;color:var(--iron);background:#fff;border:1px solid #cfccc6;border-radius:6px;padding:3px 9px;cursor:pointer}
+.cp:hover{background:var(--carbon);color:#fff;border-color:var(--carbon)}
+.cp.done{background:#2E7D32;color:#fff;border-color:#2E7D32}
+
+/* 6-STEP FLOW */
+.flow6{display:flex;gap:0;flex-wrap:wrap;margin:10px 0 6px}
+.st{flex:1 1 13%;min-width:120px;background:#fff;border:1.5px solid var(--carbon);border-radius:10px;padding:12px 10px;text-align:center;position:relative;margin:6px 14px 6px 0}
+.st:last-child{margin-right:0}
+.st .n{font-family:var(--serif);font-weight:900;color:var(--red);font-size:13px}
+.st .t{font-weight:900;font-size:15px;margin:2px 0 3px;color:var(--carbon)}
+.st .d{font-size:11.5px;color:var(--mut);line-height:1.5}
+.st::after{content:"›";position:absolute;right:-13px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--red);font-weight:900}
+.st:last-child::after{display:none}
+
+/* JOURNEY MAP */
+.jm{margin:14px 0 4px}
+.jstep{display:flex;gap:14px;align-items:flex-start;position:relative;padding:0 0 20px 0}
+.jstep .rail{display:flex;flex-direction:column;align-items:center;flex:0 0 44px}
+.jstep .bub{width:42px;height:42px;border-radius:50%;background:var(--carbon);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:900;font-size:17px;flex:0 0 auto;z-index:2}
+.jstep .bub.red{background:var(--red)}
+.jstep .ln{width:3px;flex:1 1 auto;background:var(--chev);margin-top:2px;min-height:18px}
+.jstep:last-child .ln{display:none}
+.jstep .body{flex:1 1 auto;background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);border-radius:8px;padding:10px 14px;margin-top:0}
+.jstep .body .jt{font-weight:900;color:var(--carbon);font-size:15px}
+.jstep .body .jd{font-size:13px;color:var(--chev)}
+.branch{display:flex;gap:14px;margin:2px 0 0 58px}
+.branch .b{flex:1;border-radius:8px;padding:10px 12px;font-size:13px}
+.branch .deal{background:#ECF6EE;border:1px solid #BFE0C5}
+.branch .nodeal{background:#FFF7E0;border:1px solid #F0DA9C}
+.branch .b b{display:block;margin-bottom:2px;font-size:14px}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff;border:1px solid var(--line)}
+th{background:var(--red);color:#fff;font-weight:700;text-align:left;padding:9px 12px;font-size:13px}
+td{padding:9px 12px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:#FAF8F5}
+td b{font-weight:700;color:var(--carbon)}
+.pkg th{background:var(--carbon)}
+
+/* PACKAGE CARDS */
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+.pcard{background:#fff;border:1px solid var(--line);border-top:4px solid var(--red);border-radius:8px;padding:12px 14px}
+.pcard .hd{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}
+.pcard .hd .nm{font-weight:900;font-size:15px;color:var(--carbon)}
+.pcard .hd .tg{font-size:11px;font-weight:700;color:#fff;background:var(--iron);padding:1px 8px;border-radius:12px}
+.pcard .ap{font-size:12px;color:var(--mut)}
+.pcard .hook{font-size:12.5px;color:#7d1418;background:#FBECEC;border-radius:6px;padding:7px 9px;margin-top:7px}
+.pcard .hook b{color:var(--red-dk)}
+
+ul.tight{margin:6px 0;padding-left:20px}
+ul.tight li{margin:3px 0;font-size:14px}
+.kbd{display:inline-block;background:var(--carbon);color:#fff;font-size:11px;font-weight:700;padding:1px 7px;border-radius:5px;font-family:var(--sans)}
+
+.footer{margin-top:50px;border-top:3px solid var(--carbon);padding-top:14px;font-size:11.5px;color:var(--mut);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.closing{background:var(--carbon);color:#fff;border-radius:12px;padding:22px 26px;margin-top:30px;position:relative;overflow:hidden}
+.closing::after{content:"";position:absolute;left:-40px;bottom:-40px;width:160px;height:160px;border:26px solid var(--red);border-radius:50%;opacity:.18}
+.closing h3{color:#fff;font-size:20px;font-weight:900;margin-bottom:8px}
+.closing ol{margin:0;padding-left:22px}
+.closing li{margin:5px 0;font-size:15px}
+.closing li b{color:#ff8a8f}
+
+@media (max-width:640px){
+  .wrap{padding:0 20px 40px}.cover{padding:36px 20px}.cover h1{font-size:34px}
+  .pgrid{grid-template-columns:1fr}.branch{flex-direction:column;margin-left:0}
+  .sec-h .en{display:none}.flow6 .st{flex:1 1 45%}
+}
+@media print{
+  body{background:#fff;font-size:11.5px}.page{box-shadow:none;max-width:none;background:#fff}
+  .cp{display:none}section{break-inside:avoid}.pcard,.jstep,.block,table{break-inside:avoid}
+  .cover{padding:30px}
+  @page{margin:14mm}
+}
+</style>
+
+<div class="page">
+
+  <!-- ===== COVER ===== -->
+  <div class="cover">
+    <div class="sysline"><span class="dot"></span>SYSTEM ONLINE · CONSULTANT PROTOCOL</div>
+    <div class="brand">HSINCHU COMBAT　新竹格鬥 HCF<small>HEAD-TO-CLOSE SALES &amp; SERVICE PLAYBOOK</small></div>
+    <h1>格鬥顧問<br>教育訓練 SOP</h1>
+    <div class="sub">從詢問 → 到館 → 體驗 → 成交 → 追蹤回訪的全流程作戰手冊</div>
+    <div class="meta">
+      <span>適用對象：<b>格鬥顧問（業務線）</b></span>
+      <span>整合自：<b>實戰話術腳本 · 課程規劃銷售手冊</b></span>
+      <span>版本：<b>v1.0｜2026</b></span>
+      <span><b>內部機密文件</b></span>
+    </div>
+  </div>
+  <div class="redbar"></div>
+
+  <div class="wrap">
+
+    <!-- LEGEND -->
+    <div class="legend">
+      <div class="lg s"><b>灰底</b>　可直接複製的話術（改名字即用）</div>
+      <div class="lg m"><b>綠底</b>　心法／原則</div>
+      <div class="lg w"><b>黃底</b>　注意，別踩雷</div>
+      <div class="lg r"><b>紅底</b>　場館規定／合規紅線</div>
+    </div>
+    <p class="lead">本 SOP 只談顧問本職：把人帶進來、留下來、續下去。顧問不教學、不帶課；本篇不含教練養成、課綱與晉級檢定等教學端訓練事項。</p>
+
+    <!-- ===== 0 總覽 ===== -->
+    <section id="overview">
+      <div class="sec-h"><span class="no">00</span><h2>SOP 總覽：六步成交流程</h2><span class="en">THE SIX STEPS</span></div>
+      <div class="flow6">
+        <div class="st"><div class="n">STEP 1</div><div class="t">網路詢問</div><div class="d">5 分鐘內回<br>先接人、不丟價目表</div></div>
+        <div class="st"><div class="n">STEP 2</div><div class="t">問需求</div><div class="d">目標／新手／預算</div></div>
+        <div class="st"><div class="n">STEP 3</div><div class="t">推方案＋邀約</div><div class="d">私教優先、二選一</div></div>
+        <div class="st"><div class="n">STEP 4</div><div class="t">到館體驗</div><div class="d">鼓勵、錄影、給信心</div></div>
+        <div class="st"><div class="n">STEP 5</div><div class="t">現場成交</div><div class="d">趁熱收單、可分期</div></div>
+        <div class="st"><div class="n">STEP 6</div><div class="t">追蹤／續費</div><div class="d">未成交跟進、成交續訂</div></div>
+      </div>
+      <div class="block mind"><span class="tag">心法</span><b>最重要的一句：</b>線上聊天的唯一目標是「把人約到館裡來體驗」。文字再會講，都比不上他親手打到靶那一下。前三步別急著成交，先想辦法「約他來」。</div>
+    </section>
+
+    <!-- ===== 1 顧客旅程 ===== -->
+    <section id="journey">
+      <div class="sec-h"><span class="no">01</span><h2>顧客旅程全流程圖</h2><span class="en">CUSTOMER JOURNEY</span></div>
+      <p class="lead">從第一句訊息到刷卡，再到沒成交的回訪。顧問在每一站的任務都不同——對照下圖，知道「現在該做什麼、接著做什麼」。</p>
+      <div class="jm">
+        <div class="jstep"><div class="rail"><div class="bub">1</div><div class="ln"></div></div>
+          <div class="body"><div class="jt">詢問接觸（線上／現場）</div><div class="jd">5 分鐘內回；先接人、問目標，不丟價目表。現場 30 秒內迎上去帶看場地。</div></div></div>
+        <div class="jstep"><div class="rail"><div class="bub">2</div><div class="ln"></div></div>
+          <div class="body"><div class="jt">問需求 ＋ 分眾推方案</div><div class="jd">問出目標／新手／時間預算 → 聽出他是哪種人 → 私教優先導入。</div></div></div>
+        <div class="jstep"><div class="rail"><div class="bub">3</div><div class="ln"></div></div>
+          <div class="body"><div class="jt">邀約來館</div><div class="jd">二選一約時間（問哪個時段、不問要不要）；處理猶豫，先卡時段。</div></div></div>
+        <div class="jstep"><div class="rail"><div class="bub red">4</div><div class="ln"></div></div>
+          <div class="body"><div class="jt">到館 → 體驗上課 → 結束</div><div class="jd">迎接報到 → 環境介紹 → 教練帶體驗（顧問全程錄影鼓勵、新手不對打）→ 課末交回櫃台。</div></div></div>
+        <div class="jstep"><div class="rail"><div class="bub red">5</div><div class="ln"></div></div>
+          <div class="body"><div class="jt">現場成交（趁熱收單）</div><div class="jd">體驗一結束、換鞋走人前就收單。體驗費折抵＋買私教送團課，二選一收尾。</div></div></div>
+      </div>
+      <div class="branch">
+        <div class="b deal"><b>✓ 成交</b>導向月訂閱／自動扣款鎖續費；安排下一堂，進入消課與續課循環。</div>
+        <div class="b nodeal"><b>✕ 未成交</b>進入分段追蹤：當天／隔天 → 第 3 天 → 第 7 天 → 第 14 天，語氣是關心不是催繳，再次邀約回館。</div>
+      </div>
+      <div class="jm" style="margin-top:14px">
+        <div class="jstep"><div class="rail"><div class="bub">6</div><div class="ln"></div></div>
+          <div class="body"><div class="jt">追蹤 ／ 回訪</div><div class="jd">多數成交發生在第 2–5 次接觸。分段跟進＋學員成果＋限時優惠，把人再約回體驗或直接收單。</div></div></div>
+      </div>
+    </section>
+
+    <!-- ===== 2 階段一 詢問 ===== -->
+    <section id="s1">
+      <div class="sec-h"><span class="no">02</span><h2>階段一　詢問接觸</h2><span class="en">FIRST CONTACT</span></div>
+      <p class="lead">客人剛敲你，第一句別丟價目表。先接人、問目標。</p>
+
+      <h3 class="stg"><span class="chip">線上</span>IG／FB／LINE 開場</h3>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">您好～歡迎詢問 HCF！想先了解一下，您主要是想透過運動達成什麼目標呢？（減脂／紓壓／學防身／想找有趣的運動都可以跟我說）這樣我才能幫您推薦最適合的，不會讓您白跑一趟～</div></div>
+
+      <h3 class="stg"><span class="chip">現場</span>直接走進場館（成交率最高）</h3>
+      <div class="block warn"><span class="tag">注意</span>人都到了！<b>30 秒內</b>一定要有人迎上去，別讓他站在門口。</div>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">嗨～歡迎！第一次來嗎？要不要先帶您看一下場地？
+（邊看邊聊）平常有運動嗎？想練格鬥是想減脂、紓壓還是防身呀？
+（聊出需求後）今天剛好教練有空，要不要直接幫您安排體驗一下？</div></div>
+
+      <h3 class="stg"><span class="chip">價格</span>客人一上來就問「多少錢」</h3>
+      <p>最容易把天聊死的時刻。別丟整張價目表，也別閃躲——先接人、給「體驗價」這個好消化的數字，把話題帶回他身上。</p>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">費用我一定跟您說清楚，不會讓您猜～不過想先了解您的目標，這樣我才知道哪個最適合您、最不浪費錢。如果想先輕鬆試試看，我們有體驗課可以親自感受一次；想快點看到成效的話，私人一對一是最多人選的。您會比較想先自己來體驗，還是帶朋友一起呀？</div></div>
+      <div class="block warn"><span class="tag">注意</span>有溫度 ≠ 閃躲。客人真的追問，就給「體驗價」：<b>私教體驗 $1,400、團課體驗 $400</b>。完整課表留到他來現場或主動想看時再給——不是藏價格，是不想用一堆數字嚇到剛認識的人。</div>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">私人一對一體驗一堂 $1,400，教練全程幫您客製、手把手帶，親自感受最準～想先用團體課輕鬆入門的話，團課體驗一堂 $400 也可以喔！您想先試私人的，還是團體的呢？</div></div>
+    </section>
+
+    <!-- ===== 3 階段二 問需求＋分眾 ===== -->
+    <section id="s2">
+      <div class="sec-h"><span class="no">03</span><h2>階段二　問需求 ＋ 分眾推方案</h2><span class="en">QUALIFY &amp; MATCH</span></div>
+      <p class="lead">用 2–3 句問出：目標、是不是新手、時間／預算。聽出他是哪種人，導向對應方案——HCF 主力是私教，能導私教就導私教。</p>
+
+      <h3 class="stg"><span class="chip">問需求</span>自然地問</h3>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">想多了解您一下～您最希望透過運動改變什麼呢？減脂、線條、體力，還是純粹想紓壓？之前有運動習慣嗎，還是想從頭開始？（完全沒關係，很多人都是新手喔）大概一週能安排幾次來呀？平日晚上還是假日比較方便？</div></div>
+
+      <h3 class="stg"><span class="chip">黃金訊號</span>「我是新手／沒運動過／體力差」</h3>
+      <div class="block mind"><span class="tag">心法</span>這種客人最該大力鼓勵、立刻給安全感——他們最容易因為「怕跟不上」而卻步。</div>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">太好了！我們超多學員都是零基礎開始的～教練會從最基本的帶，完全不用擔心跟不上，也不會有人在旁邊比較。新手課不對打、教練全程保護您，來體驗一次就知道沒那麼可怕了，真的！</div></div>
+
+      <h3 class="stg"><span class="chip">分眾</span>聽出他是哪種人，複製對應那段</h3>
+      <h4 class="q">上班族・想紓壓</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">聽起來您是想下班好好放鬆一下～我們最適合的是私人課，教練一對一帶，打 40 分鐘整個壓力榨乾，比滑手機紓壓多了！而且不用配合別人時間，您方便幾點都能約～</div></div>
+      <h4 class="q">想減脂・雕線條</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">想看到身材變化的話，私人一對一最快！一堂大概燃 800 大卡，教練會幫您客製強度、盯細節，比自己亂練快很多，很多人一兩個月就有感～</div></div>
+      <h4 class="q">女性・怕受傷怕尷尬</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">完全懂您的顧慮～我們新手課不對打、有女教練、教練全程在旁邊保護，超多女生都是從零開始的，環境很友善不會有壓力，先來體驗一次感受看看好不好？</div></div>
+      <h4 class="q">想學防身</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">想學防身的話泰拳很實用，是站立實戰技～私人一對一可以細修每個動作，學得扎實、真的遇到狀況用得出來。要不要先體驗一堂，讓教練示範給您看？</div></div>
+      <h4 class="q">學生／預算有限</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">沒問題～想先輕鬆入門的話，可以先用團課體驗一堂 $400 試試，上得習慣、想要更快進步，之後再升級私人課就好，零壓力～</div></div>
+      <h4 class="q">想認真投入／追求成效</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">看得出來您是想認真練的！多數認真的學員會選 20 堂或 30 堂的方案，因為平均每堂更划算，還多送團課上到飽。要不要我幫您算一下哪個最划算？</div></div>
+      <h4 class="q">情侶／朋友揪團</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">揪伴超棒的～兩個人一起來體驗、互相督促更有動力！要不要先各自體驗一次，喜歡再一起安排正課，費用也好分攤～</div></div>
+      <div class="block warn"><span class="tag">注意</span>一對二私人課方案目前<b>未列入現行牌價</b>，如客人主動詢問，報價請先洽總教練，勿當場自行報價。</div>
+    </section>
+
+    <!-- ===== 4 階段三 邀約 ===== -->
+    <section id="s3">
+      <div class="sec-h"><span class="no">04</span><h2>階段三　邀約來館（最關鍵）</h2><span class="en">BOOK THE TRIAL</span></div>
+      <p class="lead">線上的終極目標就是約到他來。用「二選一」——別問要不要來，問哪個時間來。</p>
+      <h3 class="stg"><span class="chip">二選一</span>標準邀約</h3>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">這樣聊下來，我覺得私人課超適合您！教練一對一幫您客製，零基礎也完全不用怕～不如先來體驗一次，親自感受一對一帶起來的差別。您這禮拜三晚上，還是週六下午比較方便呢？我先幫您把時段和教練留下來～</div></div>
+
+      <h3 class="stg"><span class="chip">處理猶豫</span>他還在想時這樣接</h3>
+      <h4 class="q">「我再想想」</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">體驗就是讓您不用想太多～先實際試一次最準，要不要先幫您卡個時段？不適合再取消都沒關係的！</div></div>
+      <h4 class="q">「怕太累／體力不行」</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">教練會看您的狀況調整強度，新手都是循序漸進，不會一來就把您操爆啦，放心交給教練～</div></div>
+      <h4 class="q">「最近很忙沒時間」</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">我們有 40 分鐘的打靶課，短時間高強度，下班順路來剛好紓壓，很適合忙的人～要不要先排一次看看？</div></div>
+      <h4 class="q">「要問一下另一半／朋友」</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">剛好！揪伴一起來更有動力～要不要約一起來體驗？費用還能分攤喔！</div></div>
+      <h4 class="q">「我在比較其他家」</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">很合理～我們最大的差別是冠軍教練一對一、Google 5.0 評價，體驗一次最準，要不要先來感受看看再決定？</div></div>
+    </section>
+
+    <!-- ===== 5 階段四 到館體驗 ===== -->
+    <section id="s4">
+      <div class="sec-h"><span class="no">05</span><h2>階段四　到館 → 體驗上課 → 結束</h2><span class="en">ON-SITE TRIAL</span></div>
+      <p class="lead">人到了，好感的保鮮期開始倒數。顧問負責「接好、拍好、交給教練、再接回櫃台」。</p>
+
+      <h3 class="stg"><span class="chip">流程</span>第一次到場的標準流程</h3>
+      <div class="flow6">
+        <div class="st"><div class="n">①</div><div class="t">迎接報到</div><div class="d">提早 5–10 分到<br>核對預約</div></div>
+        <div class="st"><div class="n">②</div><div class="t">環境介紹</div><div class="d">帶看場地<br>了解目標</div></div>
+        <div class="st"><div class="n">③</div><div class="t">教練帶體驗</div><div class="d">暖身→基本動作→打靶<br>全程一對一</div></div>
+        <div class="st"><div class="n">④</div><div class="t">顧問全程錄影</div><div class="d">鼓勵、給信心<br>新手不對打</div></div>
+        <div class="st"><div class="n">⑤</div><div class="t">課末交回櫃台</div><div class="d">趁熱進成交<br>別讓他換鞋走人</div></div>
+      </div>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">第一次來我們會先帶您看一下場地、了解您的目標，然後教練會帶您做暖身、教幾個基本動作、打打靶，全程一對一帶、不會丟著您不管～結束後再跟您聊聊適合的方案，完全沒壓力，放心交給我們！</div></div>
+      <div class="block rule"><span class="tag">規定</span><b>安全第一：</b>新客一律只打沙袋與教練手靶、<b>不安排對打</b>；對抗練習安全由教練負責，顧問目睹危險立即通報教練。</div>
+
+      <h3 class="stg"><span class="chip">約課 FAQ</span>邀約階段最常被問</h3>
+      <h4 class="q">怎麼預約／報名？</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">預約超簡單～您跟我說方便的日期跟時段，我直接幫您把教練和場地留下來就可以了！或是用我們的線上系統（Fitbook）自己選時段也行。您這禮拜哪天比較方便呢？</div></div>
+      <h4 class="q">要先付錢嗎？</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">體驗課的費用是當天到現場再付就可以囉，預約不用先付～（私教體驗 $1,400／團課體驗 $400，現場付現或刷卡都行）先幫您把時段留著，當天來感受看看，喜歡再談後面的方案就好！</div></div>
+      <h4 class="q">第一次要帶什麼？</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">幾乎不用準備～穿好活動的運動服、帶條毛巾跟水就可以了！拳套、護具館內都有免費借，空手來就行～建議提早 5–10 分鐘到。</div></div>
+      <h4 class="q">可以改時間／取消嗎？</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">當然可以～如果臨時有事，再提前跟我說一聲，幫您改到方便的時間就好！我們希望您是輕鬆來的，不會給您壓力～</div></div>
+      <h4 class="q">停車方便嗎／怎麼去？</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">我們在新竹市北區林森路 301 號 2 樓，近竹科和新竹車站，蠻好找的～附近停車位算充足，騎車開車都方便。到的時候找不到再隨時 LINE 我！</div></div>
+      <div class="block mind"><span class="tag">心法</span>每一題答完都「順勢約時間」，別只回答完就停。收尾：<b>「所以您這禮拜三晚上，還是週六下午方便呢？我先幫您留位～」</b></div>
+    </section>
+
+    <!-- ===== 6 階段五 現場成交 ===== -->
+    <section id="s5">
+      <div class="sec-h"><span class="no">06</span><h2>階段五　現場成交</h2><span class="en">CLOSE ON-SITE</span></div>
+      <p class="lead">體驗當天的好感有保鮮期。體驗一結束、還沒換鞋走人前，櫃台就接手，當場收單，別讓他回去考慮。</p>
+      <h3 class="stg"><span class="chip">收單</span>私教為主力</h3>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">○○今天打得超好欸！第一次就這樣很有天份～剛剛一對一帶起來，是不是進步特別快？像您這種想快點看到成效的，最適合走私人課，教練全程幫您客製、盯每個細節，很多人體驗完就直接接私教了。現在加入可以用今天的體驗費直接折抵喔！而且私教買 10 堂還送 1 個月團課上到飽。您是想先從 10 堂（入門蛻變）開始，還是直接 20 堂（深度蛻變）更划算？</div></div>
+      <div class="block mind"><span class="tag">心法</span><b>臨門一腳：給一個今天就辦的理由。</b>用「送團課」放大價值感，<b>不要直接降價</b>。二選一收尾：「那您要 10 堂，還是 20 堂方案（送 2 個月團課）？」</div>
+
+      <h3 class="stg"><span class="chip">三選一</span>當場收單的理由（擇一用）</h3>
+      <ul class="tight">
+        <li><b>體驗費折抵：</b>「今天辦，體驗費直接折抵正課，等於現在最划算。」</li>
+        <li><b>買私教送團課：</b>「私教買 10 堂送 1 個月團課上到飽，平常還能多來練。」</li>
+        <li><b>限時／限量：</b>「這個月仲夏季方案多送堂數」「旗艦限 12 名快滿了」。</li>
+      </ul>
+
+      <h3 class="stg"><span class="chip">嫌貴</span>分期月付：把大數字變小</h3>
+      <p>別急著降價。先用分期把「五萬八」變成「月付不到一萬」就好談多了。</p>
+      <table>
+        <tr><th>方案</th><th>總價</th><th>6 期月付（約）</th><th>怎麼說</th></tr>
+        <tr><td><b>入門蛻變 10 堂</b></td><td>$18,000</td><td>約 $3,000</td><td>一個月三千，平均一堂比一頓好料還划算</td></tr>
+        <tr><td><b>深度蛻變 20 堂</b></td><td>$34,000</td><td>約 $5,700</td><td>分六期月付五千多，半年後完全不一樣</td></tr>
+        <tr><td><b>冠軍之路 36+4</b></td><td>$58,800</td><td>約 $9,800</td><td>月付不到一萬，就有冠軍教練帶您半年</td></tr>
+      </table>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">如果一次付覺得有點多，我們可以分期喔～像這個方案分 6 期，等於一個月只要不到一萬，壓力小很多。而且 3 期、6 期的手續費我們幫您吸收，等於沒多花錢就能輕鬆月付，要不要幫您辦 6 期？</div></div>
+      <div class="block warn"><span class="tag">注意</span>單筆刷卡上限 <b>$49,999</b>，36+4（$58,800）超過，需拆兩筆或改轉帳／現金。只主推 <b>3、6 期</b>（手續費低、館方吸收）；9、12 期成本高，讓客人自付或不開。</div>
+    </section>
+
+    <!-- ===== 7 階段六 追蹤回訪 ===== -->
+    <section id="s6">
+      <div class="sec-h"><span class="no">07</span><h2>階段六　未成交追蹤 ＋ 回訪</h2><span class="en">FOLLOW-UP</span></div>
+      <p class="lead">多數成交發生在第 2–5 次接觸。沒當天成交不代表沒機會——分段跟進，語氣是<b>關心不是催繳</b>。</p>
+
+      <h3 class="stg"><span class="chip">分叉</span>依客人反應走不同路</h3>
+      <div class="branch">
+        <div class="b deal"><b>有回覆／有興趣</b>順勢提供體驗成果與優惠，二選一再約一次回館，導向收單。</div>
+        <div class="b nodeal"><b>已讀未回</b>按時程節點（3／7／14 天）輕觸發，每次帶新理由（成果照、限時優惠）。</div>
+      </div>
+      <div class="branch" style="margin-top:8px">
+        <div class="b nodeal" style="background:#FBECEC;border-color:#F0C9C9"><b>明確拒絕</b>第 14 天做最後一次主動提醒後停止追打；保留好感，留作未來名單，不死纏。</div>
+      </div>
+
+      <h3 class="stg"><span class="chip">時程</span>分段跟進腳本</h3>
+      <h4 class="q">當天／隔天（附打靶影片）</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">○○今天辛苦啦！這是您今天打靶的影片，第一次就打得很有架式欸～有任何問題都可以隨時問我喔！</div></div>
+      <h4 class="q">第 3 天（關心＋提醒優惠）</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">○○最近還好嗎～上次體驗完肌肉有沒有痠？哈哈那代表有練到！提醒您一下，體驗費折抵的優惠這週還在，考慮得怎麼樣了呢？有問題都可以問我～</div></div>
+      <h4 class="q">第 7 天（學員成果＋限時）</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">○○您看～這是我們一位跟您一樣零基礎開始的學員，練兩個月的變化！這個月剛好有方案優惠，想說提醒您一下，要不要把握一下這次的名額？</div></div>
+      <h4 class="q">第 14 天（最後一次主動）</h4>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">○○嗨～本月的優惠到這週就結束囉，想說最後提醒您一次～如果這陣子方便，我可以先幫您把名額和時段留著，隨時跟我說就好！</div></div>
+
+      <h3 class="stg"><span class="chip">續費</span>成交後：推月訂閱／自動扣款</h3>
+      <div class="block script"><span class="tag">話術</span><button class="cp">複製</button><div class="say">我們有月訂閱方案喔～每個月自動扣款，您完全不用記得繳費，來練就好！而且訂閱比一堂一堂買划算，還能團課上到飽，等於把運動變成習慣，效果最好～要不要幫您設定每月自動扣款？隨時想調整或暫停都可以跟我說，不綁約的。</div></div>
+      <div class="block rule"><span class="tag">合規</span>自動扣款一定要先講清楚：<b>每月扣多少、什麼時候扣、怎麼取消</b>，並取得客人同意——別讓他覺得被偷扣，傷信任也有法律風險。</div>
+    </section>
+
+    <!-- ===== 8 銷售武器庫 ===== -->
+    <section id="weapons">
+      <div class="sec-h"><span class="no">08</span><h2>銷售武器庫：目標課程包</h2><span class="en">PACKAGES</span></div>
+      <div class="block mind"><span class="tag">鐵則</span>賣『結果』不賣『堂數』。客人不是買 10 堂課，是買一個「變成更好的自己」的承諾。給他名字、給他終點，他就會掏錢。</div>
+      <p><b>談單三步：</b>① 先問目標 → ② 對號入座（直接給包名）→ ③ 講成交鉤子＋二選一收單。</p>
+
+      <h3 class="stg"><span class="chip">團課</span>10 堂・四種入門目標包（同價 $4,500／60 天）</h3>
+      <div class="pgrid">
+        <div class="pcard"><div class="hd"><span class="nm">① 減脂啟動包</span><span class="tg">最大客群</span></div><div class="ap">想瘦、想練線條的上班族</div><div class="hook"><b>鉤子：</b>專門先做出「看得到的第一個變化」，讓你有動力一直練下去。</div></div>
+        <div class="pcard"><div class="hd"><span class="nm">② 紓壓入門包</span></div><div class="ap">壓力大、想宣洩的人</div><div class="hook"><b>鉤子：</b>很多學員拖著身體進來、跳著舞步回家，比滑手機紓壓多了。</div></div>
+        <div class="pcard"><div class="hd"><span class="nm">③ 格鬥新手包</span></div><div class="ap">想學技術、防身的零基礎者</div><div class="hook"><b>鉤子：</b>從零教到能打出正確拳腿組合、懂基本防身，扎實基礎。</div></div>
+        <div class="pcard"><div class="hd"><span class="nm">④ 興趣體驗包</span></div><div class="ap">只想動一動、找樂趣的人</div><div class="hook"><b>鉤子：</b>先用 10 堂找到「讓你願意一直來」的運動。</div></div>
+      </div>
+
+      <h3 class="stg"><span class="chip">團課</span>30 堂・三種進階計畫（同價 $10,500／150 天）</h3>
+      <div class="pgrid">
+        <div class="pcard"><div class="hd"><span class="nm">① 體態轉變計畫</span></div><div class="ap">想改變身材、拍前後對比的人</div><div class="hook"><b>鉤子：</b>3 個月一張前後對比照，發限動會被問「你怎麼瘦的」的那種改變。</div></div>
+        <div class="pcard"><div class="hd"><span class="nm">② 技術養成計畫</span></div><div class="ap">想從新手練到能對練</div><div class="hook"><b>鉤子：</b>30 堂從基本功帶到能對練，練出真功夫，不是只會打空氣。</div></div>
+        <div class="pcard"><div class="hd"><span class="nm">③ 習慣養成計畫</span></div><div class="ap">辦了卡卻沒在來的人</div><div class="hook"><b>鉤子：</b>搭配集點挑戰幫你撐過放棄期，真的養成習慣。</div></div>
+      </div>
+
+      <h3 class="stg"><span class="chip">私教</span>命脈：客製＋最快（按訓練目的規劃）</h3>
+      <div class="block warn"><span class="tag">報價心理</span>錨定效應：<b>先講旗艦（$58,800）再講 10 堂（$18,000）</b>，10 堂就顯得親民好入手。但旗艦只對「對的人」講（已是私教學員、上得勤、信任教練者），別嚇到剛體驗完的新客。</div>
+      <div class="pgrid">
+        <div class="pcard"><div class="hd"><span class="nm">10 堂 入門爆款</span><span class="tg">$18,000／90 天</span></div><div class="ap">減脂雕塑啟動／技術入門矯正</div><div class="hook"><b>鉤子：</b>團課顧不到細節；私教是教練 100% 盯你一個人、客製菜單，最快看到成效的唯一解。</div></div>
+        <div class="pcard"><div class="hd"><span class="nm">20 堂 中堅主力</span><span class="tg">$34,000／120 天</span></div><div class="ap">體態轉變完整週期／能對練</div><div class="hook"><b>鉤子：</b>10 堂開始有感，20 堂明顯改變、敢拍對比照。很多人 10 堂後直接續 20 堂。</div></div>
+        <div class="pcard"><div class="hd"><span class="nm">30 堂 深度蛻變</span><span class="tg">$48,000／180 天</span></div><div class="ap">3 個月體態＋技術全面升級</div><div class="hook"><b>鉤子（導旗艦）：</b>再加一點點預算就升旗艦，多 10 堂又送 4 個月團課，平均每堂最划算。</div></div>
+        <div class="pcard"><div class="hd"><span class="nm">旗艦 36+4 選手級</span><span class="tg">$58,800／180 天</span></div><div class="ap">最完整系統，含實戰、體能、技術</div><div class="hook"><b>鉤子（限量）：</b>限量 12 名給最認真的人，多送 4 堂私課＋4 個月團課，總教練親自帶。</div></div>
+      </div>
+
+      <h3 class="stg"><span class="chip">速記</span>一頁對照表（貼櫃台）</h3>
+      <table>
+        <tr><th>客人說目標</th><th>你給的包</th><th>收單鉤子一句</th></tr>
+        <tr><td>想減肥</td><td>減脂啟動包（團）／減脂雕塑（私）</td><td>先做出看得到的第一個變化</td></tr>
+        <tr><td>壓力大</td><td>紓壓入門包</td><td>拖著進來、跳著回家</td></tr>
+        <tr><td>想學技術／防身</td><td>格鬥新手包／技術入門（私）</td><td>動作練錯要花三倍時間改</td></tr>
+        <tr><td>想明顯改變身材</td><td>體態轉變（30 團／20 私）</td><td>敢拍前後對比照的那種改變</td></tr>
+        <tr><td>想比賽／練到頂</td><td>旗艦 36+4</td><td>限量 12 名，總教練親自帶</td></tr>
+        <tr><td>只想動一動</td><td>興趣體驗包</td><td>先找到願意一直來的運動</td></tr>
+      </table>
+
+      <h3 class="stg"><span class="chip">續課</span>提高私教消課率：讓人「看見進步」</h3>
+      <p>看不見進步＝私教不續的頭號原因。每隔 <b>5–10 堂</b>做一次評估：體態（量腰圍／體脂、拍對比照）、力量（踢擊力道、續航回合）、技術（學會了哪幾招的勾選清單）。最有效一招：<b>課末當場約下一堂</b>，把「下一次」變成預設。</p>
+    </section>
+
+    <!-- ===== 9 價格速記 ===== -->
+    <section id="price">
+      <div class="sec-h"><span class="no">09</span><h2>價格速記（2026 現行牌價）</h2><span class="en">PRICE SHEET</span></div>
+      <p class="lead">所有金額以《購課合約書》載明者為準；總金額簽訂後不另收約定外費用。每堂單價＝課卡金額÷總堂數（退費計算基準）。</p>
+      <h3 class="stg"><span class="chip">團課</span>LV.1／LV.2</h3>
+      <table class="pkg">
+        <tr><th>方案</th><th>堂數</th><th>課卡金額</th><th>平均每堂</th><th>建議使用期限</th></tr>
+        <tr><td><b>體驗價</b></td><td>1 堂</td><td>$400</td><td>$400</td><td>一次性、不可展期</td></tr>
+        <tr><td><b>單堂</b></td><td>1 堂</td><td>$600</td><td>$600</td><td>14 天（購課日起算）</td></tr>
+        <tr><td><b>10 堂</b></td><td>10 堂</td><td>$4,500</td><td>$450</td><td>60 天</td></tr>
+        <tr><td><b>30 堂</b></td><td>30 堂</td><td>$10,500</td><td>$350</td><td>150 天</td></tr>
+      </table>
+      <h3 class="stg"><span class="chip">私教</span>1 對 1</h3>
+      <table class="pkg">
+        <tr><th>方案</th><th>堂數</th><th>課卡金額</th><th>平均每堂</th><th>建議使用期限</th></tr>
+        <tr><td><b>體驗價</b></td><td>1 堂</td><td>$1,400</td><td>$1,400</td><td>一次性、不可展期</td></tr>
+        <tr><td><b>體驗價</b></td><td>2 堂</td><td>$2,400</td><td>$1,200</td><td>一次性、不可展期</td></tr>
+        <tr><td><b>單堂</b></td><td>1 堂</td><td>$2,200</td><td>$2,200</td><td>14 天（購課日起算）</td></tr>
+        <tr><td><b>10 堂</b></td><td>10 堂</td><td>$18,000</td><td>$1,800</td><td>90 天</td></tr>
+        <tr><td><b>20 堂</b></td><td>20 堂</td><td>$34,000</td><td>$1,700</td><td>120 天</td></tr>
+        <tr><td><b>30 堂</b></td><td>30 堂</td><td>$48,000</td><td>$1,600</td><td>180 天</td></tr>
+        <tr><td><b>旗艦 40 堂（36+4）</b></td><td>40 堂</td><td>$58,800</td><td>$1,470</td><td>180 天</td></tr>
+      </table>
+      <div class="block rule"><span class="tag">會員費</span><b>NT$1,000：</b>首次體驗課不收；正式購課（非體驗）時收取。報價與結帳時主動說明，避免結帳當下才告知造成爭議。</div>
+    </section>
+
+    <!-- ===== 10 場館規定 ===== -->
+    <section id="rules">
+      <div class="sec-h"><span class="no">10</span><h2>場館規定（顧問必執行／宣導）</h2><span class="en">VENUE RULES</span></div>
+      <table>
+        <tr><th>項目</th><th>規定</th></tr>
+        <tr><td><b>營業時間</b></td><td>平日 11:00–23:00（團課 19:00–21:30）；週六至 16:00（11:00–12:00 團課）；週日公休。</td></tr>
+        <tr><td><b>預約制</b></td><td>全場採預約制，經 Fitbook 或顧問登記。團課前一晚 22:00 達 <b>3 人</b>即開課並鎖名單。</td></tr>
+        <tr><td><b>取消／扣堂</b></td><td>團課須開始前至少 <b>2 小時</b>通知；私教須開始前至少 <b>12 小時</b>通知；逾時取消視同使用一堂。</td></tr>
+        <tr><td><b>遲到</b></td><td>遲到 <b>15 分鐘</b>以上，為安全考量教練得決定是否參與該堂。</td></tr>
+        <tr><td><b>新手安全</b></td><td>新客一律 LV.1、只打沙袋與手靶、不對打；LV.2 對練須雙方同意＋全程護具＋教練在場。</td></tr>
+        <tr><td><b>體驗課</b></td><td>一次性優惠，不可與其他折扣合併、不可累計堂數或展期，且<b>不收會員費</b>。</td></tr>
+        <tr><td><b>使用期限</b></td><td>各方案載明建議完成期間；遇傷病等特殊狀況得申請<b>合理展期</b>，不採一律沒收。</td></tr>
+        <tr><td><b>退費</b></td><td>依教育部體育署規範：應退＝課卡金額－（已使用堂數×每堂單價）－手續費；每堂單價以平均每堂計。</td></tr>
+        <tr><td><b>契約審閱</b></td><td>主動告知不少於 <b>三日</b>審閱期，可攜回審閱後再簽，不催「現在簽馬上生效」。</td></tr>
+        <tr><td><b>肖像／個資</b></td><td>課堂影像著作權歸場館；行銷使用以學員勾選同意為準。學員個資僅限公務使用、不得外洩。</td></tr>
+      </table>
+    </section>
+
+    <!-- ===== 11 合規紅線 ===== -->
+    <section id="redline">
+      <div class="sec-h"><span class="no">11</span><h2>合規與話術紅線</h2><span class="en">RED LINES</span></div>
+      <div class="block rule"><span class="tag">紅線</span>顧問是合規的第一道防線：<b>不沒收</b>堂數、<b>不誇大</b>療效與成果、<b>不私自降價</b>（嫌貴用分期月付化解）、退費照體育署規範、自動扣款先講清楚、主動保留三日審閱期。</div>
+      <ul class="tight">
+        <li>任何不確定的承諾，先回報總教練暨經營者再答覆，<b>切勿當場給出未經授權的保證</b>。</li>
+        <li>報價以《購課合約書》為準；一對二私教未列入牌價，報價先洽總教練。</li>
+        <li>開單一律登錄 Fitbook，業績以實際收款為準，不得虛報或挪用。</li>
+        <li>單筆刷卡上限 $49,999；超過需拆筆或改轉帳／現金。只主推 3、6 期。</li>
+      </ul>
+    </section>
+
+    <!-- CLOSING -->
+    <div class="closing">
+      <h3>三句總心法</h3>
+      <ol>
+        <li>第一句<b>先接人、不接價</b>——「想先了解您，才不會讓您白花錢」。</li>
+        <li>線上只為一件事：<b>約他來體驗</b>。</li>
+        <li>嫌貴<b>用分期月付、別降價</b>；成交後推訂閱鎖續費。</li>
+      </ol>
+      <p style="margin-top:10px;color:#d6d2cc;font-size:13px">遇到狀況先回到「顧客旅程全流程圖」，找到你在哪一站，複製對應話術、改名字、送出。就這麼簡單。</p>
+    </div>
+
+    <div class="footer">
+      <span>新竹格鬥 HCF · 格鬥顧問教育訓練 SOP · v1.0 / 2026 · 內部機密</span>
+      <span>整合自《實戰話術腳本》《課程規劃銷售手冊》｜方案與條款以《購課合約書》為準</span>
+    </div>
+
+  </div><!-- /wrap -->
+</div><!-- /page -->
+
+<script>
+document.querySelectorAll('.cp').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var blk=btn.closest('.block');
+    var src=blk.querySelector('.say');
+    var text=(src?src.innerText:blk.innerText).trim();
+    var done=function(){btn.textContent='已複製';btn.classList.add('done');setTimeout(function(){btn.textContent='複製';btn.classList.remove('done');},1500);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(function(){fallback(text,done);});
+    }else{fallback(text,done);}
+  });
+});
+function fallback(text,done){
+  var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}document.body.removeChild(ta);
+}
+</script>
