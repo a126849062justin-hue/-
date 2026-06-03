@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /netlify/
+Sitemap: https://www.hsinchucombat.com/sitemap.xml
