@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "slides": [
+    { "type": "image", "src": "hero1.jpg", "alt": "HCF Combat", "fallback": "https://images.unsplash.com/photo-1549719386-74dfc97dd4fc?auto=format&fit=crop&q=80&w=2000" },
+    { "type": "video", "src": "hero_video5.mp4", "poster": "hero1.jpg", "alt": "HCF Combat Video" },
+    { "type": "image", "src": "hero2.jpg", "alt": "HCF Combat 2", "fallback": "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&q=80&w=2000" },
+    { "type": "video", "src": "hero_video4.mp4", "poster": "hero1.jpg", "alt": "HCF Combat Video 2" }
+  ]
+}

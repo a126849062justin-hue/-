@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="shark_logo.png">
+    <title>HCF 官網中控台</title>
+    <link rel="stylesheet" href="output.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --theme-base: #02040a; --theme-cyan: #00f0ff; }
+        body { background-color: var(--theme-base); color: #e2e8f0; font-family: 'Noto Sans TC', sans-serif; }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        input:focus { outline: none; border-color: var(--theme-cyan); box-shadow: 0 0 10px rgba(0, 240, 255, 0.3); }
+        .tab-btn.active { border-color: #00f0ff; color: #00f0ff; background: rgba(0,240,255,0.08); }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+        .kpi-card { background: #0f131a; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.75rem; padding: 1rem; }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .status-ok { background: #00ff41; box-shadow: 0 0 6px #00ff41; }
+        .status-warn { background: #ffd700; box-shadow: 0 0 6px #ffd700; }
+        .status-err { background: #ff003c; box-shadow: 0 0 6px #ff003c; }
+        /* Scrollable tab bar */
+        .tab-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        .tab-scroll::-webkit-scrollbar { display: none; }
+        /* CSS Bar Chart */
+        .bar-chart { display: flex; align-items: flex-end; gap: 6px; height: 80px; }
+        .bar-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
+        .bar-fill { width: 100%; background: rgba(0,240,255,0.6); border-radius: 3px 3px 0 0; min-height: 2px; transition: height 0.5s ease; }
+        .bar-label { font-size: 9px; color: #6b7280; font-family: monospace; }
+        .bar-val { font-size: 9px; color: #00f0ff; font-family: monospace; }
+    </style>
+</head>
+<body class="min-h-screen p-4">
+
+    <div class="max-w-2xl mx-auto">
+        <!-- Header -->
+        <div class="bg-[#0f131a] border border-white/10 rounded-xl p-6 shadow-2xl relative overflow-hidden mb-4">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#00f0ff] to-transparent"></div>
+            <div class="text-center">
+                <h1 class="text-2xl font-black text-white font-orbitron italic tracking-wider mb-1">HCF CONTROL</h1>
+                <p class="text-xs text-[#00f0ff] tracking-[0.3em] font-mono">SYSTEM ADMINISTRATION</p>
+            </div>
+            <button id="logout-btn" onclick="logout()" style="display:none" class="absolute top-4 right-4 text-xs text-gray-500 hover:text-red-400 transition-colors font-mono tracking-widest">
+                <i class="fa-solid fa-right-from-bracket mr-1"></i>LOGOUT
+            </button>
+        </div>
+
+        <!-- Login Screen (shown when not authenticated) -->
+        <div id="login-screen" class="bg-[#0f131a] border border-white/10 rounded-xl px-6 py-6 mb-4">
+            <p class="text-xs text-gray-400 font-bold mb-4 tracking-widest text-center">ACCESS CODE</p>
+            <div class="relative mb-3">
+                <input type="password" id="login-password" placeholder="請輸入管理密碼" class="w-full bg-[#050810] border border-white/20 text-white px-4 py-2.5 rounded text-center tracking-widest font-mono transition-all focus:border-[#00f0ff]" onkeypress="if(event.key==='Enter') login()">
+                <i class="fa-solid fa-lock absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+            </div>
+            <button onclick="login()" class="w-full py-2.5 bg-[#00f0ff]/10 border border-[#00f0ff]/40 hover:bg-[#00f0ff]/20 text-[#00f0ff] font-bold text-sm rounded tracking-widest transition-all">
+                <i class="fa-solid fa-right-to-bracket mr-2"></i>LOGIN
+            </button>
+            <div id="login-error" class="hidden mt-3 p-2 rounded bg-red-500/20 text-red-400 text-xs text-center font-bold"></div>
+            <p class="text-[10px] text-gray-500 mt-3 text-center">* 請向管理員索取密碼</p>
+        </div>
+
+        <!-- Admin Panel (hidden until authenticated) -->
+        <div id="admin-panel" style="display:none">
+
+        <!-- Tabs (scrollable) -->
+        <div class="tab-scroll mb-4">
+            <div class="flex gap-2 flex-nowrap" style="min-width: max-content;">
+                <button onclick="switchTab('traffic')" id="tab-traffic" class="tab-btn active py-2 px-3 text-xs font-bold border border-white/20 rounded-lg transition-all text-gray-400 whitespace-nowrap">
+                    <i class="fa-solid fa-chart-bar mr-1"></i>流量統計
+                </button>
+                <button onclick="switchTab('theme')" id="tab-theme" class="tab-btn py-2 px-3 text-xs font-bold border border-white/20 rounded-lg transition-all text-gray-400 whitespace-nowrap">
+                    <i class="fa-solid fa-palette mr-1"></i>主題控制
+                </button>
+                <button onclick="switchTab('ai')" id="tab-ai" class="tab-btn py-2 px-3 text-xs font-bold border border-white/20 rounded-lg transition-all text-gray-400 whitespace-nowrap">
+                    <i class="fa-solid fa-robot mr-1"></i>AI 儀表板
+                </button>
+                <button onclick="switchTab('media')" id="tab-media" class="tab-btn py-2 px-3 text-xs font-bold border border-white/20 rounded-lg transition-all text-gray-400 whitespace-nowrap">
+                    <i class="fa-solid fa-photo-film mr-1"></i>素材管理
+                </button>
+                <button onclick="switchTab('links')" id="tab-links" class="tab-btn py-2 px-3 text-xs font-bold border border-white/20 rounded-lg transition-all text-gray-400 whitespace-nowrap">
+                    <i class="fa-solid fa-link mr-1"></i>快速連結
+                </button>
+                <button onclick="switchTab('events')" id="tab-events" class="tab-btn py-2 px-3 text-xs font-bold border border-white/20 rounded-lg transition-all text-gray-400 whitespace-nowrap">
+                    <i class="fa-solid fa-bullseye mr-1"></i>事件追蹤
+                </button>
+                <button onclick="switchTab('export')" id="tab-export" class="tab-btn py-2 px-3 text-xs font-bold border border-white/20 rounded-lg transition-all text-gray-400 whitespace-nowrap">
+                    <i class="fa-solid fa-download mr-1"></i>數據導出
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab: Traffic Stats -->
+        <div id="panel-traffic" class="tab-panel active bg-[#0f131a] border border-white/10 rounded-xl p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-sm font-bold text-[#00f0ff] font-mono tracking-widest">流量統計</h2>
+                <button onclick="loadTrafficStats()" class="text-xs text-gray-400 hover:text-white border border-white/20 rounded px-2 py-1 transition-all">
+                    <i class="fa-solid fa-rotate-right mr-1"></i>刷新
+                </button>
+            </div>
+
+            <!-- KPI Cards -->
+            <div class="grid grid-cols-3 gap-3 mb-4">
+                <div class="kpi-card text-center">
+                    <div class="text-[10px] text-gray-500 font-mono mb-1">TODAY</div>
+                    <div class="text-2xl font-black text-white" id="traffic-today">--</div>
+                    <div class="text-[10px] text-gray-400">瀏覽次數</div>
+                    <div class="text-xs text-[#00f0ff] mt-1" id="traffic-today-u">--</div>
+                    <div class="text-[10px] text-gray-400">獨立訪客</div>
+                </div>
+                <div class="kpi-card text-center">
+                    <div class="text-[10px] text-gray-500 font-mono mb-1">THIS WEEK</div>
+                    <div class="text-2xl font-black text-white" id="traffic-week">--</div>
+                    <div class="text-[10px] text-gray-400">瀏覽次數</div>
+                    <div class="text-xs text-[#00f0ff] mt-1" id="traffic-week-u">--</div>
+                    <div class="text-[10px] text-gray-400">獨立訪客</div>
+                </div>
+                <div class="kpi-card text-center">
+                    <div class="text-[10px] text-gray-500 font-mono mb-1">THIS MONTH</div>
+                    <div class="text-2xl font-black text-white" id="traffic-month">--</div>
+                    <div class="text-[10px] text-gray-400">瀏覽次數</div>
+                    <div class="text-xs text-[#00f0ff] mt-1" id="traffic-month-u">--</div>
+                    <div class="text-[10px] text-gray-400">獨立訪客</div>
+                </div>
+            </div>
+
+            <!-- Device Breakdown -->
+            <div class="kpi-card mb-4">
+                <div class="text-[10px] text-gray-500 font-mono mb-3">裝置分佈</div>
+                <div class="flex flex-col gap-2">
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-400"><i class="fa-solid fa-mobile-screen mr-1"></i>Mobile</span>
+                            <span class="text-[#00f0ff] font-bold" id="device-mobile">--%</span>
+                        </div>
+                        <div class="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-[#00f0ff] rounded-full transition-all duration-700" id="bar-mobile" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-400"><i class="fa-solid fa-tablet-screen-button mr-1"></i>Tablet</span>
+                            <span class="text-[#00f0ff] font-bold" id="device-tablet">--%</span>
+                        </div>
+                        <div class="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-[#00f0ff]/70 rounded-full transition-all duration-700" id="bar-tablet" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-gray-400"><i class="fa-solid fa-desktop mr-1"></i>Desktop</span>
+                            <span class="text-[#00f0ff] font-bold" id="device-desktop">--%</span>
+                        </div>
+                        <div class="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-[#00f0ff]/40 rounded-full transition-all duration-700" id="bar-desktop" style="width:0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7-Day Trend (CSS Bar Chart) -->
+            <div class="kpi-card mb-4">
+                <div class="text-[10px] text-gray-500 font-mono mb-3">過去 7 天趨勢</div>
+                <div class="bar-chart" id="daily-chart">
+                    <div class="text-gray-500 text-xs">載入中...</div>
+                </div>
+            </div>
+
+            <!-- Top Pages & Referrers -->
+            <div class="grid grid-cols-1 gap-3">
+                <div class="kpi-card">
+                    <div class="text-[10px] text-gray-500 font-mono mb-2">熱門頁面 TOP 5</div>
+                    <div id="top-pages" class="flex flex-col gap-1 text-xs">
+                        <div class="text-gray-500">載入中...</div>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="text-[10px] text-gray-500 font-mono mb-2">流量來源 TOP 5</div>
+                    <div id="top-referrers" class="flex flex-col gap-1 text-xs">
+                        <div class="text-gray-500">載入中...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Theme Control -->
+        <div id="panel-theme" class="tab-panel bg-[#0f131a] border border-white/10 rounded-xl p-6 shadow-2xl">
+            <div class="grid grid-cols-2 gap-3 mb-4">
+                <button onclick="setTheme('default')" class="group relative overflow-hidden py-3 rounded border border-white/20 hover:border-[#00f0ff] transition-all bg-[#00f0ff]/10">
+                    <span class="relative z-10 text-sm font-bold text-[#00f0ff] group-hover:text-white transition-colors">DEFAULT (CYAN)</span>
+                    <div class="absolute inset-0 bg-[#00f0ff] translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"></div>
+                </button>
+                <button onclick="setTheme('red')" class="group relative overflow-hidden py-3 rounded border border-white/20 hover:border-[#ff003c] transition-all bg-[#ff003c]/10">
+                    <span class="relative z-10 text-sm font-bold text-[#ff003c] group-hover:text-white transition-colors">RED</span>
+                    <div class="absolute inset-0 bg-[#ff003c] translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"></div>
+                </button>
+                <button onclick="setTheme('green')" class="group relative overflow-hidden py-3 rounded border border-white/20 hover:border-[#00ff41] transition-all bg-[#00ff41]/10">
+                    <span class="relative z-10 text-sm font-bold text-[#00ff41] group-hover:text-white transition-colors">GREEN</span>
+                    <div class="absolute inset-0 bg-[#00ff41] translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"></div>
+                </button>
+                <button onclick="setTheme('purple')" class="group relative overflow-hidden py-3 rounded border border-white/20 hover:border-[#bf00ff] transition-all bg-[#bf00ff]/10">
+                    <span class="relative z-10 text-sm font-bold text-[#bf00ff] group-hover:text-white transition-colors">PURPLE</span>
+                    <div class="absolute inset-0 bg-[#bf00ff] translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"></div>
+                </button>
+                <button onclick="setTheme('gold')" class="group relative overflow-hidden py-3 rounded border border-white/20 hover:border-[#ffd700] transition-all bg-[#ffd700]/10">
+                    <span class="relative z-10 text-sm font-bold text-[#ffd700] group-hover:text-black transition-colors">GOLD</span>
+                    <div class="absolute inset-0 bg-[#ffd700] translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"></div>
+                </button>
+                <button onclick="setTheme('white')" class="group relative overflow-hidden py-3 rounded border border-white/20 hover:border-white transition-all bg-white/10">
+                    <span class="relative z-10 text-sm font-bold text-white group-hover:text-black transition-colors">WHITE</span>
+                    <div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"></div>
+                </button>
+            </div>
+            <div id="status-box" class="hidden p-3 rounded text-center text-xs font-bold tracking-widest mb-2 transition-all"></div>
+        </div>
+
+        <!-- Tab: AI Dashboard -->
+        <div id="panel-ai" class="tab-panel bg-[#0f131a] border border-white/10 rounded-xl p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-sm font-bold text-[#00f0ff] font-mono tracking-widest">AI 性能儀表板</h2>
+                <button onclick="loadAIMetrics()" class="text-xs text-gray-400 hover:text-white border border-white/20 rounded px-2 py-1 transition-all">
+                    <i class="fa-solid fa-rotate-right mr-1"></i>刷新
+                </button>
+            </div>
+
+            <!-- KPI Cards -->
+            <div class="grid grid-cols-2 gap-3 mb-4" id="kpi-grid">
+                <div class="kpi-card">
+                    <div class="text-[10px] text-gray-500 font-mono mb-1">CLAUDE</div>
+                    <div class="text-lg font-black text-white" id="kpi-claude-rate">--</div>
+                    <div class="text-[10px] text-gray-400">成功率</div>
+                    <div class="text-xs text-[#00f0ff] mt-1" id="kpi-claude-time">-- ms</div>
+                    <div class="text-[10px] text-gray-400">平均回應時間</div>
+                    <div class="text-xs text-white mt-1" id="kpi-claude-count">--</div>
+                    <div class="text-[10px] text-gray-400">今日對話數</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="text-[10px] text-gray-500 font-mono mb-1">GEMINI</div>
+                    <div class="text-lg font-black text-white" id="kpi-gemini-rate">--</div>
+                    <div class="text-[10px] text-gray-400">成功率</div>
+                    <div class="text-xs text-[#00f0ff] mt-1" id="kpi-gemini-time">-- ms</div>
+                    <div class="text-[10px] text-gray-400">平均回應時間</div>
+                    <div class="text-xs text-white mt-1" id="kpi-gemini-count">--</div>
+                    <div class="text-[10px] text-gray-400">今日對話數</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="text-[10px] text-gray-500 font-mono mb-1">CONVERSION</div>
+                    <div class="text-lg font-black text-white" id="kpi-conv-rate">--</div>
+                    <div class="text-[10px] text-gray-400">轉換率</div>
+                    <div class="text-xs text-[#00f0ff] mt-1" id="kpi-conv-ai">--</div>
+                    <div class="text-[10px] text-gray-400">AI 互動數</div>
+                    <div class="text-xs text-white mt-1" id="kpi-conv-book">--</div>
+                    <div class="text-[10px] text-gray-400">新預約數</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="text-[10px] text-gray-500 font-mono mb-1">MONTHLY COST</div>
+                    <div class="text-lg font-black text-white" id="kpi-cost-total">--</div>
+                    <div class="text-[10px] text-gray-400">總成本 (USD)</div>
+                    <div class="text-xs text-[#00f0ff] mt-1" id="kpi-cost-claude">--</div>
+                    <div class="text-[10px] text-gray-400">Claude 成本</div>
+                    <div class="text-xs text-white mt-1" id="kpi-cost-gemini">--</div>
+                    <div class="text-[10px] text-gray-400">Gemini 成本</div>
+                </div>
+            </div>
+
+            <!-- System Health -->
+            <div class="kpi-card mb-4">
+                <div class="text-[10px] text-gray-500 font-mono mb-2">SYSTEM HEALTH</div>
+                <div class="flex flex-col gap-2" id="health-list">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-gray-400">Claude API</span>
+                        <span id="health-claude" class="text-gray-500">--</span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-gray-400">Gemini API</span>
+                        <span id="health-gemini" class="text-gray-500">--</span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-gray-400">Supabase DB</span>
+                        <span id="health-supabase" class="text-gray-500">--</span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-gray-400">系統可用率</span>
+                        <span id="health-avail" class="text-[#00f0ff] font-bold">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Logs -->
+            <div class="kpi-card mb-4">
+                <div class="text-[10px] text-gray-500 font-mono mb-2">RECENT CONVERSATIONS</div>
+                <div id="recent-logs" class="flex flex-col gap-2 text-xs">
+                    <div class="text-gray-500">載入中...</div>
+                </div>
+            </div>
+
+            <!-- Top Questions -->
+            <div class="kpi-card">
+                <div class="text-[10px] text-gray-500 font-mono mb-2">TOP QUESTIONS</div>
+                <div id="top-questions" class="flex flex-col gap-1 text-xs">
+                    <div class="text-gray-500">載入中...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Media Management -->
+        <div id="panel-media" class="tab-panel bg-[#0f131a] border border-white/10 rounded-xl p-6 shadow-2xl">
+            <h2 class="text-sm font-bold text-[#00f0ff] font-mono tracking-widest mb-4">素材管理</h2>
+
+            <!-- Spec Warning -->
+            <div class="mb-4 p-3 rounded-lg border border-yellow-500/40 bg-yellow-500/10 text-xs">
+                <div class="font-bold text-yellow-400 mb-2"><i class="fa-solid fa-triangle-exclamation mr-1"></i>素材規格提醒</div>
+                <div class="text-yellow-200/80 flex flex-col gap-1">
+                    <div>🎬 影片：MP4 (H.264), 1920×1080, 16:9, &lt; 15MB</div>
+                    <div>🖼️ 圖片：JPG / WebP, 1920×1080, 16:9, &lt; 500KB</div>
+                    <div class="text-yellow-400 mt-1">⚠️ 更換後記得在 URL 加 <code class="bg-black/40 px-1 rounded">?v=N</code> 打快取</div>
+                </div>
+            </div>
+
+            <!-- Media List -->
+            <div class="flex flex-col gap-3 mb-4">
+                <!-- Item 1 -->
+                <div class="kpi-card flex items-center gap-3">
+                    <div class="text-lg font-black text-gray-500 font-mono w-5 shrink-0">1</div>
+                    <div class="text-2xl shrink-0">🎬</div>
+                    <div class="flex-1 min-w-0">
+                        <div class="font-bold text-white text-sm">hero_video.mp4</div>
+                        <div class="text-[10px] text-gray-400">首頁第一個，自動播放</div>
+                        <div class="text-[10px] text-gray-500 mt-0.5">1920×1080 MP4 H.264, &lt;15MB</div>
+                    </div>
+                    <span class="shrink-0 text-[10px] font-bold px-2 py-0.5 rounded bg-[#00f0ff]/10 text-[#00f0ff] border border-[#00f0ff]/30">VIDEO</span>
+                </div>
+                <!-- Item 2 -->
+                <div class="kpi-card flex items-center gap-3">
+                    <div class="text-lg font-black text-gray-500 font-mono w-5 shrink-0">2</div>
+                    <div class="text-2xl shrink-0">🖼️</div>
+                    <div class="flex-1 min-w-0">
+                        <div class="font-bold text-white text-sm">hero1.jpg</div>
+                        <div class="text-[10px] text-gray-400">輪播圖 + 影片 poster</div>
+                        <div class="text-[10px] text-gray-500 mt-0.5">1920×1080 JPG/WebP, &lt;500KB</div>
+                    </div>
+                    <span class="shrink-0 text-[10px] font-bold px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/30">IMAGE</span>
+                </div>
+                <!-- Item 3 -->
+                <div class="kpi-card flex items-center gap-3">
+                    <div class="text-lg font-black text-gray-500 font-mono w-5 shrink-0">3</div>
+                    <div class="text-2xl shrink-0">🖼️</div>
+                    <div class="flex-1 min-w-0">
+                        <div class="font-bold text-white text-sm">hero2.jpg</div>
+                        <div class="text-[10px] text-gray-400">輪播圖片</div>
+                        <div class="text-[10px] text-gray-500 mt-0.5">1920×1080 JPG/WebP, &lt;500KB</div>
+                    </div>
+                    <span class="shrink-0 text-[10px] font-bold px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/30">IMAGE</span>
+                </div>
+                <!-- Item 4 -->
+                <div class="kpi-card flex items-center gap-3">
+                    <div class="text-lg font-black text-gray-500 font-mono w-5 shrink-0">4</div>
+                    <div class="text-2xl shrink-0">🎬</div>
+                    <div class="flex-1 min-w-0">
+                        <div class="font-bold text-white text-sm">hero_video4.mp4</div>
+                        <div class="text-[10px] text-gray-400">輪播影片</div>
+                        <div class="text-[10px] text-gray-500 mt-0.5">1920×1080 MP4 H.264, &lt;15MB</div>
+                    </div>
+                    <span class="shrink-0 text-[10px] font-bold px-2 py-0.5 rounded bg-[#00f0ff]/10 text-[#00f0ff] border border-[#00f0ff]/30">VIDEO</span>
+                </div>
+                <!-- Item 5 -->
+                <div class="kpi-card flex items-center gap-3">
+                    <div class="text-lg font-black text-gray-500 font-mono w-5 shrink-0">5</div>
+                    <div class="text-2xl shrink-0">🎬</div>
+                    <div class="flex-1 min-w-0">
+                        <div class="font-bold text-white text-sm">hero_video5.mp4</div>
+                        <div class="text-[10px] text-gray-400">輪播影片</div>
+                        <div class="text-[10px] text-gray-500 mt-0.5">1920×1080 MP4 H.264, &lt;15MB</div>
+                    </div>
+                    <span class="shrink-0 text-[10px] font-bold px-2 py-0.5 rounded bg-[#00f0ff]/10 text-[#00f0ff] border border-[#00f0ff]/30">VIDEO</span>
+                </div>
+            </div>
+
+            <!-- How to Replace -->
+            <div class="kpi-card mb-4">
+                <div class="text-[10px] text-gray-500 font-mono mb-2">🔄 更換步驟</div>
+                <ol class="flex flex-col gap-2 text-xs text-gray-300">
+                    <li class="flex gap-2"><span class="text-[#00f0ff] font-bold shrink-0">1.</span>到 GitHub 上傳同名檔案覆蓋</li>
+                    <li class="flex gap-2"><span class="text-[#00f0ff] font-bold shrink-0">2.</span>等待 Netlify 自動部署完成（約 1-3 分鐘）</li>
+                    <li class="flex gap-2"><span class="text-[#00f0ff] font-bold shrink-0">3.</span>在 <code class="bg-black/40 px-1 rounded">index.html</code> 的影片/圖片 URL 加 <code class="bg-black/40 px-1 rounded">?v=2</code> 打快取</li>
+                </ol>
+            </div>
+
+            <!-- GitHub Button -->
+            <a href="https://github.com/a126849062justin-hue/HCF" target="_blank" rel="noopener noreferrer"
+               class="flex items-center justify-center gap-2 w-full py-3 rounded border border-white/20 hover:border-[#00f0ff] bg-[#00f0ff]/5 hover:bg-[#00f0ff]/10 text-white hover:text-[#00f0ff] text-sm font-bold transition-all">
+                <i class="fa-brands fa-github text-lg"></i>前往 GitHub 上傳素材
+            </a>
+        </div>
+
+        <!-- Tab: Quick Links & Tools -->
+        <div id="panel-links" class="tab-panel bg-[#0f131a] border border-white/10 rounded-xl p-6 shadow-2xl">
+            <h2 class="text-sm font-bold text-[#00f0ff] font-mono tracking-widest mb-4">快速連結 &amp; 工具</h2>
+
+            <!-- Common Links -->
+            <div class="grid grid-cols-2 gap-2 mb-4">
+                <a href="https://github.com/a126849062justin-hue/HCF" target="_blank" rel="noopener noreferrer"
+                   class="kpi-card flex items-center gap-2 hover:border-[#00f0ff]/40 hover:bg-[#00f0ff]/5 transition-all cursor-pointer no-underline">
+                    <i class="fa-brands fa-github text-xl text-gray-300"></i>
+                    <div><div class="text-xs font-bold text-white">GitHub</div><div class="text-[10px] text-gray-500">倉庫管理</div></div>
+                </a>
+                <a href="https://app.netlify.com" target="_blank" rel="noopener noreferrer"
+                   class="kpi-card flex items-center gap-2 hover:border-[#00f0ff]/40 hover:bg-[#00f0ff]/5 transition-all cursor-pointer no-underline">
+                    <i class="fa-solid fa-cloud text-xl text-teal-400"></i>
+                    <div><div class="text-xs font-bold text-white">Netlify</div><div class="text-[10px] text-gray-500">部署管理</div></div>
+                </a>
+                <a href="https://supabase.com/dashboard" target="_blank" rel="noopener noreferrer"
+                   class="kpi-card flex items-center gap-2 hover:border-[#00f0ff]/40 hover:bg-[#00f0ff]/5 transition-all cursor-pointer no-underline">
+                    <i class="fa-solid fa-database text-xl text-green-400"></i>
+                    <div><div class="text-xs font-bold text-white">Supabase</div><div class="text-[10px] text-gray-500">資料庫後台</div></div>
+                </a>
+                <a href="https://lin.ee/7lidUv0" target="_blank" rel="noopener noreferrer"
+                   class="kpi-card flex items-center gap-2 hover:border-[#00f0ff]/40 hover:bg-[#00f0ff]/5 transition-all cursor-pointer no-underline">
+                    <i class="fa-brands fa-line text-xl text-green-500"></i>
+                    <div><div class="text-xs font-bold text-white">LINE</div><div class="text-[10px] text-gray-500">官方帳號</div></div>
+                </a>
+                <a href="https://www.instagram.com/hc.combat2022/" target="_blank" rel="noopener noreferrer"
+                   class="kpi-card flex items-center gap-2 hover:border-[#00f0ff]/40 hover:bg-[#00f0ff]/5 transition-all cursor-pointer no-underline">
+                    <i class="fa-brands fa-instagram text-xl text-pink-400"></i>
+                    <div><div class="text-xs font-bold text-white">Instagram</div><div class="text-[10px] text-gray-500">@hc.combat2022</div></div>
+                </a>
+                <a href="https://m.facebook.com/hsinchucombat/" target="_blank" rel="noopener noreferrer"
+                   class="kpi-card flex items-center gap-2 hover:border-[#00f0ff]/40 hover:bg-[#00f0ff]/5 transition-all cursor-pointer no-underline">
+                    <i class="fa-brands fa-facebook text-xl text-blue-400"></i>
+                    <div><div class="text-xs font-bold text-white">Facebook</div><div class="text-[10px] text-gray-500">粉絲專頁</div></div>
+                </a>
+                <a href="https://youtube.com/playlist?list=PLFtibVDr-YTBsPUoEfClpei2ttq1mGtKN" target="_blank" rel="noopener noreferrer"
+                   class="kpi-card flex items-center gap-2 hover:border-[#00f0ff]/40 hover:bg-[#00f0ff]/5 transition-all cursor-pointer no-underline">
+                    <i class="fa-brands fa-youtube text-xl text-red-500"></i>
+                    <div><div class="text-xs font-bold text-white">YouTube</div><div class="text-[10px] text-gray-500">影片頻道</div></div>
+                </a>
+                <a href="https://www.fit-book.com.tw/hsinchucombat/plan/588" target="_blank" rel="noopener noreferrer"
+                   class="kpi-card flex items-center gap-2 hover:border-[#00f0ff]/40 hover:bg-[#00f0ff]/5 transition-all cursor-pointer no-underline">
+                    <i class="fa-solid fa-dumbbell text-xl text-orange-400"></i>
+                    <div><div class="text-xs font-bold text-white">FitBook</div><div class="text-[10px] text-gray-500">課程預約</div></div>
+                </a>
+            </div>
+
+            <!-- Cache Clear Tip -->
+            <div class="kpi-card mb-3">
+                <div class="text-[10px] text-gray-500 font-mono mb-2">🗑️ 快取清除</div>
+                <div class="text-xs text-gray-300 flex flex-col gap-1">
+                    <div>1. 登入 <span class="text-[#00f0ff]">Netlify</span> → 選你的站點</div>
+                    <div>2. Deploys → <span class="text-[#00f0ff]">Post processing → Clear cache</span></div>
+                    <div>3. 或在 URL 加 <code class="bg-black/40 px-1 rounded text-[10px]">?v=N</code> 強制刷新</div>
+                </div>
+            </div>
+
+            <!-- SEO Quick Check -->
+            <div class="kpi-card">
+                <div class="text-[10px] text-gray-500 font-mono mb-2">🔍 SEO 快速檢查</div>
+                <div class="flex flex-col gap-2">
+                    <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-xs hover:text-[#00f0ff] transition-colors group">
+                        <span class="text-gray-300 group-hover:text-[#00f0ff]"><i class="fa-solid fa-sitemap mr-1"></i>sitemap.xml</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-600 group-hover:text-[#00f0ff]"></i>
+                    </a>
+                    <a href="/robots.txt" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-xs hover:text-[#00f0ff] transition-colors group">
+                        <span class="text-gray-300 group-hover:text-[#00f0ff]"><i class="fa-solid fa-robot mr-1"></i>robots.txt</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-600 group-hover:text-[#00f0ff]"></i>
+                    </a>
+                    <div class="text-[10px] text-gray-500 mt-1">提交到 <a href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer" class="text-[#00f0ff] hover:underline">Google Search Console</a> 更新索引</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Event Tracking -->
+        <div id="panel-events" class="tab-panel bg-[#0f131a] border border-white/10 rounded-xl p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-sm font-bold text-[#00f0ff] font-mono tracking-widest">事件追蹤</h2>
+                <button onclick="loadEventMetrics()" class="text-xs text-gray-400 hover:text-white border border-white/20 rounded px-2 py-1 transition-all">
+                    <i class="fa-solid fa-rotate-right mr-1"></i>刷新
+                </button>
+            </div>
+
+            <!-- Today Summary -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+                <div class="kpi-card text-center">
+                    <div class="text-[10px] text-gray-500 font-mono mb-1">CTA 點擊</div>
+                    <div class="text-xl font-black text-white" id="evt-cta">--</div>
+                </div>
+                <div class="kpi-card text-center">
+                    <div class="text-[10px] text-gray-500 font-mono mb-1">互動事件</div>
+                    <div class="text-xl font-black text-white" id="evt-engagement">--</div>
+                </div>
+                <div class="kpi-card text-center">
+                    <div class="text-[10px] text-gray-500 font-mono mb-1">轉換事件</div>
+                    <div class="text-xl font-black text-[#00f0ff]" id="evt-conversion">--</div>
+                </div>
+                <div class="kpi-card text-center">
+                    <div class="text-[10px] text-gray-500 font-mono mb-1">今日總計</div>
+                    <div class="text-xl font-black text-white" id="evt-total">--</div>
+                </div>
+            </div>
+
+            <!-- Conversion Funnel -->
+            <div class="kpi-card mb-4">
+                <div class="text-[10px] text-gray-500 font-mono mb-3">轉換漏斗 (過去 7 天)</div>
+                <div class="flex flex-col gap-2" id="funnel-chart">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-gray-400 w-20 shrink-0">頁面瀏覽</span>
+                        <div class="flex-1 h-5 bg-white/10 rounded overflow-hidden"><div class="h-full bg-[#00f0ff]/60 rounded transition-all duration-700" id="funnel-pv" style="width:100%"></div></div>
+                        <span class="text-xs text-[#00f0ff] font-bold w-12 text-right" id="funnel-pv-n">--</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-gray-400 w-20 shrink-0">CTA 點擊</span>
+                        <div class="flex-1 h-5 bg-white/10 rounded overflow-hidden"><div class="h-full bg-[#00f0ff]/50 rounded transition-all duration-700" id="funnel-cta" style="width:0%"></div></div>
+                        <span class="text-xs text-[#00f0ff] font-bold w-12 text-right" id="funnel-cta-n">--</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-gray-400 w-20 shrink-0">開始預約</span>
+                        <div class="flex-1 h-5 bg-white/10 rounded overflow-hidden"><div class="h-full bg-green-400/60 rounded transition-all duration-700" id="funnel-start" style="width:0%"></div></div>
+                        <span class="text-xs text-green-400 font-bold w-12 text-right" id="funnel-start-n">--</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-gray-400 w-20 shrink-0">完成預約</span>
+                        <div class="flex-1 h-5 bg-white/10 rounded overflow-hidden"><div class="h-full bg-green-500/60 rounded transition-all duration-700" id="funnel-done" style="width:0%"></div></div>
+                        <span class="text-xs text-green-400 font-bold w-12 text-right" id="funnel-done-n">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top CTAs -->
+            <div class="kpi-card mb-4">
+                <div class="text-[10px] text-gray-500 font-mono mb-2">今日 CTA 點擊排行</div>
+                <div id="top-ctas" class="flex flex-col gap-1 text-xs">
+                    <div class="text-gray-500">載入中...</div>
+                </div>
+            </div>
+
+            <!-- Scroll Depth -->
+            <div class="kpi-card mb-4">
+                <div class="text-[10px] text-gray-500 font-mono mb-3">今日捲動深度分佈</div>
+                <div class="flex gap-3">
+                    <div class="flex-1 text-center">
+                        <div class="text-lg font-black text-white" id="scroll-25">--</div>
+                        <div class="text-[10px] text-gray-500">25%</div>
+                    </div>
+                    <div class="flex-1 text-center">
+                        <div class="text-lg font-black text-white" id="scroll-50">--</div>
+                        <div class="text-[10px] text-gray-500">50%</div>
+                    </div>
+                    <div class="flex-1 text-center">
+                        <div class="text-lg font-black text-[#00f0ff]" id="scroll-75">--</div>
+                        <div class="text-[10px] text-gray-500">75%</div>
+                    </div>
+                    <div class="flex-1 text-center">
+                        <div class="text-lg font-black text-green-400" id="scroll-100">--</div>
+                        <div class="text-[10px] text-gray-500">100%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hourly Trend -->
+            <div class="kpi-card mb-4">
+                <div class="text-[10px] text-gray-500 font-mono mb-3">24 小時事件趨勢</div>
+                <div class="bar-chart" id="hourly-chart" style="height:60px;">
+                    <div class="text-gray-500 text-xs">載入中...</div>
+                </div>
+            </div>
+
+            <!-- Recent Events Log -->
+            <div class="kpi-card">
+                <div class="text-[10px] text-gray-500 font-mono mb-2">最新事件 (LIVE)</div>
+                <div id="recent-events" class="flex flex-col gap-1 text-xs max-h-48 overflow-y-auto" style="scrollbar-width:thin;">
+                    <div class="text-gray-500">載入中...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Export -->
+        <div id="panel-export" class="tab-panel bg-[#0f131a] border border-white/10 rounded-xl p-6 shadow-2xl">
+            <h2 class="text-sm font-bold text-[#00f0ff] font-mono tracking-widest mb-4">數據導出</h2>
+            <div class="flex flex-col gap-3">
+                <button onclick="downloadReport('day')" class="group flex items-center justify-between py-3 px-4 rounded border border-white/20 hover:border-[#00f0ff] transition-all bg-[#00f0ff]/5 hover:bg-[#00f0ff]/10">
+                    <div class="text-left">
+                        <div class="text-sm font-bold text-white">日報 (CSV)</div>
+                        <div class="text-[10px] text-gray-400">今日 AI 對話數據</div>
+                    </div>
+                    <i class="fa-solid fa-file-csv text-[#00f0ff]"></i>
+                </button>
+                <button onclick="downloadReport('week')" class="group flex items-center justify-between py-3 px-4 rounded border border-white/20 hover:border-[#00f0ff] transition-all bg-[#00f0ff]/5 hover:bg-[#00f0ff]/10">
+                    <div class="text-left">
+                        <div class="text-sm font-bold text-white">週報 (CSV)</div>
+                        <div class="text-[10px] text-gray-400">過去 7 天數據</div>
+                    </div>
+                    <i class="fa-solid fa-file-csv text-[#00f0ff]"></i>
+                </button>
+                <button onclick="downloadReport('month')" class="group flex items-center justify-between py-3 px-4 rounded border border-white/20 hover:border-[#00f0ff] transition-all bg-[#00f0ff]/5 hover:bg-[#00f0ff]/10">
+                    <div class="text-left">
+                        <div class="text-sm font-bold text-white">月報 (CSV)</div>
+                        <div class="text-[10px] text-gray-400">本月完整數據</div>
+                    </div>
+                    <i class="fa-solid fa-file-csv text-[#00f0ff]"></i>
+                </button>
+            </div>
+            <div id="export-status" class="hidden mt-4 p-3 rounded text-center text-xs font-bold"></div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="index.html" class="text-xs text-gray-500 hover:text-white transition-colors border-b border-transparent hover:border-white pb-0.5">返回首頁</a>
+        </div>
+
+        </div><!-- end #admin-panel -->
+    </div>
+
+    <script>
+        // ── Session Auth ───────────────────────────────────────────────
+        function getSessionPassword() {
+            const raw = sessionStorage.getItem('hcf_admin_session');
+            if (!raw) return null;
+            try {
+                const { token, expiresAt, password } = JSON.parse(raw);
+                if (!token || !expiresAt || Date.now() > expiresAt) { sessionStorage.removeItem('hcf_admin_session'); return null; }
+                return password;
+            } catch { sessionStorage.removeItem('hcf_admin_session'); return null; }
+        }
+
+        function showAdminPanel() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('admin-panel').style.display = 'block';
+            document.getElementById('logout-btn').style.display = 'block';
+            loadTrafficStats();
+        }
+
+        async function login() {
+            const pw = document.getElementById('login-password').value;
+            if (!pw) return;
+            const errEl = document.getElementById('login-error');
+            errEl.classList.add('hidden');
+            try {
+                const res = await fetch('/api/admin-auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: pw })
+                });
+                const data = await res.json();
+                if (!res.ok) { errEl.textContent = data.error || '密碼錯誤'; errEl.classList.remove('hidden'); return; }
+                sessionStorage.setItem('hcf_admin_session', JSON.stringify({ token: data.token, expiresAt: data.expiresAt, password: pw }));
+                showAdminPanel();
+            } catch (e) { errEl.textContent = '連線錯誤，請稍後再試'; errEl.classList.remove('hidden'); }
+        }
+
+        function logout() {
+            sessionStorage.removeItem('hcf_admin_session');
+            document.getElementById('admin-panel').style.display = 'none';
+            document.getElementById('logout-btn').style.display = 'none';
+            document.getElementById('login-screen').style.display = 'block';
+            document.getElementById('login-password').value = '';
+        }
+
+        // Check session on page load
+        (function() { if (getSessionPassword()) showAdminPanel(); })();
+
+        // ── Tab switching ──────────────────────────────────────────────
+        function switchTab(name) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('tab-' + name).classList.add('active');
+            document.getElementById('panel-' + name).classList.add('active');
+            if (name === 'ai') loadAIMetrics();
+            if (name === 'traffic') loadTrafficStats();
+            if (name === 'events') loadEventMetrics();
+        }
+
+        // ── Traffic Stats ──────────────────────────────────────────────
+        async function loadTrafficStats() {
+            const password = getSessionPassword();
+            if (!password) return;
+
+            try {
+                const res = await fetch(`/.netlify/functions/admin-traffic?password=${encodeURIComponent(password)}`);
+                if (!res.ok) return;
+                const d = await res.json();
+
+                // KPI
+                document.getElementById('traffic-today').textContent = d.today.views;
+                document.getElementById('traffic-today-u').textContent = d.today.uniqueUsers;
+                document.getElementById('traffic-week').textContent = d.thisWeek.views;
+                document.getElementById('traffic-week-u').textContent = d.thisWeek.uniqueUsers;
+                document.getElementById('traffic-month').textContent = d.thisMonth.views;
+                document.getElementById('traffic-month-u').textContent = d.thisMonth.uniqueUsers;
+
+                // Device breakdown
+                const dev = d.deviceBreakdown;
+                document.getElementById('device-mobile').textContent = dev.mobile + '%';
+                document.getElementById('device-tablet').textContent = dev.tablet + '%';
+                document.getElementById('device-desktop').textContent = dev.desktop + '%';
+                setTimeout(() => {
+                    document.getElementById('bar-mobile').style.width = dev.mobile + '%';
+                    document.getElementById('bar-tablet').style.width = dev.tablet + '%';
+                    document.getElementById('bar-desktop').style.width = dev.desktop + '%';
+                }, 50);
+
+                // Daily trend bar chart
+                const chartEl = document.getElementById('daily-chart');
+                if (d.dailyTrend && d.dailyTrend.length) {
+                    const maxViews = Math.max(...d.dailyTrend.map(x => x.views), 1);
+                    chartEl.innerHTML = d.dailyTrend.map(item => {
+                        const pct = Math.round((item.views / maxViews) * 100);
+                        return `<div class="bar-col">
+                            <div class="bar-val">${item.views}</div>
+                            <div class="bar-fill" style="height:${pct}%"></div>
+                            <div class="bar-label">${item.date}</div>
+                        </div>`;
+                    }).join('');
+                }
+
+                // Top pages
+                const pagesEl = document.getElementById('top-pages');
+                if (d.topPages && d.topPages.length) {
+                    const maxPv = Math.max(...d.topPages.map(x => x.views), 1);
+                    pagesEl.innerHTML = d.topPages.map((p, i) => `
+                        <div class="flex items-center gap-2 py-1">
+                            <span class="text-[10px] text-gray-500 w-4 shrink-0">${i + 1}.</span>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-gray-300 truncate">${p.url}</div>
+                                <div class="h-1 bg-white/10 rounded-full mt-0.5 overflow-hidden">
+                                    <div class="h-full bg-[#00f0ff]/60 rounded-full" style="width:${Math.round(p.views/maxPv*100)}%"></div>
+                                </div>
+                            </div>
+                            <span class="text-[#00f0ff] font-bold text-[10px] shrink-0">${p.views}</span>
+                        </div>`).join('');
+                } else {
+                    pagesEl.innerHTML = '<div class="text-gray-500">暫無數據</div>';
+                }
+
+                // Top referrers
+                const refEl = document.getElementById('top-referrers');
+                if (d.topReferrers && d.topReferrers.length) {
+                    const maxRv = Math.max(...d.topReferrers.map(x => x.views), 1);
+                    refEl.innerHTML = d.topReferrers.map((r, i) => `
+                        <div class="flex items-center gap-2 py-1">
+                            <span class="text-[10px] text-gray-500 w-4 shrink-0">${i + 1}.</span>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-gray-300 truncate">${r.referrer}</div>
+                                <div class="h-1 bg-white/10 rounded-full mt-0.5 overflow-hidden">
+                                    <div class="h-full bg-purple-400/60 rounded-full" style="width:${Math.round(r.views/maxRv*100)}%"></div>
+                                </div>
+                            </div>
+                            <span class="text-purple-400 font-bold text-[10px] shrink-0">${r.views}</span>
+                        </div>`).join('');
+                } else {
+                    refEl.innerHTML = '<div class="text-gray-500">暫無數據</div>';
+                }
+            } catch (e) { console.warn('traffic error', e); }
+        }
+
+        // ── Theme control (unchanged) ──────────────────────────────────
+        async function setTheme(theme) {
+            const password = getSessionPassword();
+            if (!password) { showStatus('會話已過期，請重新登入', 'error'); return; }
+            showStatus('更新中...', 'loading');
+            try {
+                const response = await fetch('/.netlify/functions/set-theme', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ theme, password })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    showStatus('更新成功！全站主題已切換', 'success');
+                } else {
+                    showStatus(data.error || '更新失敗', 'error');
+                }
+            } catch (error) {
+                showStatus('連線錯誤，請稍後再試', 'error');
+            }
+        }
+
+        function showStatus(msg, type) {
+            const box = document.getElementById('status-box');
+            box.classList.remove('hidden', 'bg-red-500/20', 'text-red-500', 'bg-green-500/20', 'text-green-500', 'bg-blue-500/20', 'text-blue-500');
+            if (type === 'error') box.classList.add('bg-red-500/20', 'text-red-500');
+            else if (type === 'success') box.classList.add('bg-green-500/20', 'text-green-500');
+            else box.classList.add('bg-blue-500/20', 'text-blue-500');
+            box.textContent = msg;
+            box.classList.remove('hidden');
+        }
+
+        // ── AI Dashboard ───────────────────────────────────────────────
+        async function loadAIMetrics() {
+            const password = getSessionPassword();
+            if (!password) { alert('會話已過期，請重新登入'); return; }
+
+            // Load KPI metrics
+            try {
+                const res = await fetch(`/.netlify/functions/admin-ai-metrics?password=${encodeURIComponent(password)}`);
+                if (res.ok) {
+                    const d = await res.json();
+                    document.getElementById('kpi-claude-rate').textContent = d.claude.successRate + '%';
+                    document.getElementById('kpi-claude-time').textContent = d.claude.avgResponseTime + ' ms';
+                    document.getElementById('kpi-claude-count').textContent = d.claude.todayCount;
+                    document.getElementById('kpi-gemini-rate').textContent = d.gemini.successRate + '%';
+                    document.getElementById('kpi-gemini-time').textContent = d.gemini.avgResponseTime + ' ms';
+                    document.getElementById('kpi-gemini-count').textContent = d.gemini.todayCount;
+                    document.getElementById('kpi-conv-rate').textContent = d.conversion.rate + '%';
+                    document.getElementById('kpi-conv-ai').textContent = d.conversion.aiInteractions;
+                    document.getElementById('kpi-conv-book').textContent = d.conversion.newBookings;
+                    document.getElementById('kpi-cost-total').textContent = '$' + d.monthlyCost.total;
+                    document.getElementById('kpi-cost-claude').textContent = '$' + d.monthlyCost.claude;
+                    document.getElementById('kpi-cost-gemini').textContent = '$' + d.monthlyCost.gemini;
+                }
+            } catch (e) { console.warn('metrics error', e); }
+
+            // Load system health
+            try {
+                const res = await fetch(`/.netlify/functions/admin-logs?password=${encodeURIComponent(password)}`);
+                if (res.ok) {
+                    const d = await res.json();
+                    const fmt = (s) => s === 'configured'
+                        ? '<span class="status-dot status-ok mr-1"></span><span class="text-green-400">已配置</span>'
+                        : '<span class="status-dot status-err mr-1"></span><span class="text-red-400">未配置</span>';
+                    document.getElementById('health-claude').innerHTML = fmt(d.claudeStatus);
+                    document.getElementById('health-gemini').innerHTML = fmt(d.geminiStatus);
+                    document.getElementById('health-supabase').innerHTML = fmt(d.supabaseStatus);
+                    document.getElementById('health-avail').textContent = d.availability + '%';
+                }
+            } catch (e) { console.warn('logs error', e); }
+
+            // Load user behavior
+            try {
+                const res = await fetch(`/.netlify/functions/admin-user-behavior?password=${encodeURIComponent(password)}`);
+                if (res.ok) {
+                    const d = await res.json();
+
+                    // Recent logs
+                    const logsEl = document.getElementById('recent-logs');
+                    if (d.recentLogs && d.recentLogs.length) {
+                        logsEl.innerHTML = d.recentLogs.map(l => `
+                            <div class="flex items-start gap-2 py-1 border-b border-white/5">
+                                <span class="font-mono text-[10px] ${l.engine === 'claude' ? 'text-purple-400' : 'text-blue-400'} shrink-0">[${(l.engine || '?').toUpperCase()}]</span>
+                                <span class="text-gray-300 flex-1 truncate">${l.userMessage || '-'}</span>
+                                <span class="text-gray-500 text-[10px] shrink-0">${l.responseTime || 0}ms</span>
+                            </div>`).join('');
+                    } else {
+                        logsEl.innerHTML = '<div class="text-gray-500">暫無數據</div>';
+                    }
+
+                    // Top questions
+                    const qEl = document.getElementById('top-questions');
+                    if (d.topQuestions && d.topQuestions.length) {
+                        qEl.innerHTML = d.topQuestions.slice(0, 5).map((q, i) => `
+                            <div class="flex items-center gap-2 py-1">
+                                <span class="text-[10px] text-gray-500 w-4">${i + 1}.</span>
+                                <span class="text-gray-300 flex-1 truncate">${q.question}</span>
+                                <span class="text-[#00f0ff] font-bold text-[10px]">${q.count}</span>
+                            </div>`).join('');
+                    } else {
+                        qEl.innerHTML = '<div class="text-gray-500">暫無數據</div>';
+                    }
+                }
+            } catch (e) { console.warn('behavior error', e); }
+        }
+
+        // ── Event Metrics ──────────────────────────────────────────────
+        async function loadEventMetrics() {
+            const password = getSessionPassword();
+            if (!password) return;
+
+            try {
+                const res = await fetch(`/.netlify/functions/admin-events?password=${encodeURIComponent(password)}`);
+                if (!res.ok) return;
+                const d = await res.json();
+
+                // Summary KPIs
+                document.getElementById('evt-cta').textContent = d.todaySummary.cta_click;
+                document.getElementById('evt-engagement').textContent = d.todaySummary.engagement;
+                document.getElementById('evt-conversion').textContent = d.todaySummary.conversion;
+                document.getElementById('evt-total').textContent = d.todaySummary.total;
+
+                // Conversion funnel
+                const f = d.conversionFunnel;
+                const maxF = Math.max(f.pageViews, 1);
+                document.getElementById('funnel-pv-n').textContent = f.pageViews;
+                document.getElementById('funnel-cta-n').textContent = f.ctaClicks;
+                document.getElementById('funnel-start-n').textContent = f.bookingStarts;
+                document.getElementById('funnel-done-n').textContent = f.bookingCompletes;
+                setTimeout(() => {
+                    document.getElementById('funnel-pv').style.width = '100%';
+                    document.getElementById('funnel-cta').style.width = Math.round(f.ctaClicks / maxF * 100) + '%';
+                    document.getElementById('funnel-start').style.width = Math.round(f.bookingStarts / maxF * 100) + '%';
+                    document.getElementById('funnel-done').style.width = Math.round(f.bookingCompletes / maxF * 100) + '%';
+                }, 50);
+
+                // Top CTAs
+                const ctaEl = document.getElementById('top-ctas');
+                if (d.topCTAs && d.topCTAs.length) {
+                    const maxC = Math.max(...d.topCTAs.map(x => x.count), 1);
+                    const ctaLabels = {
+                        'fitbook_booking': '🥊 FitBook 預約',
+                        'line_consult': '💬 LINE 諮詢',
+                        'ig_follow': '📸 IG 追蹤',
+                        'fb_follow': '👍 FB 追蹤',
+                        'youtube_visit': '🎬 YouTube',
+                        'pricing_view': '💰 方案頁',
+                        'coach_profile': '🏆 教練頁',
+                        'class_detail': '📋 課程頁',
+                        'schedule_view': '📅 課表',
+                        'phone_call': '📞 來電',
+                        'pwa_install': '📱 APP安裝',
+                    };
+                    ctaEl.innerHTML = d.topCTAs.map((c, i) => `
+                        <div class="flex items-center gap-2 py-1">
+                            <span class="text-[10px] text-gray-500 w-4 shrink-0">${i+1}.</span>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-gray-300 truncate">${ctaLabels[c.name] || c.name}</div>
+                                <div class="h-1 bg-white/10 rounded-full mt-0.5 overflow-hidden">
+                                    <div class="h-full bg-[#00f0ff]/60 rounded-full" style="width:${Math.round(c.count/maxC*100)}%"></div>
+                                </div>
+                            </div>
+                            <span class="text-[#00f0ff] font-bold text-[10px] shrink-0">${c.count}</span>
+                        </div>`).join('');
+                } else {
+                    ctaEl.innerHTML = '<div class="text-gray-500">暫無數據</div>';
+                }
+
+                // Scroll depth
+                document.getElementById('scroll-25').textContent = d.scrollDepth['25'] || 0;
+                document.getElementById('scroll-50').textContent = d.scrollDepth['50'] || 0;
+                document.getElementById('scroll-75').textContent = d.scrollDepth['75'] || 0;
+                document.getElementById('scroll-100').textContent = d.scrollDepth['100'] || 0;
+
+                // Hourly trend
+                const hEl = document.getElementById('hourly-chart');
+                if (d.hourlyTrend && d.hourlyTrend.length) {
+                    const maxH = Math.max(...d.hourlyTrend.map(x => x.count), 1);
+                    hEl.innerHTML = d.hourlyTrend.map(item => {
+                        const pct = Math.round((item.count / maxH) * 100);
+                        return `<div class="bar-col">
+                            <div class="bar-val">${item.count || ''}</div>
+                            <div class="bar-fill" style="height:${pct}%"></div>
+                            <div class="bar-label">${item.hour}</div>
+                        </div>`;
+                    }).join('');
+                }
+
+                // Recent events
+                const evtEl = document.getElementById('recent-events');
+                if (d.recentEvents && d.recentEvents.length) {
+                    const catColors = {
+                        cta_click: 'text-cyan-400',
+                        scroll: 'text-blue-400',
+                        engagement: 'text-purple-400',
+                        conversion: 'text-green-400',
+                        navigation: 'text-gray-400',
+                    };
+                    const catIcons = {
+                        cta_click: 'fa-bullseye',
+                        scroll: 'fa-arrows-up-down',
+                        engagement: 'fa-hand-pointer',
+                        conversion: 'fa-check-circle',
+                        navigation: 'fa-route',
+                    };
+                    evtEl.innerHTML = d.recentEvents.map(e => {
+                        const color = catColors[e.category] || 'text-gray-400';
+                        const icon = catIcons[e.category] || 'fa-circle';
+                        const time = new Date(e.createdAt).toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                        return `<div class="flex items-center gap-2 py-1 border-b border-white/5">
+                            <i class="fa-solid ${icon} ${color} text-[10px] w-3 shrink-0"></i>
+                            <span class="font-mono text-[10px] ${color} shrink-0">${e.category}</span>
+                            <span class="text-gray-300 flex-1 truncate">${e.eventName}</span>
+                            <span class="text-[10px] text-gray-500 shrink-0">${e.deviceType}</span>
+                            <span class="text-[10px] text-gray-600 shrink-0 font-mono">${time}</span>
+                        </div>`;
+                    }).join('');
+                } else {
+                    evtEl.innerHTML = '<div class="text-gray-500">暫無事件</div>';
+                }
+            } catch (e) { console.warn('event metrics error', e); }
+        }
+
+        // ── Data Export ────────────────────────────────────────────────
+        async function downloadReport(range) {
+            const password = getSessionPassword();
+            if (!password) { alert('會話已過期，請重新登入'); return; }
+            const statusEl = document.getElementById('export-status');
+            statusEl.className = 'mt-4 p-3 rounded text-center text-xs font-bold bg-blue-500/20 text-blue-400';
+            statusEl.textContent = '準備下載...';
+            const url = `/.netlify/functions/admin-export?password=${encodeURIComponent(password)}&range=${range}`;
+            try {
+                const res = await fetch(url);
+                if (!res.ok) { throw new Error('下載失敗'); }
+                const blob = await res.blob();
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                const cd = res.headers.get('Content-Disposition') || '';
+                const match = cd.match(/filename="([^"]+)"/);
+                a.download = match ? match[1] : `HCF_Report_${range}.csv`;
+                a.click();
+                statusEl.className = 'mt-4 p-3 rounded text-center text-xs font-bold bg-green-500/20 text-green-400';
+                statusEl.textContent = '下載成功！';
+            } catch (e) {
+                statusEl.className = 'mt-4 p-3 rounded text-center text-xs font-bold bg-red-500/20 text-red-400';
+                statusEl.textContent = '下載失敗，請確認密碼並重試';
+            }
+        }
+    </script>
+</body>
+</html>
