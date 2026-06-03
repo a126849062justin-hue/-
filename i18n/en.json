@@ -1,0 +1,52 @@
+{
+  "cta": {
+    "book_now": "BOOK NOW",
+    "get_vip_tickets": "GET VIP TICKETS",
+    "view_plans": "VIEW PLANS"
+  },
+  "brand": {
+    "tagline": "// Fighting is not violence, it's a spirit.<br>// Reborn in adversity, witness your strength.",
+    "philosophy": "Life is like an endless boxing match. We've all been knocked down by unfortunate events. But don't be afraid. Stand up. The spirit of HCF is about how to be reborn in adversity and see how truly strong you are."
+  },
+  "nav": {
+    "home": "HOME",
+    "news": "NEWS",
+    "philosophy": "PHILOSOPHY",
+    "courses": "COURSES",
+    "team": "COACHES",
+    "pricing": "PRICING",
+    "faq": "FAQ"
+  },
+  "hero": {
+    "title": "HCF HSINCHU COMBAT",
+    "subtitle": "Muay Thai ・ Kickboxing ・ Sanda ・ Strength Training"
+  },
+  "sections": {
+    "latest_info": "LATEST INFO",
+    "upcoming_event": "MONTHLY BULLETIN",
+    "event_subtitle": "APRIL 2025 EVENTS OVERVIEW",
+    "kings_return": "APRIL ‧ SEMINAR / REF COURSE / MUAY THAI",
+    "schedule": "LATEST SCHEDULE",
+    "faq": "FAQ",
+    "philosophy_title": "CORE PHILOSOPHY",
+    "philosophy_subtitle": "Combat is about learning to be reborn in adversity, to see how truly strong you are.",
+    "honor": "HONOR",
+    "honor_tagline": "Admit failure. No excuses.",
+    "honor_desc": "Symbolizes an unyielding will. Like bedrock in a storm, we turn every strike into grounded power.",
+    "courage": "COURAGE",
+    "courage_tagline": "Bear consequences. No escape.",
+    "courage_desc": "The apex predator. We refuse to be passive prey. We are proactive warriors fighting for glory.",
+    "faith": "FAITH",
+    "faith_tagline": "Rebuild by hand. Never give up.",
+    "faith_desc": "Our anchor in the stormy sea. The ability to stay stable in adversity, locking onto the goal to win once for yourself."
+  },
+  "pages": {
+    "courses_title": "COURSES",
+    "pricing_title": "MEMBERSHIP & PRICING",
+    "pricing_subtitle": "Investing in yourself is the best ROI.",
+    "pricing_reviews": "5-STAR REVIEWS",
+    "pricing_instagram": "INSTAGRAM FEED",
+    "team_title": "INSTRUCTORS",
+    "news_title": "NEWS"
+  }
+}

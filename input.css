@@ -1,0 +1,8 @@
+/* HCF Tailwind CSS input file
+ * Run `npm run build:css` to generate styles.css for production.
+ * After building, replace the CDN <script src="https://cdn.tailwindcss.com"> tag
+ * in each HTML file with <link rel="stylesheet" href="styles.css">.
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

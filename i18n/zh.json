@@ -1,0 +1,52 @@
+{
+  "cta": {
+    "book_now": "立即預約體驗",
+    "get_vip_tickets": "搶購 VIP 票",
+    "view_plans": "查看課程方案"
+  },
+  "brand": {
+    "tagline": "// 格鬥不是暴力，是一種精神。<br>// 在逆境中重生，見證你的強大。",
+    "philosophy": "人生就像一場無止境的拳賽。我們都曾被突如其來的不幸擊倒。但不要害怕。站起來。HCF 的精神，就是如何在逆境中重生，看清自己究竟有多強大。"
+  },
+  "nav": {
+    "home": "首頁",
+    "news": "最新資訊",
+    "philosophy": "品牌哲學",
+    "courses": "課程介紹",
+    "team": "教練團隊",
+    "pricing": "課程方案",
+    "faq": "新手問答"
+  },
+  "hero": {
+    "title": "HCF新竹格鬥館",
+    "subtitle": "新竹泰拳首選 ・ 踢拳 ・ 散打 ・ 專業重訓"
+  },
+  "sections": {
+    "latest_info": "最新資訊",
+    "upcoming_event": "每月公告 MONTHLY BULLETIN",
+    "event_subtitle": "2025 年 4 月活動總覽",
+    "kings_return": "四月公告 ‧ 研習 / 裁判講習 / 泰拳賽",
+    "schedule": "最新課表",
+    "faq": "新手常見問答",
+    "philosophy_title": "品牌哲學",
+    "philosophy_subtitle": "格鬥是學會在逆境中重生，看清自己究竟有多強大。",
+    "honor": "榮譽",
+    "honor_tagline": "承認失敗 / 不找藉口",
+    "honor_desc": "象徵著不屈意志。如同暴風雨中的基石，我們將每一擊化為紮根的力量。",
+    "courage": "勇氣",
+    "courage_tagline": "承擔後果 / 絕不逃避",
+    "courage_desc": "頂端掠食者。我們拒絕成為被動的獵物。我們是積極主動的戰士，為榮耀而戰。",
+    "faith": "信念",
+    "faith_tagline": "親手重建 / 絕不認輸",
+    "faith_desc": "我們在暴風雨中的錨。在逆境中保持穩定的能力，鎖定目標，為自己贏一次。"
+  },
+  "pages": {
+    "courses_title": "課程介紹",
+    "pricing_title": "課程方案 | 會員方案",
+    "pricing_subtitle": "投資自己，是最好的回報。",
+    "pricing_reviews": "五星好評",
+    "pricing_instagram": "Instagram 精選",
+    "team_title": "教練團隊",
+    "news_title": "最新資訊"
+  }
+}

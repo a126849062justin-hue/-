@@ -1,0 +1,512 @@
+/* ═══════════════════════════════════════════════════════════════
+   HCF Philosophy Cinematic — Horizontal Scroll Card System
+   3 Cards (HONOR / COURAGE / FAITH) → LOGO Merge
+   Desktop: GSAP ScrollTrigger pin + horizontal track
+   Mobile:  CSS scroll-snap (overflow-x: auto)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Component-scoped variables — connected to global theme system ──
+   IMPORTANT: --hcf-cyan-rgb fallback (104,220,255) must match
+   --hcf-cyan fallback (#68dcff). Update both together if needed. */
+.hcf-philosophy-cinematic {
+  --hcf-cyan:      var(--theme-cyan, #68dcff);
+  --hcf-cyan-rgb:  var(--theme-cyan-rgb, 104, 220, 255);
+  --hcf-bg:        #02060c;
+  --hcf-panel:     rgba(5, 14, 27, 0.72);
+  --hcf-border:    rgba(var(--hcf-cyan-rgb), 0.2);
+  --hcf-text:      #eef7ff;
+  --hcf-text-soft: rgba(220, 236, 255, 0.82);
+  --hcf-glow:      rgba(var(--hcf-cyan-rgb), 0.14);
+}
+
+/* ── Section wrapper ── */
+.hcf-philosophy-cinematic {
+  position: relative;
+  color: var(--hcf-text);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(var(--hcf-cyan-rgb), 0.08), transparent 40%),
+    linear-gradient(180deg, #02060c 0%, #07111d 50%, #02060c 100%);
+}
+
+/* Subtle grid overlay */
+.hcf-philosophy-cinematic::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(var(--hcf-cyan-rgb), 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--hcf-cyan-rgb), 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Section header (scrolls into view before pin triggers) ── */
+.hcf-philosophy-head {
+  position: relative;
+  z-index: 2;
+  padding: 80px 24px 48px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.hcf-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--hcf-cyan);
+  padding: 10px 16px;
+  border: 1px solid rgba(var(--hcf-cyan-rgb), 0.28);
+  background: rgba(0, 35, 72, 0.2);
+  box-shadow: inset 0 0 18px rgba(var(--hcf-cyan-rgb), 0.06), 0 0 30px rgba(0, 0, 0, 0.24);
+  margin-bottom: 20px;
+}
+
+.hcf-philosophy-head h2 {
+  margin: 0 0 16px;
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 900;
+}
+
+.hcf-philosophy-head > p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.9;
+  color: var(--hcf-text-soft);
+  max-width: 620px;
+}
+
+/* ── Horizontal scroll viewport (pinned by GSAP on desktop) ── */
+.hcf-hscroll-outer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* ── Horizontal track (desktop: translated by GSAP; mobile: native flex) ── */
+.hcf-hscroll-track {
+  display: flex;
+  height: 100%;
+  /* 4 full-viewport panels: 3 cards + 1 merge stage */
+  width: calc(4 * 100vw);
+  will-change: transform;
+}
+
+/* ══════════════════════════════════════════════════════
+   CARD STYLES
+   ══════════════════════════════════════════════════════ */
+
+.hcf-card {
+  width: 100vw;
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(32px, 5vw, 80px);
+  padding: 48px clamp(40px, 8vw, 120px);
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Glassmorphism card panel (pseudo-element so it doesn't affect children) */
+.hcf-card::after {
+  content: "";
+  position: absolute;
+  inset: 8% 8%;
+  border-radius: 24px;
+  border: 1px solid var(--hcf-border);
+  background: linear-gradient(135deg, rgba(5, 16, 36, 0.78), rgba(2, 8, 18, 0.90));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 0 60px rgba(var(--hcf-cyan-rgb), 0.06),
+    0 40px 80px rgba(0, 0, 0, 0.45);
+  z-index: 0;
+}
+
+/* All card children must sit above the pseudo glass panel */
+.hcf-card__icon,
+.hcf-card__body {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Card icon (left side) ── */
+.hcf-card__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hcf-card__icon img {
+  width: clamp(140px, 20vw, 280px);
+  height: auto;
+  object-fit: contain;
+  display: block;
+  animation: hcf-icon-breathe 3.5s ease-in-out infinite;
+  will-change: filter;
+}
+
+@keyframes hcf-icon-breathe {
+  0%, 100% { filter: drop-shadow(0 0 24px rgba(var(--hcf-cyan-rgb), 0.20)); }
+  50%       { filter: drop-shadow(0 0 52px rgba(var(--hcf-cyan-rgb), 0.52)); }
+}
+
+/* Halo ring around icon */
+.hcf-card__icon::before {
+  content: "";
+  position: absolute;
+  width: 140%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--hcf-cyan-rgb), 0.14);
+  animation: hcf-ring-spin 10s linear infinite;
+  will-change: transform;
+  pointer-events: none;
+}
+
+@keyframes hcf-ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Card text body (right side) ── */
+.hcf-card__body {
+  flex: 1;
+  max-width: 420px;
+}
+
+.hcf-card__code {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--hcf-cyan);
+  padding: 6px 12px;
+  border: 1px solid rgba(var(--hcf-cyan-rgb), 0.3);
+  margin-bottom: 16px;
+}
+
+.hcf-card__en {
+  margin: 0 0 4px;
+  font-size: clamp(13px, 1.4vw, 18px);
+  letter-spacing: 0.32em;
+  font-weight: 700;
+  color: var(--hcf-cyan);
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.hcf-card__zh {
+  margin: 0 0 20px;
+  font-size: clamp(52px, 7.5vw, 100px);
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.hcf-card__desc {
+  margin: 0;
+  font-size: clamp(15px, 1.6vw, 20px);
+  line-height: 1.85;
+  color: var(--hcf-text-soft);
+  font-weight: 600;
+}
+
+.hcf-card__detail {
+  margin: 0.75em 0 0;
+  font-size: 0.85em;
+  line-height: 1.85;
+  opacity: 0.8;
+  color: var(--hcf-text-soft);
+  font-weight: 400;
+}
+
+/* ══════════════════════════════════════════════════════
+   MERGE STAGE
+   ══════════════════════════════════════════════════════ */
+
+.hcf-merge-stage {
+  width: 100vw;
+  height: 100%;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Floating pieces (positioned by JS / CSS) */
+.hcf-merge-piece {
+  position: absolute;
+  width: clamp(90px, 13vw, 200px);
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Initial spread positions — JS will animate these to center */
+.hcf-merge-piece--triangle { top: 14%; left: 18%; }
+.hcf-merge-piece--shark    { top: 10%; right: 18%; }
+.hcf-merge-piece--anchor   { bottom: 18%; left: 50%; transform: translateX(-50%); }
+
+/* Impact flash (full-screen radial burst) */
+.hcf-impact-flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(var(--hcf-cyan-rgb), 0.35) 28%,
+    transparent 68%
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 6;
+  will-change: opacity;
+}
+
+/* Final logo + CTA panel */
+.hcf-merge-logo {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.6);
+  will-change: transform, opacity;
+}
+
+.hcf-merge-logo img {
+  width: clamp(180px, 26vw, 400px);
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 40px rgba(var(--hcf-cyan-rgb), 0.40));
+}
+
+.hcf-merge-tagline {
+  margin-top: 18px;
+  font-size: 13px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--hcf-cyan);
+  opacity: 0.88;
+}
+
+.hcf-merge-subtitle {
+  margin: 12px 0 28px;
+  font-size: clamp(14px, 1.4vw, 17px);
+  line-height: 1.75;
+  color: var(--hcf-text-soft);
+  max-width: 380px;
+}
+
+/* ── CTA Button ── */
+.hcf-fusion-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  min-height: 56px;
+  padding: 0 36px;
+  text-decoration: none;
+  color: var(--hcf-cyan);
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(var(--hcf-cyan-rgb), 0.52);
+  background: rgba(0, 26, 58, 0.35);
+  box-shadow: 0 0 28px rgba(var(--hcf-cyan-rgb), 0.10);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.hcf-fusion-cta:hover {
+  transform: translateY(-3px);
+  color: #fff;
+  border-color: rgba(var(--hcf-cyan-rgb), 0.88);
+  box-shadow: 0 0 50px rgba(var(--hcf-cyan-rgb), 0.28);
+}
+
+.hcf-fusion-cta:active {
+  transform: scale(0.97);
+  transition-duration: 0.1s;
+}
+
+/* ── Mobile scroll-position dots ── */
+.hcf-dots {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 0 32px;
+  position: relative;
+  z-index: 2;
+}
+
+.hcf-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(var(--hcf-cyan-rgb), 0.25);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.hcf-dot--active {
+  background: var(--hcf-cyan);
+  transform: scale(1.4);
+}
+
+/* ══════════════════════════════════════════════════════
+   MOBILE  (≤768px) — CSS scroll-snap, no GSAP pin
+   ══════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .hcf-philosophy-head {
+    padding: 56px 20px 28px;
+  }
+
+  .hcf-philosophy-head h2 {
+    font-size: clamp(36px, 10vw, 56px);
+  }
+
+  .hcf-philosophy-head > p {
+    font-size: 15px;
+  }
+
+  /* Make outer the horizontal scroll container */
+  .hcf-hscroll-outer {
+    height: auto;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .hcf-hscroll-outer::-webkit-scrollbar { display: none; }
+
+  /* Track stretches to fit all cards naturally */
+  .hcf-hscroll-track {
+    width: max-content;
+    height: auto;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0 6vw;
+  }
+
+  /* Mobile cards */
+  .hcf-card {
+    width: 88vw;
+    min-height: 62vh;
+    height: auto;
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px 24px;
+    margin: 0 3vw;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+  }
+
+  .hcf-card::after {
+    inset: 0;
+    border-radius: 16px;
+  }
+
+  .hcf-card__icon img {
+    width: clamp(100px, 38vw, 180px);
+  }
+
+  .hcf-card__zh {
+    font-size: clamp(44px, 12vw, 68px);
+    margin-bottom: 14px;
+  }
+
+  .hcf-card__desc {
+    font-size: 15px;
+  }
+
+  /* Mobile merge stage */
+  .hcf-merge-stage {
+    width: 88vw;
+    min-height: 62vh;
+    height: auto;
+    margin: 0 3vw;
+    padding: 48px 24px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+  }
+
+  /* Hide pieces and flash on mobile — logo revealed via CSS animation */
+  .hcf-merge-piece,
+  .hcf-impact-flash { display: none; }
+
+  /* Mobile logo: hidden by default, revealed by IntersectionObserver */
+  .hcf-merge-logo {
+    opacity: 0;
+    transform: scale(0.84) translateY(20px);
+    transition: opacity 0.9s cubic-bezier(.16, 1, .3, 1), transform 0.9s cubic-bezier(.16, 1, .3, 1);
+  }
+
+  .hcf-merge-logo.hcf-merge-logo--visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  .hcf-merge-logo img {
+    width: min(240px, 68vw);
+  }
+
+  .hcf-merge-subtitle {
+    font-size: 14px;
+  }
+
+  /* Show dot indicators on mobile */
+  .hcf-dots { display: flex; }
+
+  /* Breathing animation adapted for mobile */
+  @keyframes hcf-icon-breathe {
+    0%, 100% { filter: drop-shadow(0 0 18px rgba(var(--hcf-cyan-rgb), 0.2)); }
+    50%       { filter: drop-shadow(0 0 36px rgba(var(--hcf-cyan-rgb), 0.48)); }
+  }
+}
+
+/* ── PWA mode: offset for bottom tab bar ── */
+.pwa-mode .hcf-philosophy-cinematic {
+  padding-bottom: calc(70px + env(safe-area-inset-bottom));
+}
+
+/* ── Reduced motion: skip all animations, show final state ── */
+@media (prefers-reduced-motion: reduce) {
+  .hcf-card__icon img { animation-name: none; }
+  .hcf-card__icon::before { animation-name: none; }
+
+  .hcf-card {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hcf-merge-logo {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hcf-merge-piece,
+  .hcf-impact-flash { display: none; }
+}

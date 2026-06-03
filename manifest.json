@@ -1,0 +1,78 @@
+{
+  "id": "/",
+  "name": "HCF 新竹格鬥",
+  "short_name": "HCF格鬥",
+  "start_url": "/index.html?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#010208",
+  "theme_color": "#00d4ff",
+  "description": "新竹最強格鬥館！主打正宗泰拳、踢拳、散打、專業重訓",
+  "lang": "zh-TW",
+  "categories": ["sports", "fitness", "health"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "shark_logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "shark_logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "shark_logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "🔥 立即預約體驗",
+      "short_name": "預約",
+      "url": "/pricing.html?source=shortcut&cta=trial",
+      "icons": [{ "src": "shark_logo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "課程方案",
+      "short_name": "方案",
+      "url": "/pricing.html?source=shortcut",
+      "icons": [{ "src": "shark_logo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "最新課表",
+      "short_name": "課表",
+      "url": "/index.html?source=shortcut#schedule",
+      "icons": [{ "src": "shark_logo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "教練團隊",
+      "short_name": "教練",
+      "url": "/team.html?source=shortcut",
+      "icons": [{ "src": "shark_logo.png", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "hero1.jpg",
+      "sizes": "1920x1080",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "HCF 新竹格鬥首頁"
+    },
+    {
+      "src": "schedule.png",
+      "sizes": "1206x1361",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "最新課表"
+    }
+  ]
+}

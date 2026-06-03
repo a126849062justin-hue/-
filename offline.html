@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#030303">
+  <title>HCF格鬥 — 目前離線</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #030303;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+    .logo {
+      width: 96px;
+      height: 96px;
+      border-radius: 20px;
+      margin-bottom: 32px;
+      box-shadow: 0 0 40px rgba(0,240,255,0.3);
+    }
+    .icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: #00f0ff;
+      margin-bottom: 16px;
+    }
+    p {
+      font-size: 15px;
+      color: #888;
+      line-height: 1.7;
+      max-width: 320px;
+      margin-bottom: 40px;
+    }
+    .btn-reload {
+      display: inline-block;
+      padding: 14px 36px;
+      background: linear-gradient(135deg, #00f0ff, #0080ff);
+      color: #000;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-reload:hover { opacity: 0.85; }
+    .btn-call {
+      display: inline-block;
+      padding: 12px 28px;
+      background: transparent;
+      color: #00f0ff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      border: 1px solid rgba(0,240,255,0.3);
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-call:hover { border-color: #00f0ff; color: #fff; }
+    .actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+  </style>
+</head>
+<body>
+  <img src="shark_logo.png" alt="HCF格鬥" class="logo" onerror="this.style.display='none'">
+  <div class="icon">⚡</div>
+  <h1>目前離線</h1>
+  <p>你的網路似乎斷線了，連上 Wi-Fi 或行動數據後再試一次</p>
+  <div class="actions">
+    <button class="btn-reload" onclick="location.reload()">↻ 重新連線</button>
+    <a href="tel:+886925571225" class="btn-call">📞 直接致電格鬥館</a>
+    <a href="https://lin.ee/7lidUv0" class="btn-call" target="_blank" rel="noopener">💬 LINE 聯繫格鬥館</a>
+  </div>
+</body>
+</html>
