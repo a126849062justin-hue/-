@@ -1,0 +1,2825 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#010208">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>HCF 教練團隊 | 新竹格鬥館</title>
+    <meta name="description" content="HCF新竹格鬥館菁英教練團隊：黃謙和、Allen、鄭豫、高大可、胡脩誠、小米，各擅泰拳、踢拳、散打等格鬥項目。">
+    <meta name="keywords" content="HCF新竹格鬥館, 新竹泰拳, 新竹格鬥, 新竹踢拳, 新竹散打, 新竹重訓, 新竹健身房, 泰拳教學, 拳擊">
+    
+    <link rel="icon" type="image/png" href="shark_logo.png">
+    
+    <meta property="og:title" content="HCF新竹格鬥館 | 新竹泰拳首選・專業踢拳・散打・重訓">
+    <meta property="og:description" content="新竹泰拳首選！專業踢拳、散打、重訓課程。給自己一次變強的機會！HCF新竹格鬥館，實戰最強專業拳館。">
+    <meta property="og:image" content="https://www.hsinchucombat.com/hero1.jpg">
+    <meta property="og:url" content="https://www.hsinchucombat.com/team.html">
+    <meta property="og:type" content="website">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HCF新竹格鬥館 | 新竹泰拳首選・專業踢拳・散打・重訓">
+    <meta name="twitter:description" content="新竹泰拳首選！專業踢拳、散打、重訓課程。給自己一次變強的機會！">
+    <meta name="twitter:image" content="https://www.hsinchucombat.com/hero1.jpg">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="HCF格鬥">
+    <link rel="apple-touch-icon" href="shark_logo.png">
+    <link rel="canonical" href="https://www.hsinchucombat.com/team.html">
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="output.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&family=Orbitron:wght@400;700;900&family=Noto+Sans+TC:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="main.css">
+    <style>
+        /* ── Team page styles ── */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+
+        /* Opening hero */
+        .opening-hero {
+            background: #050505;
+        }
+
+        /* ══════════════════════════════════════════════
+           3D TEAM CAROUSEL STYLES
+           ══════════════════════════════════════════════ */
+        #team-carousel-section {
+            user-select: none;
+        }
+        .carousel-scene {
+            width: 100%;
+            height: 480px;
+            perspective: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: grab;
+        }
+        .carousel-scene:active { cursor: grabbing; }
+        @media (max-width: 767px) {
+            .carousel-scene { height: 380px; perspective: 900px; }
+        }
+        .carousel-ring {
+            position: relative;
+            width: 220px;
+            height: 320px;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .carousel-ring.dragging {
+            transition: none;
+        }
+        .carousel-card {
+            position: absolute;
+            inset: 0;
+            width: 220px;
+            height: 320px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(5,5,5,0.85);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 0 20px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.04);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+            cursor: pointer;
+            backface-visibility: hidden;
+            filter: brightness(0.55) saturate(0.6);
+        }
+        @media (max-width: 767px) {
+            .carousel-ring { width: 180px; height: 260px; }
+            .carousel-card { width: 180px; height: 260px; }
+        }
+        .carousel-card.tc-active {
+            border-color: rgba(var(--theme-cyan-rgb), 0.7);
+            box-shadow: 0 0 30px rgba(var(--theme-cyan-rgb), 0.35), 0 0 60px rgba(var(--theme-cyan-rgb), 0.15), inset 0 0 0 1px rgba(var(--theme-cyan-rgb), 0.3);
+            filter: brightness(1) saturate(1);
+        }
+        .carousel-card:hover {
+            border-color: rgba(var(--theme-cyan-rgb), 0.5);
+            box-shadow: 0 0 25px rgba(var(--theme-cyan-rgb), 0.2), inset 0 0 0 1px rgba(var(--theme-cyan-rgb), 0.15);
+            filter: brightness(0.85) saturate(0.85);
+        }
+        .carousel-card.tc-active:hover {
+            filter: brightness(1.05) saturate(1.1);
+        }
+        .carousel-card-img {
+            width: 100%;
+            height: 68%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+        }
+        .carousel-card-body {
+            padding: 12px 14px 10px;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.6), rgba(5,5,5,0.98));
+        }
+        .carousel-card-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+            margin-bottom: 3px;
+        }
+        .carousel-card-role {
+            font-size: 0.6rem;
+            color: rgba(var(--theme-cyan-rgb), 0.8);
+            letter-spacing: 0.08em;
+            line-height: 1.3;
+        }
+        .carousel-card-nickname {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        /* HUD corner on active card */
+        .carousel-card.tc-active::before,
+        .carousel-card.tc-active::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            z-index: 5;
+            pointer-events: none;
+        }
+        .carousel-card.tc-active::before {
+            top: 4px; left: 4px;
+            border-top: 2px solid var(--theme-cyan);
+            border-left: 2px solid var(--theme-cyan);
+        }
+        .carousel-card.tc-active::after {
+            bottom: 4px; right: 4px;
+            border-bottom: 2px solid var(--theme-cyan);
+            border-right: 2px solid var(--theme-cyan);
+        }
+        /* Navigation arrows */
+        .tc-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(5,5,5,0.7);
+            border: 1px solid rgba(var(--theme-cyan-rgb), 0.3);
+            color: rgba(var(--theme-cyan-rgb), 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        @media (max-width: 767px) {
+            .tc-nav-btn { width: 48px; height: 48px; background: rgba(5,5,5,0.85); }
+        }
+        .tc-nav-btn:hover {
+            background: rgba(var(--theme-cyan-rgb), 0.15);
+            border-color: rgba(var(--theme-cyan-rgb), 0.7);
+            box-shadow: 0 0 12px rgba(var(--theme-cyan-rgb), 0.3);
+        }
+        .tc-nav-prev { left: 4px; }
+        .tc-nav-next { right: 4px; }
+        @media (min-width: 640px) {
+            .tc-nav-prev { left: 20px; }
+            .tc-nav-next { right: 20px; }
+        }
+        /* Dot indicators */
+        .tc-dot {
+            border-radius: 50%;
+            transition: all 0.3s;
+            cursor: pointer;
+            min-width: 44px; min-height: 44px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .tc-dot::before {
+            content: '';
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+        .tc-dot.tc-dot-active::before {
+            background: var(--theme-cyan);
+            box-shadow: 0 0 8px rgba(var(--theme-cyan-rgb), 0.7);
+            width: 20px;
+            border-radius: 3px;
+        }
+
+        /* ── COACH MODAL ── */
+        #tc-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #tc-modal-overlay.tc-modal-open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        #tc-modal-box {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            background: #0a0a0a;
+            border: 1px solid rgba(var(--theme-cyan-rgb), 0.25);
+            border-radius: 16px;
+            box-shadow: 0 0 60px rgba(var(--theme-cyan-rgb), 0.15), 0 30px 80px rgba(0,0,0,0.8);
+            overflow: hidden;
+            transform: scale(0.92) translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @media (max-width: 767px) {
+            #tc-modal-box {
+                overflow-y: auto;
+            }
+        }
+        #tc-modal-box::-webkit-scrollbar { width: 4px; }
+        #tc-modal-box::-webkit-scrollbar-thumb { background: rgba(var(--theme-cyan-rgb), 0.3); border-radius: 4px; }
+        #tc-modal-overlay.tc-modal-open #tc-modal-box {
+            transform: scale(1) translateY(0);
+        }
+        .tc-modal-header {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+            border-radius: 16px 16px 0 0;
+        }
+        @media (max-width: 480px) { .tc-modal-header { height: 200px; } }
+        .tc-modal-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+        .tc-modal-header-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 30%, #0a0a0a 100%);
+        }
+        .tc-modal-header-hud-tl,
+        .tc-modal-header-hud-br {
+            position: absolute;
+            width: 20px; height: 20px;
+            pointer-events: none;
+        }
+        .tc-modal-header-hud-tl {
+            top: 12px; left: 12px;
+            border-top: 2px solid var(--theme-cyan);
+            border-left: 2px solid var(--theme-cyan);
+        }
+        .tc-modal-header-hud-br {
+            bottom: 12px; right: 12px;
+            border-bottom: 2px solid var(--theme-cyan);
+            border-right: 2px solid var(--theme-cyan);
+        }
+        .tc-modal-close {
+            position: absolute;
+            top: 12px; right: 12px;
+            z-index: 10;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .tc-modal-close:hover {
+            background: rgba(255,0,0,0.3);
+            border-color: rgba(255,0,0,0.5);
+        }
+        .tc-modal-body {
+            padding: 20px 24px 28px;
+        }
+        .tc-modal-skill-bar {
+            height: 4px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .tc-modal-skill-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--theme-cyan), rgba(var(--theme-cyan-rgb), 0.6));
+            border-radius: 2px;
+            transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .tc-record-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+        }
+        .tc-fs-neon-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(var(--theme-cyan-rgb), 0.5), transparent);
+            margin: 12px 0;
+        }
+
+        /* ══════════════════════════════════════════════
+           SCI-FI IMMERSIVE ENHANCEMENTS
+           ══════════════════════════════════════════════ */
+
+        /* ── Reduced motion support ── */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.1ms !important;
+            }
+        }
+
+        /* ── Opening Hero: Particle rain ── */
+        .opening-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 10% 20%, rgba(var(--theme-cyan-rgb),0.6) 0%, transparent 100%),
+                radial-gradient(1px 1px at 30% 60%, rgba(var(--theme-cyan-rgb),0.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 50% 10%, rgba(var(--theme-cyan-rgb),0.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 70% 80%, rgba(var(--theme-cyan-rgb),0.3) 0%, transparent 100%),
+                radial-gradient(1px 1px at 85% 40%, rgba(var(--theme-cyan-rgb),0.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 20% 90%, rgba(var(--theme-cyan-rgb),0.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 60% 50%, rgba(var(--theme-cyan-rgb),0.35) 0%, transparent 100%),
+                radial-gradient(1px 1px at 90% 15%, rgba(var(--theme-cyan-rgb),0.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 40% 35%, rgba(var(--theme-cyan-rgb),0.3) 0%, transparent 100%),
+                radial-gradient(1px 1px at 75% 65%, rgba(var(--theme-cyan-rgb),0.45) 0%, transparent 100%);
+            animation: particleRain 8s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        @keyframes particleRain {
+            0%   { transform: translateY(-100px); opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        @media (max-width: 767px) {
+            .opening-hero::before {
+                background-image:
+                    radial-gradient(1px 1px at 10% 20%, rgba(var(--theme-cyan-rgb),0.6) 0%, transparent 100%),
+                    radial-gradient(1px 1px at 50% 60%, rgba(var(--theme-cyan-rgb),0.4) 0%, transparent 100%),
+                    radial-gradient(1px 1px at 85% 40%, rgba(var(--theme-cyan-rgb),0.5) 0%, transparent 100%);
+                animation-duration: 12s;
+            }
+        }
+
+        /* ── Opening Hero: Glitch text effect ── */
+        .hero-glitch {
+            position: relative;
+            display: inline-block;
+        }
+        .hero-glitch::before,
+        .hero-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+        }
+        .hero-glitch::before {
+            color: rgba(var(--theme-cyan-rgb), 0.8);
+            animation: glitchBefore 6s infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+        }
+        .hero-glitch::after {
+            color: rgba(255, 45, 85, 0.7);
+            animation: glitchAfter 6s infinite;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+        }
+        @keyframes glitchBefore {
+            0%, 90%, 100% { transform: translateX(0); opacity: 0; }
+            91%  { transform: translateX(-3px); opacity: 1; }
+            93%  { transform: translateX(2px); opacity: 1; }
+            95%  { transform: translateX(-1px); opacity: 1; }
+            97%  { transform: translateX(3px); opacity: 1; }
+            99%  { transform: translateX(0); opacity: 0; }
+        }
+        @keyframes glitchAfter {
+            0%, 90%, 100% { transform: translateX(0); opacity: 0; }
+            91%  { transform: translateX(3px); opacity: 1; }
+            93%  { transform: translateX(-2px); opacity: 1; }
+            95%  { transform: translateX(2px); opacity: 1; }
+            97%  { transform: translateX(-3px); opacity: 1; }
+            99%  { transform: translateX(0); opacity: 0; }
+        }
+
+        /* ── Opening Hero: Bounce scroll hint ── */
+        .hero-scroll-hint {
+            animation: bounceHint 2s ease-in-out infinite;
+        }
+        @keyframes bounceHint {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* ── Opening Hero: Desktop grid drift ── */
+        @media (min-width: 1024px) {
+            .opening-hero .grid-layer {
+                animation: gridDrift 20s linear infinite;
+            }
+        }
+        @keyframes gridDrift {
+            0%   { background-position: 0 0; }
+            100% { background-position: 60px 60px; }
+        }
+
+        /* ── Carousel: Holographic scan line on active card ── */
+        .carousel-card.tc-active .card-holo-scan {
+            display: block;
+        }
+        .card-holo-scan {
+            display: none;
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 3;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        .card-holo-scan::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(var(--theme-cyan-rgb),0.6), transparent);
+            animation: holoScan 2.5s linear infinite;
+            box-shadow: 0 0 8px rgba(var(--theme-cyan-rgb),0.4);
+        }
+        @keyframes holoScan {
+            0%   { top: -4px; }
+            100% { top: 100%; }
+        }
+
+        /* ── Carousel: Breathing glow on active card ── */
+        .carousel-card.tc-active {
+            animation: cardBreath 3s ease-in-out infinite;
+        }
+        @keyframes cardBreath {
+            0%, 100% { box-shadow: 0 0 30px rgba(var(--theme-cyan-rgb), 0.35), 0 0 60px rgba(var(--theme-cyan-rgb), 0.15), inset 0 0 0 1px rgba(var(--theme-cyan-rgb), 0.3); }
+            50%       { box-shadow: 0 0 50px rgba(var(--theme-cyan-rgb), 0.55), 0 0 90px rgba(var(--theme-cyan-rgb), 0.25), inset 0 0 0 1px rgba(var(--theme-cyan-rgb), 0.5); }
+        }
+
+        /* ── Carousel: Data blink decorations ── */
+        .card-data-dots {
+            display: flex;
+            gap: 4px;
+            margin-top: 4px;
+        }
+        .card-data-dot {
+            width: 4px; height: 4px;
+            border-radius: 1px;
+            background: rgba(var(--theme-cyan-rgb), 0.5);
+        }
+        .carousel-card.tc-active .card-data-dot {
+            animation: dataBlink 1s ease-in-out infinite;
+        }
+        .carousel-card.tc-active .card-data-dot:nth-child(2) { animation-delay: 0.2s; }
+        .carousel-card.tc-active .card-data-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes dataBlink {
+            0%, 100% { opacity: 0.3; }
+            50%       { opacity: 1; background: var(--theme-cyan); box-shadow: 0 0 4px var(--theme-cyan); }
+        }
+
+        /* ── Carousel Section: Radar bg animation ── */
+        .carousel-radar-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .carousel-radar-bg::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 600px; height: 600px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent 340deg, rgba(var(--theme-cyan-rgb),0.06) 360deg);
+            animation: radarSpin 4s linear infinite;
+        }
+        @keyframes radarSpin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to   { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* ── Modal: Scan line animation in header ── */
+        .tc-modal-holo-scan {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .tc-modal-holo-scan::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(var(--theme-cyan-rgb),0.7), transparent);
+            animation: modalHoloScan 3s linear infinite;
+            box-shadow: 0 0 10px rgba(var(--theme-cyan-rgb),0.5);
+        }
+        @keyframes modalHoloScan {
+            0%   { top: 0; }
+            100% { top: 100%; }
+        }
+
+        /* ── Modal: Startup text ── */
+        .tc-modal-startup-text {
+            font-family: 'Orbitron', monospace;
+            font-size: 0.55rem;
+            color: var(--theme-cyan);
+            letter-spacing: 0.15em;
+            opacity: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 0;
+            margin-bottom: 8px;
+            border-right: 1px solid var(--theme-cyan);
+        }
+        .tc-modal-startup-text.tc-startup-animate {
+            animation: startupTypewriter 1.2s steps(30) forwards, startupFadeOut 0.5s 2.5s forwards;
+        }
+        @keyframes startupTypewriter {
+            from { width: 0; opacity: 1; }
+            to   { width: 100%; opacity: 1; }
+        }
+        @keyframes startupFadeOut {
+            to { opacity: 0; height: 0; margin: 0; }
+        }
+
+        /* ── Modal: Achievement blink ── */
+        .tc-ach-blink {
+            display: inline-block;
+            color: var(--theme-cyan);
+            flex-shrink: 0;
+            margin-top: 2px;
+            animation: achBlink 1.5s ease-in-out infinite;
+        }
+        @keyframes achBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        /* ── Modal: Desktop 2-column layout ── */
+        @media (min-width: 768px) {
+            #tc-modal-box {
+                display: flex;
+                align-items: stretch;
+            }
+            #tc-modal-box .tc-modal-layout {
+                display: flex;
+                flex-direction: row;
+                align-items: stretch;
+                width: 100%;
+            }
+            #tc-modal-box .tc-modal-left {
+                flex: 0 0 300px;
+                align-self: stretch;
+            }
+            #tc-modal-box .tc-modal-right {
+                flex: 1;
+                min-width: 0;
+                overflow-y: auto;
+                max-height: 90vh;
+            }
+            #tc-modal-box .tc-modal-left .tc-modal-header {
+                height: 100%;
+                min-height: 380px;
+                border-radius: 16px 0 0 16px;
+            }
+            #tc-modal-box .tc-modal-left .tc-modal-close {
+                top: 12px; right: 12px;
+            }
+        }
+
+        /* ── Modal: Mobile improvements ── */
+        @media (max-width: 767px) {
+            .tc-modal-body {
+                padding-bottom: max(28px, env(safe-area-inset-bottom, 28px));
+            }
+            .tc-modal-cta-full {
+                width: 100%;
+            }
+        }
+
+        /* ── Fighter Select: Circuit line dividers (desktop) ── */
+        @media (min-width: 1024px) {
+            .fs-circuit-divider {
+                position: absolute;
+                top: 0; bottom: 0;
+                width: 1px;
+                background: linear-gradient(to bottom,
+                    transparent 0%,
+                    rgba(var(--theme-cyan-rgb),0.15) 20%,
+                    rgba(var(--theme-cyan-rgb),0.3) 50%,
+                    rgba(var(--theme-cyan-rgb),0.15) 80%,
+                    transparent 100%);
+                z-index: 5;
+                pointer-events: none;
+            }
+            .fs-circuit-divider::before {
+                content: '';
+                position: absolute;
+                left: -2px; width: 5px; height: 5px;
+                border-radius: 50%;
+                background: var(--theme-cyan);
+                box-shadow: 0 0 8px var(--theme-cyan);
+                animation: circuitDot 3s ease-in-out infinite;
+            }
+            @keyframes circuitDot {
+                0%   { top: 10%; opacity: 0; }
+                10%  { opacity: 1; }
+                90%  { opacity: 1; }
+                100% { top: 90%; opacity: 0; }
+            }
+            .fs-circuit-divider-left  { left: 33.333%; }
+            .fs-circuit-divider-right { left: 66.667%; }
+        }
+        @media (max-width: 1023px) {
+            .fs-circuit-divider { display: none; }
+        }
+
+        /* ── Fighter Select: Holographic projection on center image ── */
+        .fs-holo-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 3;
+        }
+        .fs-holo-overlay::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(var(--theme-cyan-rgb),0.4), transparent);
+            animation: fsHoloScan 4s linear infinite;
+            box-shadow: 0 0 6px rgba(var(--theme-cyan-rgb),0.3);
+        }
+        @keyframes fsHoloScan {
+            0%   { top: 0; }
+            100% { top: 100%; }
+        }
+
+        /* ── Fighter Select: RGB split hover ── */
+        .fs-fighter-display:hover .fs-fighter-img {
+            animation: rgbSplit 0.4s ease-in-out;
+        }
+        @keyframes rgbSplit {
+            0%   { filter: none; }
+            20%  { filter: drop-shadow(-2px 0 rgba(255,0,0,0.5)) drop-shadow(2px 0 rgba(0,212,255,0.5)); }
+            40%  { filter: none; }
+            60%  { filter: drop-shadow(2px 0 rgba(255,0,0,0.5)) drop-shadow(-2px 0 rgba(0,212,255,0.5)); }
+            80%  { filter: none; }
+            100% { filter: none; }
+        }
+
+        /* ── Fighter Select: Thumbnail scroll gradient masks ── */
+        .fs-thumb-wrap {
+            position: relative;
+        }
+        .fs-thumb-wrap::before,
+        .fs-thumb-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 40px;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .fs-thumb-wrap::before {
+            left: 0;
+            background: linear-gradient(to right, #050505 0%, transparent 100%);
+        }
+        .fs-thumb-wrap::after {
+            right: 0;
+            background: linear-gradient(to left, #050505 0%, transparent 100%);
+        }
+
+        /* ── Fighter Select: Coach X/6 indicator ── */
+        .fs-coach-indicator {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.6rem;
+            color: rgba(var(--theme-cyan-rgb), 0.7);
+            letter-spacing: 0.2em;
+            padding: 6px 0 4px;
+        }
+
+        /* ── Fighter Select: Mobile scroll-snap + padding ── */
+        @media (max-width: 767px) {
+            .fs-thumb-row {
+                scroll-snap-type: x mandatory;
+            }
+            .fs-fighter-thumb {
+                scroll-snap-align: center;
+                flex-shrink: 0;
+            }
+            .fs-left-panel, .fs-right-panel {
+                padding: 16px !important;
+            }
+        }
+
+        /* ── Closing CTA: Pulse ripple ── */
+        .cta-pulse-wrap {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .cta-pulse-ring {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid rgba(var(--theme-cyan-rgb), 0.3);
+            animation: ctaPulse 4s ease-out infinite;
+        }
+        .cta-pulse-ring:nth-child(2) { animation-delay: 1.3s; }
+        .cta-pulse-ring:nth-child(3) { animation-delay: 2.6s; }
+        @keyframes ctaPulse {
+            0%   { width: 0; height: 0; opacity: 0.8; }
+            100% { width: 800px; height: 800px; opacity: 0; }
+        }
+
+        /* ── Closing CTA: Button neon glow on hover ── */
+        .cta-fitbook-btn:hover {
+            box-shadow: 0 0 40px rgba(var(--theme-cyan-rgb),0.7), 0 0 80px rgba(var(--theme-cyan-rgb),0.3) !important;
+        }
+
+        /* ── Closing CTA: HUD decoration lines (desktop) ── */
+        @media (min-width: 1024px) {
+            .cta-hud-line {
+                position: absolute;
+                top: 50%; transform: translateY(-50%);
+                height: 1px;
+                width: 120px;
+                background: linear-gradient(to right, transparent, rgba(var(--theme-cyan-rgb),0.5));
+            }
+            .cta-hud-line-left {
+                right: calc(50% + 180px);
+                background: linear-gradient(to left, transparent, rgba(var(--theme-cyan-rgb),0.5));
+            }
+            .cta-hud-line-right {
+                left: calc(50% + 180px);
+            }
+        }
+        @media (max-width: 1023px) {
+            .cta-hud-line { display: none; }
+        }
+
+        /* ── Global desktop: Section transition gradient bands ── */
+        .section-transition-band {
+            height: 2px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(var(--theme-cyan-rgb),0.1) 20%,
+                rgba(var(--theme-cyan-rgb),0.4) 50%,
+                rgba(var(--theme-cyan-rgb),0.1) 80%,
+                transparent 100%);
+            position: relative;
+            z-index: 5;
+        }
+
+        /* ── Global desktop: Section hover micro-glow ── */
+        @media (min-width: 1024px) {
+            .fs-info-section {
+                transition: background 0.3s ease;
+            }
+            .fs-info-section:hover {
+                background: rgba(var(--theme-cyan-rgb), 0.03);
+                border-radius: 8px;
+            }
+        }
+
+        /* ── Global desktop: Status bar above footer ── */
+        .system-status-bar {
+            background: rgba(5,5,5,0.95);
+            border-top: 1px solid rgba(var(--theme-cyan-rgb),0.15);
+            padding: 6px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.5rem;
+            letter-spacing: 0.2em;
+            color: rgba(var(--theme-cyan-rgb),0.4);
+        }
+        .system-status-dot {
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: var(--theme-cyan);
+            box-shadow: 0 0 6px var(--theme-cyan);
+            animation: statusBlink 2s ease-in-out infinite;
+            display: inline-block;
+            margin-right: 6px;
+        }
+        @keyframes statusBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* ── Safe area insets ── */
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+            .tc-modal-body {
+                padding-bottom: max(28px, env(safe-area-inset-bottom));
+            }
+        }
+
+        /* ── Modal: Extra HUD corners ── */
+        .tc-modal-hud-tl,
+        .tc-modal-hud-tr,
+        .tc-modal-hud-bl,
+        .tc-modal-hud-br {
+            position: absolute;
+            width: 16px; height: 16px;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .tc-modal-hud-tl { top: 8px; left: 8px; border-top: 2px solid var(--theme-cyan); border-left: 2px solid var(--theme-cyan); }
+        .tc-modal-hud-tr { top: 8px; right: 8px; border-top: 2px solid var(--theme-cyan); border-right: 2px solid var(--theme-cyan); }
+        .tc-modal-hud-bl { bottom: 8px; left: 8px; border-bottom: 2px solid var(--theme-cyan); border-left: 2px solid var(--theme-cyan); }
+        .tc-modal-hud-br { bottom: 8px; right: 8px; border-bottom: 2px solid var(--theme-cyan); border-right: 2px solid var(--theme-cyan); }
+
+        /* ── Ensure all interactive elements ≥44px ── */
+        .tc-nav-btn, .tc-dot, .fs-fighter-thumb {
+            min-width: 44px;
+            min-height: 44px;
+        }
+        .tc-modal-close {
+            width: 44px; height: 44px;
+            min-width: 44px; min-height: 44px;
+        }
+
+        /* ── P1-6: Fighter photo breathing animation ── */
+        @keyframes fighterBreathe {
+            0%, 100% { transform: scale(1); }
+            50%      { transform: scale(1.015); }
+        }
+        .fs-fighter-img {
+            animation: fighterBreathe 4s ease-in-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .fs-fighter-img { animation: none !important; }
+        }
+
+        /* ── P1-4: Override fs-entering for Phase 2 (scale + opacity) ── */
+        @keyframes fs-enter-scale {
+            from { opacity: 0; transform: scale(1.05); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        .fs-fighter-img.fs-entering {
+            animation: fs-enter-scale 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+            animation-delay: 0.15s;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .fs-fighter-img.fs-entering { animation: none !important; }
+        }
+
+        /* ── P1-4: Phase 3 — left panel text fade-in ── */
+        @keyframes fsPanelFadeIn {
+            from { opacity: 0; transform: translateX(-8px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        .fs-panel-entering {
+            animation: fsPanelFadeIn 0.2s ease 0.4s both;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .fs-panel-entering { animation: none !important; }
+        }
+
+        /* ── P1-5: FOMO viewer count flicker ── */
+        @keyframes fomoFlicker {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.65; }
+        }
+        .fs-fomo-count-line {
+            font-size: 0.72rem;
+            color: var(--theme-cyan);
+            letter-spacing: 0.04em;
+            margin-top: 8px;
+            text-align: center;
+            animation: fomoFlicker 2.5s ease-in-out infinite;
+        }
+        .fs-fomo-count-line strong {
+            color: var(--theme-gold, #ffd700);
+        }
+
+        /* ── P1-7: FOMO countdown in CTA area ── */
+        .fs-fomo-countdown {
+            font-family: 'Orbitron', monospace;
+            font-size: 0.62rem;
+            color: rgba(var(--theme-gold-rgb, 255, 200, 0), 0.85);
+            text-align: center;
+            margin-top: 5px;
+            letter-spacing: 0.12em;
+        }
+        .fs-fomo-countdown span {
+            color: white;
+            font-weight: 700;
+        }
+
+        /* ── P0-3: Mobile Sticky CTA Bar ── */
+        #fs-sticky-cta {
+            display: none;
+        }
+        @media (max-width: 767px) {
+            #fs-sticky-cta {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 90;
+                background: rgba(5, 5, 10, 0.97);
+                border-top: 1px solid rgba(var(--theme-cyan-rgb), 0.35);
+                padding: 10px 16px;
+                padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+                align-items: center;
+                gap: 12px;
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
+                box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.7);
+            }
+        }
+        /* In PWA mode, push above the tab bar */
+        .pwa-mode #fs-sticky-cta {
+            bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+        }
+        .fs-sticky-cta-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .fs-sticky-cta-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .fs-sticky-cta-specialty {
+            font-size: 0.62rem;
+            color: rgba(var(--theme-cyan-rgb), 0.85);
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .fs-sticky-cta-btn {
+            flex-shrink: 0;
+            display: inline-block;
+            padding: 10px 18px;
+            background: var(--theme-cyan);
+            color: #000;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            white-space: nowrap;
+            clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+            box-shadow: 0 0 12px rgba(var(--theme-cyan-rgb), 0.5);
+        }
+    </style>
+    <script>
+        (async function() {
+            try {
+                // 1. 先用本地記憶體瞬間上色，避免客人看到畫面閃爍
+                const saved = localStorage.getItem('hcf_theme');
+                if(saved) document.documentElement.setAttribute('data-theme', saved);
+                
+                // 2. 偷偷去 Netlify 伺服器問「最新顏色」
+                const res = await fetch('/.netlify/functions/get-theme');
+                const data = await res.json();
+                
+                // 3. 如果伺服器顏色不一樣，立刻強制切換並更新記憶體！
+                if (data.theme && data.theme !== 'default') {
+                    document.documentElement.setAttribute('data-theme', data.theme);
+                    localStorage.setItem('hcf_theme', data.theme);
+                } else if (data.theme === 'default') {
+                    document.documentElement.removeAttribute('data-theme');
+                    localStorage.removeItem('hcf_theme');
+                }
+            } catch (e) {
+                console.error('基地連線異常，保持目前塗裝', e);
+            }
+        })();
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsTeam",
+  "name": "HCF 新竹格鬥館教練團隊",
+  "url": "https://www.hsinchucombat.com/team.html",
+  "memberOf": {
+    "@type": "SportsOrganization",
+    "name": "HCF 新竹格鬥館",
+    "url": "https://www.hsinchucombat.com"
+  },
+  "member": [
+    {
+      "@type": "Person",
+      "name": "黃謙和",
+      "jobTitle": "總教練",
+      "knowsAbout": ["泰拳", "踢拳", "散打"]
+    },
+    {
+      "@type": "Person",
+      "name": "Allen",
+      "jobTitle": "教練",
+      "knowsAbout": ["泰拳", "踢拳"]
+    },
+    {
+      "@type": "Person",
+      "name": "鄭豫",
+      "jobTitle": "教練",
+      "knowsAbout": ["散打", "踢拳"]
+    },
+    {
+      "@type": "Person",
+      "name": "高大可",
+      "jobTitle": "教練",
+      "knowsAbout": ["泰拳", "散打"]
+    },
+    {
+      "@type": "Person",
+      "name": "胡脩誠",
+      "jobTitle": "教練",
+      "knowsAbout": ["泰拳", "踢拳"]
+    },
+    {
+      "@type": "Person",
+      "name": "小米",
+      "jobTitle": "教練",
+      "knowsAbout": ["泰拳"]
+    }
+  ]
+}
+</script>
+</head>
+<body class="font-sans antialiased selection:bg-sci-cyan selection:text-black">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-cyan-400 focus:text-black focus:px-4 focus:py-2 focus:rounded focus:text-lg">跳至主要內容</a>
+
+    <div id="custom-toast" class="fixed top-32 left-1/2 transform -translate-x-1/2 bg-sci-cyan text-black px-6 py-3 rounded font-bold tracking-widest z-[200] opacity-0 pointer-events-none transition-opacity duration-300 shadow-[0_0_20px_rgba(var(--theme-cyan-rgb),0.5)] flex items-center gap-2">
+        <i class="fa-solid fa-circle-check"></i> <span id="toast-msg">網站連結已複製！</span>
+    </div>
+
+    <div class="custom-cursor-dot" id="cursor-dot"></div>
+    <div class="custom-cursor-ring" id="cursor-ring"></div>
+    <div id="mouse-glow-effect" class="hidden md:block"></div>
+    <audio id="bgm-audio" src="bgm.mp3" loop preload="none"></audio>
+
+    <div id="preloader">
+        <div class="text-sci-cyan font-orbitron font-bold tracking-[0.3em] mb-2 text-center px-4 animate-pulse">🦈 格鬥系統啟動中...</div>
+        <div class="loader-bar"><div class="loader-progress" id="loader-progress"></div></div>
+        <div class="text-gray-500 font-mono text-xs mt-2" id="loader-text">載入資源中...</div>
+    </div>
+
+    <div class="bg-grain hidden md:block"></div>
+    <canvas id="bg-canvas" class="hidden md:block" aria-hidden="true">您的瀏覽器不支援 Canvas</canvas>
+
+    <nav class="fixed w-full z-[120] bg-transparent transition-all duration-300 py-4" id="navbar">
+        <div class="max-w-[1800px] w-full mx-auto px-4 sm:px-8 lg:px-16">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <div class="flex items-center gap-3 sm:gap-4 cursor-pointer flex-shrink-0 relative" onclick="handleLogoClick()" id="logo-btn">
+                    <img src="shark_logo.png" alt="HCF Logo" id="nav-shark-logo" class="h-10 sm:h-16 w-auto object-contain" width="400" height="400" data-fallback="https://placehold.co/400x150/02040a/00f0ff?text=HCF+LOGO"> 
+                    <div class="flex flex-col justify-center">
+                        <span class="text-xl sm:text-2xl font-orbitron font-black text-white tracking-widest leading-none drop-shadow-[0_0_15px_rgba(var(--theme-cyan-rgb),0.6)] sm:drop-shadow-md italic">HCF</span>
+                        <span class="block text-[0.5rem] sm:text-[0.65rem] text-sci-cyan tracking-[0.4em] font-orbitron font-bold drop-shadow-md mt-1">COMBAT SYSTEM</span>
+                    </div>
+
+                </div>
+                
+                <div class="hidden lg:flex items-center space-x-6 xl:space-x-8 ml-auto">
+                    <a href="index.html" class="relative group text-base font-bold text-gray-200 hover:text-sci-cyan transition-colors tracking-widest pb-1">
+                        <span class="group-hover:hidden">首頁</span><span class="hidden group-hover:inline font-orbitron uppercase text-[15px]">HOME</span>
+                        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sci-cyan scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                    </a>
+                    <a href="news.html" class="relative group text-base font-bold text-gray-200 hover:text-sci-cyan transition-colors tracking-widest pb-1">
+                        <span class="group-hover:hidden">最新資訊</span><span class="hidden group-hover:inline font-orbitron uppercase text-[15px]">NEWS</span>
+                        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sci-cyan scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                    </a>
+                    <a href="philosophy.html" class="relative group text-base font-bold text-gray-200 hover:text-sci-cyan transition-colors tracking-widest pb-1">
+                        <span class="group-hover:hidden">品牌哲學</span><span class="hidden group-hover:inline font-orbitron uppercase text-[15px]">PHILOSOPHY</span>
+                        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sci-cyan scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                    </a>
+                    <div class="relative group py-4">
+                        <a href="classes.html" class="relative text-base font-bold text-gray-200 group-hover:text-sci-cyan transition-colors tracking-widest flex items-center gap-1 pb-1">
+                            <span class="group-hover:hidden">課程介紹</span><span class="hidden group-hover:inline font-orbitron uppercase text-[15px]">COURSES</span>
+                            <i class="fa-solid fa-angle-down text-[10px]"></i>
+                            <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sci-cyan scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                        </a>
+                        <div class="absolute top-full left-1/2 -translate-x-1/2 mt-0 w-40 bg-[#050810]/95 backdrop-blur-md border border-white/10 rounded shadow-[0_10px_30px_rgba(0,0,0,0.8)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col py-2 z-50">
+                            <a href="classes.html#group" class="px-4 py-2 text-xs text-gray-300 hover:text-sci-cyan hover:bg-white/5 transition-colors">團體課程</a>
+                            <a href="classes.html#private" class="px-4 py-2 text-xs text-gray-300 hover:text-sci-cyan hover:bg-white/5 transition-colors">私人課程</a>
+                            <a href="classes.html#muay-thai" class="px-4 py-2 text-xs text-gray-300 hover:text-sci-cyan hover:bg-white/5 transition-colors">泰拳訓練</a>
+                            <a href="classes.html#kickboxing" class="px-4 py-2 text-xs text-gray-300 hover:text-sci-cyan hover:bg-white/5 transition-colors">踢拳訓練</a>
+                            <a href="classes.html#sanda" class="px-4 py-2 text-xs text-gray-300 hover:text-sci-cyan hover:bg-white/5 transition-colors">散打訓練</a>
+                            <a href="classes.html#strength" class="px-4 py-2 text-xs text-gray-300 hover:text-sci-cyan hover:bg-white/5 transition-colors">肌力體能</a>
+                        </div>
+                    </div>
+                    <a href="team.html" class="relative group text-base font-bold text-sci-cyan transition-colors tracking-widest pb-1">
+                        <span class="group-hover:hidden">教練團隊</span><span class="hidden group-hover:inline font-orbitron uppercase text-[15px]">COACHES</span>
+                        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sci-cyan scale-x-100 transition-transform origin-left duration-300"></span>
+                    </a>
+                    <a href="pricing.html" class="relative group text-base font-bold text-gray-200 hover:text-sci-cyan transition-colors tracking-widest pb-1">
+                        <span class="group-hover:hidden">課程方案</span><span class="hidden group-hover:inline font-orbitron uppercase text-[15px]">PRICING</span>
+                        <span class="absolute top-0 -right-2 w-1.5 h-1.5 rounded-full bg-sci-cyan animate-ping"></span>
+                        <span class="absolute top-0 -right-2 w-1.5 h-1.5 rounded-full bg-sci-cyan shadow-[0_0_8px_var(--theme-cyan)]"></span>
+                        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sci-cyan scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                    </a>
+                    <a href="index.html#schedule" class="relative group text-base font-bold text-gray-200 hover:text-sci-cyan transition-colors tracking-widest pb-1">
+                        <span class="group-hover:hidden">課表</span><span class="hidden group-hover:inline font-orbitron uppercase text-[15px]">SCHEDULE</span>
+                        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sci-cyan scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                    </a>
+                    <a href="faq.html" class="relative group text-base font-bold text-gray-200 hover:text-sci-cyan transition-colors tracking-widest pb-1">
+                        <span class="group-hover:hidden">新手問答</span><span class="hidden group-hover:inline font-orbitron uppercase text-[15px]">FAQ</span>
+                        <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sci-cyan scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                    </a>
+                    
+                    <div class="flex items-center gap-3 border-l border-white/20 pl-6 ml-2">
+                        <button onclick="toggleLanguage()" class="text-xs font-bold text-gray-400 hover:text-sci-cyan transition-colors tracking-widest border border-white/10 bg-white/5 px-3 py-1.5 rounded-sm hover:border-sci-cyan">
+                            <i class="fa-solid fa-globe mr-1"></i> <span id="lang-label">EN/中</span>
+                        </button>
+                    </div>
+
+                    <a href="pricing.html" class="px-12 py-2.5 bg-sci-cyan text-black font-black text-sm tracking-widest skew-x-[-10deg] hover:bg-cyan-400 transition-colors ml-4 shadow-[0_0_15px_rgba(var(--theme-cyan-rgb),0.4)]">
+                        <span class="skew-x-[10deg] inline-block lang-text" data-i18n="cta.book_now" data-en="BOOK NOW">啟動預約</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div id="drawer-backdrop" class="fixed inset-0 bg-black/80 z-[130] hidden opacity-0 transition-opacity duration-300 backdrop-blur-sm" onclick="closeAllDrawers()"></div>
+    
+    <div id="brand-drawer" class="fixed top-0 left-0 w-[85%] sm:w-[400px] h-[100dvh] max-h-screen z-[140] bg-sci-base/95 backdrop-blur-lg border-r border-white/10 transform -translate-x-full transition-transform duration-300 flex flex-col pt-20 px-6 overflow-y-auto overscroll-contain">
+        <button onclick="closeAllDrawers()" class="absolute top-6 right-6 text-gray-400 hover:text-white p-2 text-2xl"><i class="fa-solid fa-xmark"></i></button>
+        <div class="flex flex-col items-center mt-4 mb-8">
+            <img src="shark_logo.png" alt="HCF Logo" class="w-32 h-auto object-contain mb-4" loading="lazy" data-fallback="https://placehold.co/400x150/02040a/00f0ff?text=HCF+LOGO">
+            <h2 class="text-2xl font-orbitron font-black text-white italic tracking-tighter mb-2">HCF</h2>
+            <span class="text-[0.6rem] text-sci-cyan tracking-[0.3em] font-orbitron font-bold">COMBAT SYSTEM</span>
+        </div>
+        <div class="space-y-4 text-gray-400 text-xs leading-relaxed font-mono flex-grow">
+            <p class="border-l-2 border-sci-cyan pl-3 lang-text" data-i18n="brand.tagline" data-en="// Fighting is not violence, it's a spirit.<br>// Reborn in adversity, witness your strength.">
+                // 致力於推廣格鬥運動不是只有外人眼中的暴力<br>
+                // 而是一種精神<br>
+                // 在逆境中重生 看到你自己有多強大
+            </p>
+            <p class="lang-text" data-i18n="brand.philosophy" data-en="Life is like an endless boxing match. We've all been knocked down by unfortunate events. But don't be afraid. Stand up. The spirit of HCF is about how to be reborn in adversity and see how truly strong you are.">
+                人生有時候就像一場拳賽 我們都曾被不如意的事情一次次擊倒 但別害怕 站起來 HCF 的精神不僅是格鬥 更是關於如何在逆境中重生 看到你自己有多強大
+            </p>
+        </div>
+        <div class="mt-8 pt-6 border-t border-white/10 w-full mb-8">
+            <p class="text-sci-cyan text-[10px] font-mono tracking-widest mb-4">HCF CONNECT</p>
+            <div class="flex flex-col gap-4">
+                <a href="https://lin.ee/7lidUv0" target="_blank" class="flex items-center gap-4 text-gray-300 hover:text-[#06C755] transition-colors group">
+                    <i class="fa-brands fa-line text-xl w-6 text-center group-hover:scale-110 transition-transform"></i> 
+                    <span class="text-sm tracking-widest font-bold">LINE 官方諮詢</span>
+                </a>
+                <a href="https://www.instagram.com/hc.combat2022/" target="_blank" class="flex items-center gap-4 text-gray-300 hover:text-pink-500 transition-colors group">
+                    <i class="fa-brands fa-instagram text-xl w-6 text-center group-hover:scale-110 transition-transform"></i> 
+                    <span class="text-sm tracking-widest font-bold">Instagram</span>
+                </a>
+                <a href="https://m.facebook.com/hsinchucombat/" target="_blank" class="flex items-center gap-4 text-gray-300 hover:text-blue-500 transition-colors group">
+                    <i class="fa-brands fa-facebook-f text-xl w-6 text-center group-hover:scale-110 transition-transform"></i> 
+                    <span class="text-sm tracking-widest font-bold">Facebook</span>
+                </a>
+                <a href="https://youtube.com/playlist?list=PLFtibVDr-YTBsPUoEfClpei2ttq1mGtKN&si=y6yMvAKxk_vUSrN7" target="_blank" class="flex items-center gap-4 text-gray-300 hover:text-red-500 transition-colors group">
+                    <i class="fa-brands fa-youtube text-xl w-6 text-center group-hover:scale-110 transition-transform"></i> 
+                    <span class="text-sm tracking-widest font-bold">YouTube 實戰</span>
+                </a>
+                <a href="pricing.html" class="flex items-center gap-4 text-gray-300 hover:text-sci-cyan transition-colors group" onclick="closeAllDrawers()">
+                    <i class="fa-solid fa-bolt text-xl w-6 text-center group-hover:scale-110 transition-transform text-sci-cyan"></i> 
+                    <span class="text-sm tracking-widest font-bold text-sci-cyan">立即預約</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="fixed top-0 bottom-0 right-0 w-[85%] max-w-sm h-[100dvh] z-[140] bg-sci-base/95 backdrop-blur-lg border-l border-white/10 transform translate-x-full transition-transform duration-300 flex flex-col pt-20 px-8 overflow-y-auto overscroll-contain">
+        <button onclick="closeAllDrawers()" class="absolute top-6 right-6 text-gray-400 hover:text-white p-2 text-2xl"><i class="fa-solid fa-xmark"></i></button>
+        <div class="space-y-6 flex-grow mt-6">
+            <a href="index.html" onclick="closeAllDrawers()" class="block text-xl font-black font-orbitron text-white hover:text-sci-cyan tracking-widest border-b border-white/5 pb-3">首頁</a>
+            <a href="news.html" onclick="closeAllDrawers()" class="block text-xl font-black font-orbitron text-white hover:text-sci-cyan tracking-widest border-b border-white/5 pb-3">最新資訊</a>
+            <a href="philosophy.html" onclick="closeAllDrawers()" class="block text-xl font-black font-orbitron text-white hover:text-sci-cyan tracking-widest border-b border-white/5 pb-3">品牌哲學</a>
+            <div class="border-b border-white/5 pb-3">
+                <a href="classes.html" onclick="closeAllDrawers()" class="block text-xl font-black font-orbitron text-white hover:text-sci-cyan tracking-widest mb-3">課程介紹</a>
+                <div class="grid grid-cols-2 gap-3 pl-4">
+                    <a href="classes.html#group" onclick="closeAllDrawers()" class="text-sm text-gray-400 hover:text-sci-cyan">• 團體課程</a>
+                    <a href="classes.html#private" onclick="closeAllDrawers()" class="text-sm text-gray-400 hover:text-sci-cyan">• 私人課程</a>
+                    <a href="classes.html#muay-thai" onclick="closeAllDrawers()" class="text-sm text-gray-400 hover:text-sci-cyan">• 泰拳訓練</a>
+                    <a href="classes.html#kickboxing" onclick="closeAllDrawers()" class="text-sm text-gray-400 hover:text-sci-cyan">• 踢拳訓練</a>
+                    <a href="classes.html#sanda" onclick="closeAllDrawers()" class="text-sm text-gray-400 hover:text-sci-cyan">• 散打訓練</a>
+                    <a href="classes.html#strength" onclick="closeAllDrawers()" class="text-sm text-gray-400 hover:text-sci-cyan">• 肌力體能</a>
+                </div>
+            </div>
+            <a href="team.html" onclick="closeAllDrawers()" class="block text-xl font-black font-orbitron text-white hover:text-sci-cyan tracking-widest border-b border-white/5 pb-3">教練團隊</a>
+            <a href="pricing.html" onclick="closeAllDrawers()" class="block text-xl font-black font-orbitron text-white hover:text-sci-cyan tracking-widest border-b border-white/5 pb-3">課程方案</a>
+            <a href="index.html#schedule" onclick="closeAllDrawers()" class="block text-xl font-black font-orbitron text-white hover:text-sci-cyan tracking-widest border-b border-white/5 pb-3">課表</a>
+            <a href="faq.html" onclick="closeAllDrawers()" class="block text-xl font-black font-orbitron text-white hover:text-sci-cyan tracking-widest border-b border-white/5 pb-3">新手問答</a>
+        </div>
+        <div class="mt-8 mb-6 w-full px-2">
+            <a href="pricing.html" onclick="closeAllDrawers()" class="block w-full py-4 text-center bg-sci-cyan text-black font-black text-lg skew-x-[-10deg] shadow-[0_0_15px_rgba(var(--theme-cyan-rgb),0.4)]">
+                <span class="skew-x-[10deg] inline-block lang-text" data-i18n="cta.book_now" data-en="BOOK NOW">立即預約</span>
+            </a>
+        </div>
+        <div class="border-t border-white/10 pt-4 mt-2 mb-4 px-2">
+            <button onclick="toggleVideoSound()" class="flex items-center gap-4 text-gray-300 hover:text-sci-cyan transition-colors w-full text-left group">
+                <i id="menu-video-sound-icon" class="fa-solid fa-volume-xmark text-xl w-6 text-center group-hover:scale-110 transition-transform"></i>
+                <span class="text-sm tracking-widest font-bold">影片聲音</span>
+            </button>
+        </div>
+        <div class="flex gap-3 px-2 mb-6">
+
+            <button onclick="toggleBGM()" class="flex-1 flex items-center justify-center gap-2 border border-sci-cyan/30 text-sci-cyan font-orbitron font-bold text-xs py-3 rounded hover:bg-sci-cyan/10 transition-colors backdrop-blur-sm">
+                <i class="fa-solid fa-music" aria-hidden="true"></i>
+                <span>BGM</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="ai-system" class="ai-container">
+        <div id="ai-chat-box" class="ai-chat-box shadow-[0_0_30px_rgba(var(--theme-cyan-rgb),0.3)]">
+            <div class="flex justify-between items-center border-b border-white/10 pb-3 mb-3">
+                <span class="text-sci-cyan font-bold font-orbitron flex items-center gap-2 text-sm"><i class="fa-solid fa-robot"></i> HCF智能教練</span>
+                <button onclick="toggleChat()" class="text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div id="ai-chat-history" class="h-36 overflow-y-auto mb-3 space-y-2 text-xs text-gray-200 custom-scrollbar pr-2">
+                <div class="bg-white/10 p-2.5 rounded-lg rounded-tl-none border border-white/5">
+                    你好！我是 HCF 智能教練🤖<br>有任何疑問都可以直接問我，或是直接領取優惠！
+                </div>
+            </div>
+            
+            <div id="ai-quick-replies" class="flex flex-wrap gap-1.5 mb-3 border-b border-white/10 pb-3">
+                <button onclick="askShark('費用怎麼算？')" class="bg-sci-cyan/10 text-sci-cyan border border-sci-cyan/30 px-2 py-1 rounded text-[11px] hover:bg-sci-cyan hover:text-black transition-colors">💰 費用怎麼算？</button>
+                <button onclick="askShark('新手適合嗎？')" class="bg-sci-cyan/10 text-sci-cyan border border-sci-cyan/30 px-2 py-1 rounded text-[11px] hover:bg-sci-cyan hover:text-black transition-colors">🔰 新手適合嗎？</button>
+                <button onclick="askShark('地點在哪？')" class="bg-sci-cyan/10 text-sci-cyan border border-sci-cyan/30 px-2 py-1 rounded text-[11px] hover:bg-sci-cyan hover:text-black transition-colors">📍 地點在哪？</button>
+                <button onclick="askShark('需要裝備嗎？')" class="bg-sci-cyan/10 text-sci-cyan border border-sci-cyan/30 px-2 py-1 rounded text-[11px] hover:bg-sci-cyan hover:text-black transition-colors">🥊 需要裝備嗎？</button>
+            </div>
+
+            <div class="flex gap-2 mb-3 border-b border-white/10 pb-3">
+                <input type="text" id="ai-user-input" placeholder="輸入你想問的..." class="flex-1 bg-black/80 border border-white/20 rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-sci-cyan transition-colors shadow-inner" onkeypress="if(event.key === 'Enter') sendUserMessage()">
+                <button onclick="sendUserMessage()" class="bg-sci-cyan text-black px-3 py-1.5 rounded text-xs font-black shadow-[0_0_10px_rgba(var(--theme-cyan-rgb),0.4)] hover:bg-cyan-400 transition-colors">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+            
+            <div class="flex flex-col gap-2">
+                <div class="flex gap-2">
+                    <a href="pricing.html" onclick="toggleChat()" class="flex-1 py-2 bg-sci-cyan text-black text-center font-bold text-xs rounded shadow-[0_0_10px_rgba(var(--theme-cyan-rgb),0.4)] hover:bg-cyan-400 transition-colors">
+                        領取 $400 體驗
+                    </a>
+                    <a href="https://lin.ee/7lidUv0" target="_blank" class="flex-1 py-2 bg-[#06C755] text-white text-center font-bold text-xs rounded shadow-[0_0_10px_rgba(6,199,85,0.4)] hover:bg-[#05b34c] transition-colors">
+                        LINE 真人客服
+                    </a>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="shareWebsite(this)" class="flex-1 py-2 bg-blue-600 text-white text-center font-bold text-xs rounded hover:bg-blue-500 transition-colors">
+                        <i class="fa-solid fa-share-nodes"></i> 分享給朋友
+                    </button>
+                    <button id="install-app-btn" class="hidden flex-1 py-2 bg-purple-600 text-white text-center font-bold text-xs rounded hover:bg-purple-500 transition-colors shadow-[0_0_10px_rgba(147,51,234,0.4)]">
+                        <i class="fa-solid fa-mobile-screen"></i> 安裝 APP
+                    </button>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="toggleBGM()" class="flex-1 py-2 bg-white/10 border border-white/20 text-white text-center font-bold text-xs rounded hover:bg-white/20 hover:border-sci-cyan hover:text-sci-cyan transition-colors">
+                        <i class="fa-solid fa-music" id="shark-bgm-icon" aria-hidden="true"></i> BGM 音樂
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="zzz-mark" class="zzz-text">Zzz</div>
+        <div id="angry-bubble" class="angry-bubble text-xs">有問題？問我！</div>
+        <img src="shark_logo.png" alt="AI Mascot" class="ai-mascot-img" id="ai-mascot-btn" loading="lazy" data-fallback="https://placehold.co/600x600/0f131a/00f0ff?text=SHARK">
+        <div id="mascot-menu-hint" class="mascot-menu-hint lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="black"><rect x="3" y="6" width="18" height="2"/><rect x="3" y="11" width="18" height="2"/><rect x="3" y="16" width="18" height="2"/></svg></div>
+    </div>
+
+    <button id="rocket-top" class="fixed bottom-[110px] left-4 sm:left-auto sm:bottom-10 sm:right-6 z-40 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/80 border border-sci-cyan text-sci-cyan flex items-center justify-center opacity-0 translate-y-20 transition-all duration-300 shadow-[0_0_15px_rgba(var(--theme-cyan-rgb),0.3)] backdrop-blur-md hover:bg-sci-cyan hover:text-black" onclick="scrollToTop()" aria-label="Scroll to Top">
+        <i class="fa-solid fa-chevron-up text-lg"></i>
+    </button>
+    <main id="main-content" style="background:#050505;color:#f5f5f7;overflow-x:hidden;">
+
+    <!-- ══════════════════════════════════════════════
+         OPENING HERO — SELECT YOUR COMMANDER
+         ══════════════════════════════════════════════ -->
+    <section class="opening-hero relative flex flex-col items-center justify-center overflow-hidden" style="height:100dvh;">
+        <div class="absolute inset-0" style="background:radial-gradient(ellipse at center,rgba(var(--theme-cyan-rgb),0.06) 0%,#050505 70%);"></div>
+        <div class="absolute inset-0 grid-layer pointer-events-none" aria-hidden="true" style="background-image:linear-gradient(rgba(var(--theme-cyan-rgb),0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--theme-cyan-rgb),0.03) 1px,transparent 1px);background-size:60px 60px;"></div>
+        <div class="relative z-10 text-center px-6">
+            <p class="font-orbitron text-xs tracking-[0.5em] text-sci-cyan mb-6 opacity-80">— HCF COMBAT FITNESS —</p>
+            <h1 class="hero-glitch font-orbitron font-black text-white leading-none tracking-widest mb-4" data-text="SELECT YOUR COMMANDER" aria-label="SELECT YOUR COMMANDER" style="font-size:clamp(2rem,8vw,6rem);">SELECT YOUR<br><span class="text-sci-cyan" aria-hidden="true">COMMANDER</span></h1>
+            <p class="text-gray-400 tracking-[0.3em] text-sm mb-2" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,3vw,1.5rem);">頂級戰力名冊</p>
+            <p class="hero-scroll-hint text-gray-500 text-xs tracking-[0.4em] mt-10">▼ SCROLL TO UNLOCK ▼</p>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         3D TEAM CAROUSEL
+         ══════════════════════════════════════════════ -->
+    <section id="team-carousel-section" class="relative py-20 overflow-hidden" style="background:#050505;">
+        <!-- Background grid -->
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image:linear-gradient(rgba(var(--theme-cyan-rgb),0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--theme-cyan-rgb),0.025) 1px,transparent 1px);background-size:60px 60px;"></div>
+        <!-- Glow -->
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background:radial-gradient(ellipse 70% 50% at 50% 50%,rgba(var(--theme-cyan-rgb),0.05) 0%,transparent 70%);"></div>
+        <!-- Radar background -->
+        <div class="carousel-radar-bg" aria-hidden="true"></div>
+
+        <!-- Section Title -->
+        <div class="relative z-10 text-center mb-10 px-4">
+            <p class="font-orbitron text-[0.6rem] tracking-[0.5em] text-sci-cyan mb-3 opacity-70">HCF ELITE ROSTER</p>
+            <h2 class="font-orbitron font-black text-white" style="font-size:clamp(1.6rem,5vw,3rem);">TEAM <span class="text-sci-cyan">CAROUSEL</span></h2>
+            <div class="fs-neon-divider" style="max-width:200px;margin:12px auto;"></div>
+            <p class="text-gray-500 text-xs tracking-[0.3em] font-mono">拖曳或點擊，探索菁英教練陣容</p>
+        </div>
+
+        <!-- 3D Carousel Container -->
+        <div class="relative z-10" id="tc-wrapper">
+            <!-- Prev / Next buttons -->
+            <button class="tc-nav-btn tc-nav-prev" id="tc-prev" aria-label="上一位教練">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="tc-nav-btn tc-nav-next" id="tc-next" aria-label="下一位教練">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- Scene + Ring -->
+            <div class="carousel-scene" id="tc-scene" role="listbox" aria-label="教練輪播">
+                <div class="carousel-ring" id="tc-ring"></div>
+            </div>
+
+            <!-- Dot indicators -->
+            <div class="flex items-center justify-center gap-1 mt-6" id="tc-dots" aria-hidden="true"></div>
+
+            <!-- Hint -->
+            <p class="text-center text-gray-600 text-[0.6rem] tracking-widest font-mono mt-4">← DRAG / SWIPE / KEYS →</p>
+        </div>
+    </section>
+
+    <!-- Coach Modal -->
+    <div id="tc-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="tc-modal-name" tabindex="-1">
+        <div id="tc-modal-box">
+            <div class="tc-modal-layout">
+            <!-- Left (header image) -->
+            <div class="tc-modal-left">
+            <!-- Header image -->
+            <div class="tc-modal-header">
+                <img id="tc-modal-img" src="" alt="" loading="lazy">
+                <div class="tc-modal-header-overlay"></div>
+                <div class="tc-modal-holo-scan" aria-hidden="true"></div>
+                <div class="tc-modal-header-hud-tl" aria-hidden="true"></div>
+                <div class="tc-modal-header-hud-br" aria-hidden="true"></div>
+                <div class="tc-modal-hud-tr" aria-hidden="true"></div>
+                <div class="tc-modal-hud-bl" aria-hidden="true"></div>
+                <button class="tc-modal-close" id="tc-modal-close-btn" aria-label="關閉">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            </div>
+            <!-- Right (body) -->
+            <div class="tc-modal-right">
+            <!-- Body -->
+            <div class="tc-modal-body">
+                <!-- Startup text -->
+                <div class="tc-modal-startup-text" id="tc-modal-startup" aria-hidden="true">ANALYZING FIGHTER DATA...</div>
+                <!-- Name + role -->
+                <div class="flex items-start justify-between gap-4 flex-wrap mb-3">
+                    <div>
+                        <div class="font-orbitron font-black text-white text-xl leading-tight mb-1" id="tc-modal-name"></div>
+                        <div class="text-xs text-sci-cyan tracking-widest font-mono mb-1" id="tc-modal-role"></div>
+                        <div class="text-xs text-gray-500 italic" id="tc-modal-nickname"></div>
+                    </div>
+                    <div id="tc-modal-record-wrap"></div>
+                </div>
+                <!-- Specialty tag -->
+                <div class="mb-3" id="tc-modal-specialty-wrap"></div>
+                <!-- Quote -->
+                <blockquote class="border-l-2 pl-3 text-gray-400 text-xs italic leading-relaxed mb-4" style="border-color:var(--theme-cyan);" id="tc-modal-quote"></blockquote>
+                <div class="tc-fs-neon-divider"></div>
+                <!-- Bio -->
+                <p class="text-gray-300 text-sm leading-relaxed mb-4" id="tc-modal-bio"></p>
+                <!-- Skills -->
+                <div class="mb-4" id="tc-modal-skills-wrap">
+                    <p class="font-orbitron text-[0.6rem] tracking-[0.4em] text-gray-500 mb-3">SKILL STATS</p>
+                    <div id="tc-modal-skills"></div>
+                </div>
+                <!-- Achievements -->
+                <div class="mb-5" id="tc-modal-achievements-wrap">
+                    <p class="font-orbitron text-[0.6rem] tracking-[0.4em] text-gray-500 mb-3">ACHIEVEMENTS</p>
+                    <div id="tc-modal-achievements"></div>
+                </div>
+                <!-- CTA buttons -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a href="pricing.html" class="tc-modal-cta-full flex-1 text-center py-3 rounded-lg font-orbitron font-bold text-xs tracking-widest transition-all"
+                       style="background:var(--theme-cyan);color:#000;">
+                        ▶ 開始訓練
+                    </a>
+                    <button id="tc-modal-view-detail" class="flex-1 py-3 rounded-lg font-orbitron font-bold text-xs tracking-widest border transition-all"
+                            style="border-color:rgba(var(--theme-cyan-rgb),0.4);color:var(--theme-cyan);">
+                        查看詳細戰力分析
+                    </button>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Transition Band -->
+    <div class="section-transition-band" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════════════════════
+         FIGHTER SELECT — COACH ROSTER
+         ══════════════════════════════════════════════ -->
+    <section class="fighter-select-section" id="coaches">
+        <div class="fs-scanlines" aria-hidden="true"></div>
+        <div class="fs-bg-glow" aria-hidden="true"></div>
+        <div class="fs-hud-corner fs-hud-tl" aria-hidden="true"></div>
+        <div class="fs-hud-corner fs-hud-tr" aria-hidden="true"></div>
+        <div class="fs-hud-corner fs-hud-bl" aria-hidden="true"></div>
+        <div class="fs-hud-corner fs-hud-br" aria-hidden="true"></div>
+        <!-- Circuit line dividers (desktop) -->
+        <div class="fs-circuit-divider fs-circuit-divider-left" aria-hidden="true"></div>
+        <div class="fs-circuit-divider fs-circuit-divider-right" aria-hidden="true"></div>
+        <div id="fs-confirm-flash-overlay" aria-hidden="true"></div>
+
+        <!-- Section Title -->
+        <div class="relative z-10 text-center pt-16 pb-4 px-4">
+            <p class="font-orbitron text-[0.6rem] tracking-[0.5em] text-sci-cyan mb-3 opacity-70">HCF ELITE ROSTER</p>
+            <h2 class="font-orbitron font-black text-white fs-glitch-title" data-text="COACHING STAFF" style="font-size:clamp(1.6rem,5vw,3rem);">COACHING STAFF</h2>
+            <div class="fs-neon-divider"></div>
+            <p class="text-gray-500 text-xs tracking-[0.3em] font-mono">選擇你的格鬥指揮官</p>
+        </div>
+
+        <!-- Thumbnail Selector Strip (moved here: between title and main display) -->
+        <div class="fs-coach-indicator" id="fs-coach-indicator" aria-live="polite">COACH 01 / 06</div>
+        <div class="fs-thumb-wrap">
+            <div class="fs-thumb-row" role="listbox" aria-label="選擇教練" id="fs-thumb-row"></div>
+        </div>
+
+        <!-- Three-column layout (stacked on mobile) -->
+        <div class="fs-main-display">
+
+            <!-- Left Panel: Fighter Info -->
+            <div class="fs-left-panel px-2 py-4 lg:py-2">
+                <div class="fs-info-section">
+                    <div class="fs-label-tag" id="fs-role-label">HEAD COACH / 總教練</div>
+                    <div class="fs-fighter-name fs-typewriter-cursor" id="fs-name">黃謙和</div>
+                    <div class="fs-fighter-nickname" id="fs-nickname">「格鬥鋼鐵人」</div>
+                    <div class="fs-specialty-tag mt-2" id="fs-specialty"><i class="fa-solid fa-fire-flame-curved mr-1"></i> 泰拳 / Muay Thai</div>
+                    <div class="fs-fighter-quote" id="fs-quote">「我的教學沒有空話，只有 42 場勝利累積出的真理。」</div>
+                </div>
+                <div class="fs-info-section" id="fs-record-wrap">
+                    <div class="fs-fighter-record" id="fs-record">
+                        <span class="fs-record-w">42</span><span class="fs-record-tag">勝</span>
+                        <span class="fs-record-l">12</span><span class="fs-record-tag">敗</span>
+                    </div>
+                </div>
+                <div class="fs-info-section mt-3">
+                    <p class="text-gray-400 text-xs leading-relaxed" id="fs-bio">這副身體經歷過無數次擂台的重擊與考驗，依然屹立不搖。精通泰拳、踢拳、散打、MMA，擁有從台灣一路打進泰國、韓國、越南職業賽的資歷。</p>
+                </div>
+            </div>
+
+            <!-- Center Column: Fighter Display -->
+            <div class="fs-center-col">
+                <div class="fs-fighter-display fs-has-fighter" id="fs-fighter-display">
+                    <div class="fs-splatter fs-splatter-tl" aria-hidden="true"></div>
+                    <div class="fs-splatter fs-splatter-br" aria-hidden="true"></div>
+                    <div class="fs-scan-wipe-el" id="fs-scan-wipe" aria-hidden="true"></div>
+                    <div class="fs-holo-overlay" aria-hidden="true"></div>
+                    <img src="coach_huang.jpg" alt="黃謙和" class="fs-fighter-img" id="fs-main-img" loading="lazy">
+                </div>
+            </div>
+
+            <!-- Right Panel: Skills + CTA -->
+            <div class="fs-right-panel px-2 py-4 lg:py-2">
+                <!-- Skill Matrix -->
+                <div class="fs-info-section skill-bar-container">
+                    <div class="fs-skill-header">SKILL MATRIX</div>
+                    <div id="fs-skills"></div>
+                </div>
+                <!-- Achievements -->
+                <div class="fs-info-section mt-4">
+                    <div class="fs-skill-header">ACHIEVEMENTS</div>
+                    <div id="fs-achievements" class="space-y-2 text-xs text-gray-400 leading-relaxed"></div>
+                </div>
+                <!-- Confirm CTA -->
+                <div class="fs-confirm-area">
+                    <a href="pricing.html" class="fs-confirm-btn" id="fs-confirm-btn">
+                        <span class="fs-confirm-btn-inner">▶ 跟 <span id="fs-confirm-name">黃謙和</span> 訓練 — $400 首堂體驗</span>
+                    </a>
+                    <div class="fs-discount-preview">首次體驗課程 · 新竹林森路</div>
+                    <p class="fs-fomo-count-line" id="fs-fomo-line">⚡ 本週已有 <strong id="fs-fomo-count">--</strong> 人查詢 <span id="fs-fomo-coach-name">黃謙和</span> 的課程</p>
+                    <p class="fs-fomo-countdown">⏱ 優惠倒計時 <span id="fs-fomo-hours">--</span>:<span id="fs-fomo-mins">--</span>:<span id="fs-fomo-secs">--</span></p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Section Transition Band -->
+    <div class="section-transition-band" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════════════════════
+         CLOSING CTA
+         ══════════════════════════════════════════════ -->
+    <section class="relative flex flex-col items-center justify-center text-center py-32 px-6" style="background:#050505;min-height:50vh;">
+        <div class="cta-pulse-wrap" aria-hidden="true">
+            <div class="cta-pulse-ring"></div>
+            <div class="cta-pulse-ring"></div>
+            <div class="cta-pulse-ring"></div>
+        </div>
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background:radial-gradient(ellipse at center,rgba(var(--theme-cyan-rgb),0.05) 0%,#050505 70%);"></div>
+        <div class="relative z-10 max-w-2xl mx-auto">
+            <p class="font-orbitron text-xs tracking-[0.5em] text-sci-cyan mb-6 opacity-70">— CHOOSE YOUR FIGHTER —</p>
+            <h2 class="font-orbitron font-black text-white mb-4" style="font-size:clamp(1.8rem,5vw,3.5rem);">選擇你的<br><span class="text-sci-cyan">指揮官</span></h2>
+            <p class="text-gray-400 mb-10 text-sm leading-relaxed">每一位教練都是從擂台上打出來的。<br>選擇一位，開始你的蛻變之旅。</p>
+            <div class="relative inline-block">
+                <div class="cta-hud-line cta-hud-line-left" aria-hidden="true"></div>
+                <a href="https://www.fit-book.com.tw/hsinchucombat/plan/588" target="_blank" rel="noopener" class="cta-fitbook-btn inline-flex items-center gap-3 px-10 py-4 font-orbitron font-black tracking-widest text-sm transition-all duration-300 hover:-translate-y-1" style="background:var(--theme-cyan);color:#000;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);box-shadow:0 0 20px rgba(var(--theme-cyan-rgb),0.4);">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>FitBook 立即預約體驗</span>
+                </a>
+                <div class="cta-hud-line cta-hud-line-right" aria-hidden="true"></div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- P0-3: Mobile Sticky CTA Bar (mobile-only, fixed bottom) -->
+    <div id="fs-sticky-cta" aria-label="快速預約">
+        <div class="fs-sticky-cta-info">
+            <div class="fs-sticky-cta-name" id="fs-sticky-name">黃謙和</div>
+            <div class="fs-sticky-cta-specialty" id="fs-sticky-specialty">泰拳 / Muay Thai</div>
+        </div>
+        <a href="pricing.html" class="fs-sticky-cta-btn">▶ $400 立即預約</a>
+    </div>
+
+    <!-- System Status Bar -->
+    <div class="system-status-bar" aria-hidden="true">
+        <span><span class="system-status-dot"></span>HCF COMBAT SYSTEM — OPERATIONAL</span>
+        <span id="status-bar-time" class="hidden md:block"></span>
+        <span>ALL FIGHTERS STANDING BY</span>
+    </div>
+
+    <footer class="bg-[var(--theme-base)] pt-16 pb-32 sm:pb-12 border-t border-white/10 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-8 mb-12">
+                <div class="md:col-span-4 lg:col-span-5">
+                    <h2 class="text-3xl font-orbitron font-black text-white italic mb-1">HCF <span class="text-xs text-sci-cyan not-italic font-sans ml-2 tracking-widest">新竹格鬥運動館</span></h2>
+                    <div class="w-10 h-1 bg-sci-cyan mb-5 rounded-full"></div>
+                    <div class="space-y-4 text-gray-400 text-sm font-mono leading-relaxed">
+                        <p class="flex items-start gap-3 hover:text-white transition-colors">
+                            <i class="fa-solid fa-location-dot mt-1 text-sci-cyan w-4 text-center"></i> 
+                            <span>新竹市北區林森路301號2樓</span>
+                        </p>
+                        <p class="flex items-center gap-3 hover:text-white transition-colors">
+                            <i class="fa-solid fa-phone text-sci-cyan w-4 text-center"></i> 
+                            <a href="tel:0925571225" class="hover:text-sci-cyan transition-colors">0925-571-225</a>
+                        </p>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-clock mt-1 text-sci-cyan w-4 text-center"></i> 
+                            <span class="text-gray-300">
+                                週一～週五 <span class="text-white font-bold ml-2">11:00 - 22:00</span><br>
+                                週六＆週日 <span class="text-white font-bold ml-2">11:00 - 16:00</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 lg:col-span-3">
+                    <h3 class="text-lg font-bold text-white mb-5 tracking-widest border-l-2 border-sci-cyan pl-3">選單連結</h3>
+                    <div class="grid grid-cols-2 gap-y-3 gap-x-2 text-sm text-gray-400 font-medium">
+                        <a href="news.html" class="hover:text-sci-cyan hover:translate-x-1 transition-all flex items-center gap-1"><i class="fa-solid fa-angle-right text-[10px] text-sci-cyan/50"></i> 最新消息</a>
+                        <a href="philosophy.html" class="hover:text-sci-cyan hover:translate-x-1 transition-all flex items-center gap-1"><i class="fa-solid fa-angle-right text-[10px] text-sci-cyan/50"></i> 品牌哲學</a>
+                        <a href="classes.html" class="hover:text-sci-cyan hover:translate-x-1 transition-all flex items-center gap-1"><i class="fa-solid fa-angle-right text-[10px] text-sci-cyan/50"></i> 課程介紹</a>
+                        <a href="team.html" class="hover:text-sci-cyan hover:translate-x-1 transition-all flex items-center gap-1"><i class="fa-solid fa-angle-right text-[10px] text-sci-cyan/50"></i> 教練團隊</a>
+                        <a href="pricing.html" class="hover:text-sci-cyan hover:translate-x-1 transition-all flex items-center gap-1"><i class="fa-solid fa-angle-right text-[10px] text-sci-cyan/50"></i> 課程方案</a>
+                        <a href="faq.html" class="hover:text-sci-cyan hover:translate-x-1 transition-all flex items-center gap-1"><i class="fa-solid fa-angle-right text-[10px] text-sci-cyan/50"></i> 新手問答</a>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 lg:col-span-4 flex flex-col items-start md:items-end text-left md:text-right w-full">
+                    <h3 class="text-lg font-bold text-white mb-5 tracking-widest border-l-2 md:border-l-0 md:border-r-2 border-sci-cyan pl-3 md:pl-0 md:pr-3 w-full md:w-auto">基地互聯</h3>
+                    <div class="flex flex-wrap justify-start md:justify-end gap-3 mb-6">
+                        <a href="pricing.html" class="w-10 h-10 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-black hover:bg-sci-cyan hover:border-sci-cyan transition-all shadow-lg" title="線上預約"><i class="fa-solid fa-bolt text-lg"></i></a>
+                        <a href="https://lin.ee/7lidUv0" target="_blank" class="w-10 h-10 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-[#06C755] hover:border-[#06C755] transition-all shadow-lg" title="LINE 官方諮詢"><i class="fa-brands fa-line text-lg"></i></a>
+                        <a href="https://www.instagram.com/hc.combat2022/" target="_blank" class="w-10 h-10 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-pink-600 hover:border-pink-600 transition-all shadow-lg" title="Instagram"><i class="fa-brands fa-instagram text-lg"></i></a>
+                        <a href="https://m.facebook.com/hsinchucombat/" target="_blank" class="w-10 h-10 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-blue-600 hover:border-blue-600 transition-all shadow-lg" title="Facebook"><i class="fa-brands fa-facebook-f text-lg"></i></a>
+                        <a href="https://youtube.com/playlist?list=PLFtibVDr-YTBsPUoEfClpei2ttq1mGtKN&si=y6yMvAKxk_vUSrN7" target="_blank" class="w-10 h-10 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-red-600 hover:border-red-600 transition-all shadow-lg" title="YouTube 實戰影片"><i class="fa-brands fa-youtube text-lg"></i></a>
+                        <a href="index.html#google-reviews" class="w-10 h-10 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-white hover:border-white transition-all shadow-lg" title="Google 評論"><i class="fa-brands fa-google text-lg"></i></a>
+                    </div>
+                    <a href="pricing.html" class="block w-full sm:w-auto px-10 py-4 bg-sci-cyan hover:bg-cyan-400 text-black font-black text-base text-center skew-x-[-10deg] transition-all shadow-[0_10px_20px_rgba(var(--theme-cyan-rgb),0.3)] hover:-translate-y-1">
+                        <span class="skew-x-[10deg] block">立即領取 $400 體驗</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center border-t border-white/10 pt-6 text-[11px] text-gray-600 font-mono tracking-widest flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 items-center">
+                <p>© 2026 HCF. All Rights Reserved.<span class="hidden sm:inline text-sci-cyan/30 mx-2">|</span><span class="hidden sm:inline font-orbitron text-[10px]" style="color: rgba(123,47,255,0.5);">POWERED BY HCF COMBAT SYSTEM</span></p>
+                <span class="hidden sm:inline">|</span>
+                <p class="text-sci-cyan/50">SYSTEM READY FOR COMBAT.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Safe Preloader (Won't get stuck anymore!)
+        function hidePreloader() {
+            const p = document.getElementById('preloader');
+            if (!p || p.style.display === 'none') return;
+            document.getElementById('loader-progress').style.width = '100%';
+            p.style.opacity = '0';
+            setTimeout(() => { p.style.display = 'none'; }, 400);
+        }
+        // Use DOMContentLoaded instead of window.load so it doesn't wait for missing images
+        document.addEventListener('DOMContentLoaded', hidePreloader);
+        // Absolute fallback: kill preloader after 2 seconds no matter what
+        setTimeout(hidePreloader, 2000);
+
+        // 2. Share API & Copy URL
+        function shareWebsite(btn) {
+            if (navigator.share) {
+                navigator.share({ title: 'HCF - 新竹格鬥運動館', text: '新竹最強格鬥運動館！這輩子，總要為自己贏一次！現在預約體驗只要 $400，一起來變強吧🥊', url: window.location.href }).catch(err => console.log('Share failed:', err));
+            } else {
+                const tempInput = document.createElement('input'); tempInput.value = window.location.href; document.body.appendChild(tempInput); tempInput.select(); document.execCommand('copy'); document.body.removeChild(tempInput);
+                const originalText = btn.innerHTML; btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i> 網址已複製！'; btn.classList.remove('bg-blue-600', 'hover:bg-blue-500'); btn.classList.add('bg-green-600', 'hover:bg-green-500');
+                setTimeout(() => { btn.innerHTML = originalText; btn.classList.remove('bg-green-600', 'hover:bg-green-500'); btn.classList.add('bg-blue-600', 'hover:bg-blue-500'); }, 2000);
+            }
+        }
+
+        // 3. Visual Effects (Cursor, Mouse Glow, Canvas)
+        const mouseGlow = document.getElementById('mouse-glow-effect');
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
+        const parallaxElements = document.querySelectorAll('.parallax-bg');
+        let isTickingGlobal = false; let mouseX = 0, mouseY = 0; let ringX = 0, ringY = 0;
+        
+        if (window.matchMedia("(pointer: fine)").matches) {
+            function animateCursor() {
+                ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15;
+                if(cursorRing) cursorRing.style.transform = `translate(calc(-50% + ${ringX}px), calc(-50% + ${ringY}px))`;
+                if(cursorDot) cursorDot.style.transform = `translate(calc(-50% + ${mouseX}px), calc(-50% + ${mouseY}px))`;
+                requestAnimationFrame(animateCursor);
+            }
+            requestAnimationFrame(animateCursor);
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX; mouseY = e.clientY;
+                if (!isTickingGlobal) {
+                    window.requestAnimationFrame(() => {
+                        mouseGlow.style.opacity = '1';
+                        mouseGlow.style.setProperty('--mouse-x', `${mouseX}px`);
+                        mouseGlow.style.setProperty('--mouse-y', `${mouseY}px`);
+                        isTickingGlobal = false;
+                    });
+                    isTickingGlobal = true;
+                }
+            });
+
+            const interactiveElements = document.querySelectorAll('a, button, input, summary, .cursor-pointer, .tech-border');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+                el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+            });
+
+            window.addEventListener('mouseleave', () => { mouseGlow.style.opacity = '0'; if(cursorDot) cursorDot.style.opacity = '0'; if(cursorRing) cursorRing.style.opacity = '0'; });
+            window.addEventListener('mouseenter', () => { if(cursorDot) cursorDot.style.opacity = '1'; if(cursorRing) cursorRing.style.opacity = '1'; });
+
+            document.querySelectorAll('.tech-border').forEach(card => {
+                const overlay = document.createElement('div'); overlay.classList.add('glow-overlay'); card.appendChild(overlay);
+                let isTickingCard = false;
+                card.addEventListener('mousemove', e => {
+                    if (!isTickingCard) {
+                        window.requestAnimationFrame(() => {
+                            const rect = card.getBoundingClientRect();
+                            card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                            card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+                            isTickingCard = false;
+                        });
+                        isTickingCard = true;
+                    }
+                });
+            });
+
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                parallaxElements.forEach(el => {
+                    const speed = el.getAttribute('data-speed') || 0.1;
+                    const yPos = -(scrolled * speed);
+                    el.style.transform = `translateY(${yPos}px)`;
+                });
+            }, { passive: true });
+
+            const canvas = document.getElementById('bg-canvas'); const ctx = canvas.getContext('2d');
+            let w, h, pts = [];
+            function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+            class P {
+                constructor() { this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*0.2; this.vy=(Math.random()-.5)*0.2; this.s=Math.random()*1.5; }
+                update() { this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w)this.vx*=-1; if(this.y<0||this.y>h)this.vy*=-1; }
+                draw() { ctx.beginPath(); ctx.arc(this.x,this.y,this.s,0,Math.PI*2); ctx.fillStyle='rgba(var(--theme-cyan-rgb),0.15)'; ctx.fill(); }
+            }
+            function init() { resize(); pts=[]; const isMobile = window.innerWidth < 768; const isTablet = window.innerWidth < 1024; const particleCount = isMobile ? 0 : (isTablet ? 15 : 40); for(let i=0;i<particleCount;i++) pts.push(new P()); }
+            function anim() {
+                ctx.clearRect(0,0,w,h); ctx.strokeStyle='rgba(var(--theme-cyan-rgb),0.03)'; ctx.lineWidth=0.5;
+                for(let i=0;i<pts.length;i++){ for(let j=i+1;j<pts.length;j++){ const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y; if(dx*dx+dy*dy<10000){ ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke(); } } }
+                pts.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(anim);
+            }
+            window.addEventListener('resize', init); init(); anim();
+        }
+
+        // 4. Mobile Menu & Drawers
+        const mm = document.getElementById('mobile-menu'), bd = document.getElementById('brand-drawer'), db = document.getElementById('drawer-backdrop');
+        function toggleMobileMenu() { if (!bd.classList.contains('-translate-x-full')) bd.classList.add('-translate-x-full'); if (mm.classList.contains('translate-x-full')) { db.classList.remove('hidden'); setTimeout(()=>db.classList.remove('opacity-0'),10); mm.classList.remove('translate-x-full'); document.body.style.overflow = 'hidden'; } else { closeAllDrawers(); } }
+        function toggleBrandDrawer() { if (!mm.classList.contains('translate-x-full')) mm.classList.add('translate-x-full'); if (bd.classList.contains('-translate-x-full')) { db.classList.remove('hidden'); setTimeout(()=>db.classList.remove('opacity-0'),10); bd.classList.remove('-translate-x-full'); document.body.style.overflow = 'hidden'; } else { closeAllDrawers(); } }
+        function handleLogoClick() { toggleBrandDrawer(); }
+        function closeAllDrawers() { mm.classList.add('translate-x-full'); bd.classList.add('-translate-x-full'); db.classList.add('opacity-0'); setTimeout(()=>db.classList.add('hidden'),300); document.body.style.overflow = ''; }
+
+        // 5. Scroll Reveal & Navbar Shrink
+        const revealObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); revealObserver.unobserve(entry.target); } }); }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+        
+        const rocketBtn = document.getElementById('rocket-top'), nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { nav.classList.add('bg-black/90','backdrop-blur-md','border-b','border-white/10'); nav.classList.remove('py-4'); nav.classList.add('py-2'); } 
+            else { nav.classList.remove('bg-black/90','backdrop-blur-md','border-b','border-white/10','py-2'); nav.classList.add('py-4'); }
+            if (window.scrollY > 500) { rocketBtn.classList.remove('opacity-0','translate-y-20'); } else { rocketBtn.classList.add('opacity-0','translate-y-20'); }
+        }, { passive: true });
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+        // 6. Language & Theme Toggles
+        let currentLang = localStorage.getItem('hcf_lang') || 'zh';
+        const langTexts = { zh: { typewriter: "這輩子 總要為自己贏一次", label: "EN/中", mobileLabel: "EN" }, en: { typewriter: "Win once for yourself in this life", label: "中/EN", mobileLabel: "中" } };
+        function toggleLanguage() { currentLang = currentLang === 'zh' ? 'en' : 'zh'; localStorage.setItem('hcf_lang', currentLang); applyLanguage(); }
+        function applyLanguage() {
+            document.querySelectorAll('.lang-text').forEach(el => {
+                if (currentLang === 'zh') { if (el.dataset.zh) el.innerHTML = el.dataset.zh; } 
+                else { if (!el.dataset.zh) el.dataset.zh = el.innerHTML; el.innerHTML = el.dataset.en; }
+            });
+            const ll = document.getElementById('lang-label'); if(ll) ll.innerText = langTexts[currentLang].label;
+            const ml = document.getElementById('mobile-lang-label'); if(ml) ml.innerText = langTexts[currentLang].mobileLabel;
+            index = 0; const tw = document.getElementById('typewriter-text'); if(tw) tw.innerHTML = "";
+            clearTimeout(typewriterTimeout); typeWriter();
+        }
+        function setTheme(theme) {
+            if(theme === 'default') { document.documentElement.removeAttribute('data-theme'); localStorage.removeItem('hcf_theme'); } 
+            else { document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('hcf_theme', theme); }
+            document.getElementById('secret-theme-panel')?.classList.add('hidden');
+        }
+
+        // 8. BGM & Typewriter
+        const bgm = document.getElementById('bgm-audio'), biD = document.getElementById('bgm-icon');
+        let isMusicPlaying = false;
+        function toggleBGM() {
+            if (isMusicPlaying) { 
+                bgm.pause(); 
+                if(biD) { biD.classList.remove('fa-volume-high'); biD.classList.add('fa-volume-xmark'); }
+            } else { 
+                bgm.play().catch(e=>{}); 
+                if(biD) { biD.classList.remove('fa-volume-xmark'); biD.classList.add('fa-volume-high'); } 
+                const hv = document.getElementById('hero-video'), vi = document.getElementById('video-sound-icon'), mvi = document.getElementById('menu-video-sound-icon');
+                if(hv && !hv.muted) { hv.muted = true; if(vi) { vi.classList.remove('fa-volume-high'); vi.classList.add('fa-volume-xmark'); } if(mvi) { mvi.classList.remove('fa-volume-high'); mvi.classList.add('fa-volume-xmark'); } }
+            }
+            isMusicPlaying = !isMusicPlaying;
+        }
+        function toggleVideoSound() {
+            const hv = document.getElementById('hero-video'), vi = document.getElementById('video-sound-icon'), mvi = document.getElementById('menu-video-sound-icon');
+            if (hv) {
+                hv.muted = !hv.muted;
+                if (hv.muted) {
+                    if(vi) { vi.classList.remove('fa-volume-high'); vi.classList.add('fa-volume-xmark'); }
+                    if(mvi) { mvi.classList.remove('fa-volume-high'); mvi.classList.add('fa-volume-xmark'); }
+                } else {
+                    if(vi) { vi.classList.remove('fa-volume-xmark'); vi.classList.add('fa-volume-high'); }
+                    if(mvi) { mvi.classList.remove('fa-volume-xmark'); mvi.classList.add('fa-volume-high'); }
+                    if (isMusicPlaying) toggleBGM();
+                }
+            }
+        }
+        const twe = document.getElementById('typewriter-text'); let index = 0, typewriterTimeout;
+
+        function typeWriter() { if(!twe) return; const txt = langTexts[currentLang].typewriter; if(index < txt.length){ twe.innerHTML += txt.charAt(index); index++; typewriterTimeout=setTimeout(typeWriter,100); } }
+
+        // 9. Countdown Timers (News Event & FOMO Pricing)
+        function updateCountdowns() {
+            const now = new Date();
+            
+            // Event Countdown (April 26 - SuperD Muay Thai)
+            let ey = now.getFullYear(); const eventDate = new Date(ey, 3, 26, 10, 0, 0); if(now>eventDate) ey++;
+            const eDist = new Date(ey, 3, 26, 10, 0, 0).getTime() - now.getTime();
+            if(document.getElementById("days")) {
+                document.getElementById("days").innerText = String(Math.floor(eDist / 86400000)).padStart(2,'0');
+                document.getElementById("hours").innerText = String(Math.floor((eDist % 86400000) / 3600000)).padStart(2,'0');
+                document.getElementById("minutes").innerText = String(Math.floor((eDist % 3600000) / 60000)).padStart(2,'0');
+                document.getElementById("seconds").innerText = String(Math.floor((eDist % 60000) / 1000)).padStart(2,'0');
+                if(document.getElementById("event-days")) document.getElementById("event-days").innerText = String(Math.floor(eDist / 86400000)).padStart(2,'0');
+                if(document.getElementById("event-hours")) document.getElementById("event-hours").innerText = String(Math.floor((eDist % 86400000) / 3600000)).padStart(2,'0');
+            }
+
+            // FOMO Pricing Countdown (Tomorrow midnight)
+            const fomoDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 23, 59, 59).getTime();
+            const fDist = fomoDate - now.getTime();
+            if (document.getElementById('fomo-hours') && fDist > 0) {
+                document.getElementById('fomo-hours').innerText = String(Math.floor((fDist % 86400000) / 3600000)).padStart(2,'0');
+                document.getElementById('fomo-mins').innerText = String(Math.floor((fDist % 3600000) / 60000)).padStart(2,'0');
+                document.getElementById('fomo-secs').innerText = String(Math.floor((fDist % 60000) / 1000)).padStart(2,'0');
+            }
+            // Fighter Select FOMO countdown (P1-7)
+            if (document.getElementById('fs-fomo-hours') && fDist > 0) {
+                document.getElementById('fs-fomo-hours').innerText = String(Math.floor((fDist % 86400000) / 3600000)).padStart(2,'0');
+                document.getElementById('fs-fomo-mins').innerText = String(Math.floor((fDist % 3600000) / 60000)).padStart(2,'0');
+                document.getElementById('fs-fomo-secs').innerText = String(Math.floor((fDist % 60000) / 1000)).padStart(2,'0');
+            }
+        }
+        setInterval(updateCountdowns, 1000); updateCountdowns();
+
+        // 11. AI Chat Systems
+        // Floating Shark (Bottom Right)
+        let it = 0, co = false; 
+        const ais = document.getElementById('ai-system'), zm = document.getElementById('zzz-mark'), ab = document.getElementById('angry-bubble');
+        async function askShark(question) {
+            const hBox = document.getElementById('ai-chat-history');
+            hBox.innerHTML += `<div class="bg-sci-cyan/20 text-sci-cyan p-2.5 rounded-lg rounded-tr-none ml-auto w-fit border border-sci-cyan/30 mt-3 max-w-[80%] text-[11px] sm:text-xs">${question}</div>`;
+            hBox.scrollTop = hBox.scrollHeight;
+            const lid = 'loading-' + Date.now();
+            hBox.innerHTML += `<div id="${lid}" class="bg-white/10 p-2.5 rounded-lg rounded-tl-none border border-white/5 mt-3 max-w-[85%] text-gray-400 text-[11px] sm:text-xs flex items-center gap-2"><i class="fa-solid fa-circle-notch fa-spin text-sci-cyan"></i> 運算中...</div>`;
+            hBox.scrollTop = hBox.scrollHeight;
+            try {
+                const res = await fetch('/.netlify/functions/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: question }) });
+                const data = await res.json();
+                const reply = data.reply || '⚠️ 請直接點擊下方 LINE 找真人客服！';
+                const engineBadge = data.engine ? `<span class="ml-1 text-[9px] opacity-40">[${data.engine}]</span>` : '';
+                document.getElementById(lid).outerHTML = `<div class="bg-[#0f131a] p-3 rounded-lg rounded-tl-none border border-sci-cyan/30 mt-3 max-w-[90%] text-gray-100 text-[11px] sm:text-xs leading-relaxed shadow-[0_0_15px_rgba(var(--theme-cyan-rgb),0.1)]">${reply}${engineBadge}</div>`;
+            } catch (e) {
+                document.getElementById(lid).outerHTML = `<div class="bg-[#0f131a] p-3 rounded-lg rounded-tl-none border border-sci-cyan/30 mt-3 max-w-[90%] text-gray-100 text-[11px] sm:text-xs leading-relaxed">⚠️ 鯊魚教練去打沙包了！請點擊下方 LINE 找真人客服！🥊</div>`;
+            }
+            hBox.scrollTop = hBox.scrollHeight;
+        }
+        function sendUserMessage() { const input = document.getElementById('ai-user-input'); const val = input.value.trim(); if (val !== "") { askShark(val); input.value = ""; } }
+        function resetIt() { if(co)return; it=0; ais.classList.remove('ai-sleeping','ai-angry'); zm.style.display='none'; ab.style.display='none'; }
+        window.addEventListener('touchstart', resetIt, { passive: true }); window.addEventListener('scroll', resetIt, { passive: true });
+        setInterval(() => { if(co)return; it++; if(it===5){ ais.classList.add('ai-sleeping'); zm.style.display='block'; } if(it===10){ ais.classList.remove('ai-sleeping'); zm.style.display='none'; ais.classList.add('ai-angry'); ab.style.display='block'; } }, 1000);
+        function toggleChat() { co = !co; const cb = document.getElementById('ai-chat-box'); if(co){ cb.style.display='block'; resetIt(); } else { cb.style.display='none'; resetIt(); } }
+        // Mascot Button: Mobile tap = open menu, long-press = open AI chat; Desktop = open AI chat
+        (function() {
+            var btn = document.getElementById("ai-mascot-btn");
+            if (!btn) return;
+            var longPressTimer = null;
+            var isLongPress = false;
+            var hasTouched = false;
+            btn.addEventListener("touchstart", function() {
+                hasTouched = true;
+                isLongPress = false;
+                longPressTimer = setTimeout(function() {
+                    isLongPress = true;
+                    toggleChat();
+                }, 600);
+            }, { passive: true });
+            btn.addEventListener("touchend", function(e) {
+                clearTimeout(longPressTimer);
+                e.preventDefault();
+                if (!isLongPress) {
+                    toggleMobileMenu();
+                }
+            });
+            btn.addEventListener("touchcancel", function() {
+                clearTimeout(longPressTimer);
+            }, { passive: true });
+            btn.addEventListener("click", function() {
+                if (!hasTouched) { toggleChat(); }
+                setTimeout(function() { hasTouched = false; }, 300);
+            });
+        })();
+
+        // ═══ APP 模式偵測 ═══
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+          || window.navigator.standalone === true
+          || document.referrer.includes('android-app://');
+
+        if (isStandalone) {
+          document.documentElement.classList.add('pwa-mode');
+
+          const navbar = document.querySelector('nav');
+          if (navbar) navbar.style.display = 'none';
+
+          const tabBar = document.createElement('nav');
+          tabBar.id = 'app-tab-bar';
+          tabBar.innerHTML = `
+            <a href="/index.html" class="${location.pathname === '/index.html' || location.pathname === '/' ? 'active' : ''}">
+              <i class="fa-solid fa-house"></i><span>首頁</span>
+            </a>
+            <a href="/classes.html" class="${location.pathname.includes('classes') ? 'active' : ''}">
+              <i class="fa-solid fa-dumbbell"></i><span>課程</span>
+            </a>
+            <a href="https://www.fit-book.com.tw/hsinchucombat/plan/588" target="_blank" rel="noopener noreferrer" class="tab-cta">
+              <i class="fa-solid fa-bolt"></i><span>預約體驗</span>
+            </a>
+            <a href="/team.html" class="${location.pathname.includes('team') ? 'active' : ''}">
+              <i class="fa-solid fa-users"></i><span>教練</span>
+            </a>
+            <a href="/index.html#schedule" class="">
+              <i class="fa-solid fa-calendar"></i><span>課表</span>
+            </a>
+          `;
+          document.body.appendChild(tabBar);
+
+          const statusBar = document.createElement('div');
+          statusBar.id = 'pwa-status-bar';
+          document.body.prepend(statusBar);
+
+          const installBtn = document.getElementById('install-app-btn');
+          if (installBtn) installBtn.style.display = 'none';
+
+          const rocket = document.getElementById('rocket-top');
+          if (rocket) rocket.style.display = 'none';
+        }
+
+        // ═══ PWA 安裝引導（取代舊的小按鈕） ═══
+        let deferredPrompt;
+        const installAppBtn = document.getElementById('install-app-btn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+          e.preventDefault();
+          deferredPrompt = e;
+          if (installAppBtn) installAppBtn.classList.remove('hidden');
+
+          if (!isStandalone && !localStorage.getItem('hcf-install-dismissed')) {
+            setTimeout(() => {
+              const banner = document.createElement('div');
+              banner.id = 'install-banner';
+              banner.innerHTML = `
+                <img src="shark_logo.png" alt="HCF" style="width:48px;height:48px;border-radius:12px;">
+                <div style="flex:1;">
+                  <div style="color:white;font-size:14px;font-weight:900;letter-spacing:2px;">安裝 HCF APP</div>
+                  <div style="color:#888;font-size:11px;margin-top:2px;">加到主畫面，秒開體驗</div>
+                </div>
+                <button id="banner-install-btn" style="padding:10px 20px;background:#00f0ff;color:black;font-weight:900;font-size:12px;letter-spacing:2px;border:none;border-radius:8px;cursor:pointer;">安裝</button>
+                <button id="banner-close-btn" style="background:none;border:none;color:#666;font-size:18px;cursor:pointer;padding:8px;">✕</button>
+              `;
+              banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:210;background:rgba(3,3,3,0.97);backdrop-filter:blur(20px);border-top:2px solid rgba(0,240,255,0.3);padding:16px 20px calc(16px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:14px;animation:slideUpBanner 0.5s ease-out;box-shadow:0 -10px 40px rgba(0,0,0,0.8);';
+              document.body.appendChild(banner);
+
+              document.getElementById('banner-install-btn').addEventListener('click', async () => {
+                if (deferredPrompt) { deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt = null; }
+                banner.remove();
+              });
+              document.getElementById('banner-close-btn').addEventListener('click', () => {
+                localStorage.setItem('hcf-install-dismissed', 'true');
+                banner.remove();
+              });
+            }, 5000);
+          }
+        });
+
+        if (installAppBtn) {
+          installAppBtn.addEventListener('click', async () => {
+            if (deferredPrompt) { deferredPrompt.prompt(); const { outcome } = await deferredPrompt.userChoice; if (outcome === 'accepted') { installAppBtn.classList.add('hidden'); } deferredPrompt = null; }
+          });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => { 
+            if(currentLang==='en') applyLanguage(); 
+            setTimeout(typeWriter, 800); 
+        });
+    
+        // 統一圖片錯誤處理
+        document.querySelectorAll('img[data-fallback]').forEach(function(img) {
+            img.addEventListener('error', function() {
+                if (this.dataset.fallback && this.src !== this.dataset.fallback) {
+                    this.src = this.dataset.fallback;
+                }
+            }, { once: true });
+        });
+        // === Skill Bar 動畫 ===
+        const skillBarObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    entry.target.querySelectorAll('.skill-fill').forEach(bar => {
+                        setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 100);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.skill-bar-container').forEach(el => skillBarObserver.observe(el));
+
+        function copyCode(code, btn) {
+            const icon = btn.querySelector('i');
+            function showSuccess() {
+                icon.className = 'fa-solid fa-check text-sci-gold';
+                setTimeout(() => { icon.className = 'fa-regular fa-copy text-sci-gold'; }, 2000);
+            }
+            function showError() {
+                icon.className = 'fa-solid fa-xmark text-red-400';
+                setTimeout(() => { icon.className = 'fa-regular fa-copy text-sci-gold'; }, 2000);
+            }
+            navigator.clipboard.writeText(code).then(showSuccess).catch(() => {
+                try {
+                    const ta = document.createElement('textarea');
+                    ta.value = code; document.body.appendChild(ta);
+                    ta.select(); document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    showSuccess();
+                } catch (e) { showError(); }
+            });
+            if ('vibrate' in navigator) navigator.vibrate(10);
+        }
+    </script>
+    <!-- 3D Team Carousel JS -->
+    <script>
+    (function() {
+        'use strict';
+
+        /* ── Shared coach data (duplicated here so carousel has access before Fighter Select IIFE runs) ── */
+        var tcCoaches = [
+            {
+                name: '黃謙和', role: 'HEAD COACH / 總教練',
+                specialty: '泰拳 / Muay Thai', specialtyIcon: 'fa-fire-flame-curved',
+                nickname: '「格鬥鋼鐵人」',
+                quote: '「我的教學沒有空話，只有 42 場勝利累積出的真理。」',
+                bio: '這副身體經歷過無數次擂台的重擊與考驗，依然屹立不搖。精通泰拳、踢拳、散打、MMA，擁有從台灣一路打進泰國、韓國、越南職業賽的資歷。',
+                record: { w: 42, l: 12 }, img: 'coach_huang.jpg',
+                skills: [{ name: '泰拳技術', val: 95 }, { name: '踢拳格鬥', val: 88 }, { name: '散打實戰', val: 82 }, { name: '體能訓練', val: 78 }],
+                achievements: ['WBC 冠軍級別膝肘破壞力', '全國冠軍等級接腿摔技', 'MAX FC 越南站冠軍', 'WOTD 雙料優勝']
+            },
+            {
+                name: 'Allen', role: 'KICKBOXING / 踢拳',
+                specialty: '踢拳 / Kickboxing', specialtyIcon: 'fa-bolt',
+                nickname: '「竹科戰神」',
+                quote: '「寫程式講求邏輯，格鬥也是。讓我幫你 Debug 你的發力結構。」',
+                bio: '具備竹科工程師與散打社社長雙重身份。將「Debug」的精準思維帶入教學，格鬥不是蠻力，而是物理學與人體工學的極致展現。',
+                record: null, img: 'coach_allen.jpg',
+                skills: [{ name: '踢拳技術', val: 90 }, { name: '發力邏輯', val: 88 }, { name: '防守架構', val: 82 }, { name: '體能體適', val: 75 }],
+                achievements: ['動作精密拆解 · Debug 教學法', '戰術邏輯思維建立', '零基礎高速建立肌肉記憶']
+            },
+            {
+                name: '鄭豫', role: 'SANDA / 散打',
+                specialty: '散打 / Sanda', specialtyIcon: 'fa-shield-halved',
+                nickname: '「重型坦克」',
+                quote: '「我不拘泥於門派。我教的，是能保護自己、真正學以致用的全方位攻防。」',
+                bio: '擁有布農族天生的爆發力與超乎常人的紀律。極少數能將「詠春拳」近身短打完美融合「散打」遠距離重擊的實戰派。',
+                record: null, img: 'coach_zhengyu.jpg',
+                skills: [{ name: '散打技術', val: 92 }, { name: '詠春短打', val: 85 }, { name: '接腿摔技', val: 90 }, { name: '綜合實戰', val: 85 }],
+                achievements: ['世界南少林詠春大賽 85kg 冠軍', 'T1 踢拳之王', '80kg+ 絕對霸主']
+            },
+            {
+                name: '高大可', role: 'MUAY THAI / 泰拳',
+                specialty: '泰拳 / Muay Thai', specialtyIcon: 'fa-fire-flame-curved',
+                nickname: '「逆襲狂人」',
+                quote: '「秩序源於能敲斷霸凌者鼻樑的實力。」',
+                bio: '一年內從 104 公斤的上班族蛻變成 74 公斤並站上擂台奪勝的傳說。他證明了「只要開始，永遠不嫌晚」。',
+                record: null, img: 'coach_kao.jpg',
+                skills: [{ name: '泰拳技術', val: 85 }, { name: '體能蛻變', val: 95 }, { name: '拳擊精度', val: 80 }, { name: '心理建設', val: 90 }],
+                achievements: ['一年內狂減 30KG (104→74)', '立青泰拳精英挑戰賽優勝', '享受合法揍人的快感']
+            },
+            {
+                name: '胡脩誠', role: 'ASST. COACH / 散打',
+                specialty: '散打 / Sanda', specialtyIcon: 'fa-shield-halved',
+                nickname: '「臨火無懼」',
+                quote: '「想學會怎麼破壞，先學會怎麼保護。」',
+                bio: '擂台下是守護生命的打火英雄，擂台上是對手眼中的夢魘。兼具重砲力量與輕量級速度，擁有無數次實戰打磨出的「黃金比例」戰士身材。',
+                record: null, img: 'coach_hu.jpg',
+                skills: [{ name: '散打格鬥', val: 88 }, { name: '搏擊速度', val: 90 }, { name: '體能體格', val: 92 }, { name: '鐵籠搏擊', val: 85 }],
+                achievements: ['WOTD-09 鐵籠搏擊優勝', 'Rise Nova 冠軍', 'T1 積分賽常勝軍']
+            },
+            {
+                name: '小米', role: 'ASST. COACH / 女子格鬥',
+                specialty: '肌力體能 / S&C', specialtyIcon: 'fa-dumbbell',
+                nickname: '「重生女鬥士」',
+                quote: '「天賦只是輔助，堅持才能成為贏家。擂台，是我對抗深淵的唯一解藥。」',
+                bio: '27歲才踏入擂台克服重度憂鬱症，化繭成蝶。不靠身高優勢，專注磨練極具壓迫感的近身重拳重腿。',
+                record: null, img: 'coach_mi.jpg',
+                skills: [{ name: '泰拳技術', val: 82 }, { name: '肌力體能', val: 90 }, { name: '心理韌性', val: 95 }, { name: '女子格鬥', val: 88 }],
+                achievements: ['114桃園市長盃泰國拳 48kg 冠軍', 'T1踢拳 50kg 挑戰組 勝出', '第六屆泰威 交流賽 勝出']
+            }
+        ];
+
+        var N = tcCoaches.length;
+        var angleStep = 360 / N;
+        var targetAngle = 0;
+        var autoplayTimer = null;
+        var isPaused = false;
+        var isDragging = false;
+        var dragStartX = 0;
+        var dragStartAngle = 0;
+        var modalCoachIdx = -1;
+
+        /* ── Tuning constants ── */
+        var AUTOPLAY_INTERVAL_MS = 3000;
+        var DRAG_SENSITIVITY = 0.4;
+        var MOBILE_BREAKPOINT_PX = 768;
+        var RADIUS_MOBILE = 260;
+        var RADIUS_DESKTOP = 380;
+        var SKILL_ANIM_DELAY_MS = 120;
+        var FIGHTER_SELECT_DELAY_MS = 600;
+
+        /* ── DOM refs ── */
+        var ring = document.getElementById('tc-ring');
+        var scene = document.getElementById('tc-scene');
+        var dotsContainer = document.getElementById('tc-dots');
+        var modalOverlay = document.getElementById('tc-modal-overlay');
+        var modalBox = document.getElementById('tc-modal-box');
+
+        if (!ring || !scene) return; // guard
+
+        /* ── Compute radius based on viewport ── */
+        function getRadius() {
+            return window.innerWidth < MOBILE_BREAKPOINT_PX ? RADIUS_MOBILE : RADIUS_DESKTOP;
+        }
+
+        /* ── Build cards ── */
+        function buildCards() {
+            ring.innerHTML = '';
+            var r = getRadius();
+            tcCoaches.forEach(function(coach, i) {
+                var card = document.createElement('div');
+                card.className = 'carousel-card' + (i === 0 ? ' tc-active' : '');
+                card.setAttribute('role', 'option');
+                card.setAttribute('aria-label', coach.name + ' ' + coach.role);
+                card.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+                card.setAttribute('tabindex', i === 0 ? '0' : '-1');
+                card.dataset.idx = i;
+
+                var cardAngle = i * angleStep;
+                card.style.transform = 'rotateY(' + cardAngle + 'deg) translateZ(' + r + 'px)';
+
+                var img = document.createElement('img');
+                img.src = coach.img;
+                img.alt = coach.name;
+                img.loading = 'lazy';
+                img.className = 'carousel-card-img';
+
+                var body = document.createElement('div');
+                body.className = 'carousel-card-body';
+
+                var nameEl = document.createElement('div');
+                nameEl.className = 'carousel-card-name';
+                nameEl.textContent = coach.name;
+
+                var roleEl = document.createElement('div');
+                roleEl.className = 'carousel-card-role';
+                roleEl.textContent = coach.role;
+
+                var nickEl = document.createElement('div');
+                nickEl.className = 'carousel-card-nickname';
+                nickEl.textContent = coach.nickname || '';
+
+                /* Data blink dots */
+                var dataDotsEl = document.createElement('div');
+                dataDotsEl.className = 'card-data-dots';
+                dataDotsEl.innerHTML = '<div class="card-data-dot"></div><div class="card-data-dot"></div><div class="card-data-dot"></div>';
+
+                body.appendChild(nameEl);
+                body.appendChild(roleEl);
+                if (coach.nickname) body.appendChild(nickEl);
+                body.appendChild(dataDotsEl);
+
+                /* Holographic scan line overlay */
+                var holoScan = document.createElement('div');
+                holoScan.className = 'card-holo-scan';
+                holoScan.setAttribute('aria-hidden', 'true');
+
+                card.appendChild(img);
+                card.appendChild(body);
+                card.appendChild(holoScan);
+
+                card.addEventListener('click', function() { openModal(i); });
+                card.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(i); }
+                });
+
+                ring.appendChild(card);
+            });
+        }
+
+        /* ── Build dot indicators ── */
+        function buildDots() {
+            dotsContainer.innerHTML = '';
+            tcCoaches.forEach(function(_, i) {
+                var dot = document.createElement('button');
+                dot.className = 'tc-dot' + (i === 0 ? ' tc-dot-active' : '');
+                dot.setAttribute('aria-label', '切換到教練 ' + (i + 1));
+                dot.addEventListener('click', function() { goToIdx(i); });
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        /* ── Get active index from current angle ── */
+        function getActiveIdx() {
+            // normalize angle to 0-360
+            var a = ((-targetAngle % 360) + 360) % 360;
+            var idx = Math.round(a / angleStep) % N;
+            return (idx + N) % N;
+        }
+
+        /* ── Apply rotation to ring ── */
+        function applyRotation(animate) {
+            if (animate) ring.classList.remove('dragging');
+            else ring.classList.add('dragging');
+            ring.style.transform = 'rotateY(' + targetAngle + 'deg)';
+            updateActiveState();
+        }
+
+        /* ── Update card/dot active states ── */
+        function updateActiveState() {
+            var idx = getActiveIdx();
+            var cards = ring.querySelectorAll('.carousel-card');
+            var dots = dotsContainer.querySelectorAll('.tc-dot');
+            cards.forEach(function(card, i) {
+                var isActive = (i === idx);
+                card.classList.toggle('tc-active', isActive);
+                card.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                card.setAttribute('tabindex', isActive ? '0' : '-1');
+            });
+            dots.forEach(function(dot, i) {
+                dot.classList.toggle('tc-dot-active', i === idx);
+            });
+        }
+
+        /* ── Navigate to a specific coach index ── */
+        function goToIdx(idx, skipSnap) {
+            // Find shortest rotation path
+            var current = getActiveIdx();
+            var diff = idx - current;
+            // Wrap diff to [-N/2, N/2]
+            if (diff > N / 2) diff -= N;
+            if (diff < -N / 2) diff += N;
+            targetAngle -= diff * angleStep;
+            applyRotation(true);
+        }
+
+        function goNext() {
+            targetAngle -= angleStep;
+            applyRotation(true);
+        }
+        function goPrev() {
+            targetAngle += angleStep;
+            applyRotation(true);
+        }
+
+        /* ── Snap to nearest card ── */
+        function snapToNearest() {
+            var a = ((-targetAngle % 360) + 360) % 360;
+            var idx = Math.round(a / angleStep) % N;
+            targetAngle = -(idx * angleStep) + Math.round(targetAngle / 360) * 360;
+            applyRotation(true);
+        }
+
+        /* ── Autoplay ── */
+        function startAutoplay() {
+            stopAutoplay();
+            autoplayTimer = setInterval(function() {
+                if (!isPaused) goNext();
+            }, AUTOPLAY_INTERVAL_MS);
+        }
+        function stopAutoplay() {
+            if (autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null; }
+        }
+
+        /* ── Resize: rebuild radius ── */
+        function onResize() {
+            var r = getRadius();
+            ring.querySelectorAll('.carousel-card').forEach(function(card, i) {
+                var cardAngle = i * angleStep;
+                card.style.transform = 'rotateY(' + cardAngle + 'deg) translateZ(' + r + 'px)';
+            });
+        }
+
+        /* ── Drag / Swipe ── */
+        function onDragStart(x) {
+            isDragging = true;
+            dragStartX = x;
+            dragStartAngle = targetAngle;
+            isPaused = true;
+            ring.classList.add('dragging');
+        }
+        function onDragMove(x) {
+            if (!isDragging) return;
+            var delta = x - dragStartX;
+            targetAngle = dragStartAngle + delta * DRAG_SENSITIVITY;
+            ring.style.transform = 'rotateY(' + targetAngle + 'deg)';
+            updateActiveState();
+        }
+        function onDragEnd() {
+            if (!isDragging) return;
+            isDragging = false;
+            ring.classList.remove('dragging');
+            snapToNearest();
+            isPaused = false;
+        }
+
+        /* Mouse events */
+        scene.addEventListener('mousedown', function(e) { onDragStart(e.clientX); });
+        window.addEventListener('mousemove', function(e) { if (isDragging) onDragMove(e.clientX); });
+        window.addEventListener('mouseup', function() { onDragEnd(); });
+
+        /* Touch events */
+        scene.addEventListener('touchstart', function(e) {
+            if (e.touches && e.touches.length > 0) onDragStart(e.touches[0].clientX);
+        }, { passive: true });
+        window.addEventListener('touchmove', function(e) {
+            if (isDragging && e.touches && e.touches.length > 0) onDragMove(e.touches[0].clientX);
+        }, { passive: true });
+        window.addEventListener('touchend', function() { onDragEnd(); });
+
+        /* Pause on hover */
+        scene.addEventListener('mouseenter', function() { isPaused = true; });
+        scene.addEventListener('mouseleave', function() { if (!isDragging) isPaused = false; });
+
+        /* Keyboard navigation */
+        document.addEventListener('keydown', function(e) {
+            if (modalOverlay.classList.contains('tc-modal-open')) {
+                if (e.key === 'Escape') closeModal();
+                return;
+            }
+            if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); }
+            if (e.key === 'ArrowLeft')  { e.preventDefault(); goPrev(); }
+        });
+
+        /* Nav buttons */
+        document.getElementById('tc-prev').addEventListener('click', goPrev);
+        document.getElementById('tc-next').addEventListener('click', goNext);
+
+        /* ══════════════════════════════════════════════
+           MODAL
+           ══════════════════════════════════════════════ */
+        function openModal(idx) {
+            modalCoachIdx = idx;
+            var c = tcCoaches[idx];
+
+            document.getElementById('tc-modal-img').src = c.img;
+            document.getElementById('tc-modal-img').alt = c.name;
+            document.getElementById('tc-modal-name').textContent = c.name;
+            document.getElementById('tc-modal-role').textContent = c.role;
+            document.getElementById('tc-modal-nickname').textContent = c.nickname || '';
+            document.getElementById('tc-modal-quote').textContent = c.quote || '';
+            document.getElementById('tc-modal-bio').textContent = c.bio || '';
+
+            /* Specialty tag */
+            var specWrap = document.getElementById('tc-modal-specialty-wrap');
+            specWrap.innerHTML = c.specialty
+                ? '<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono border" style="border-color:rgba(var(--theme-cyan-rgb),0.35);color:var(--theme-cyan);background:rgba(var(--theme-cyan-rgb),0.07);">' +
+                  '<i class="fa-solid ' + (c.specialtyIcon || 'fa-star') + '"></i>' + c.specialty + '</span>'
+                : '';
+
+            /* Record badge */
+            var recWrap = document.getElementById('tc-modal-record-wrap');
+            if (c.record) {
+                recWrap.innerHTML = '<div class="tc-record-badge" style="background:rgba(var(--theme-cyan-rgb),0.1);border:1px solid rgba(var(--theme-cyan-rgb),0.3);">' +
+                    '<span style="color:var(--theme-cyan);">W</span><span class="text-white font-black" data-counter="w">0</span>' +
+                    '<span class="text-gray-600">|</span>' +
+                    '<span style="color:#ff4d6d;">L</span><span class="text-white font-black" data-counter="l">0</span>' +
+                    '</div>';
+            } else {
+                recWrap.innerHTML = '';
+            }
+
+            /* Skills — step animation */
+            var skillsEl = document.getElementById('tc-modal-skills');
+            if (c.skills && c.skills.length) {
+                skillsEl.innerHTML = c.skills.map(function(s, idx) {
+                    return '<div class="mb-3">' +
+                        '<div class="flex justify-between text-xs mb-1"><span class="text-gray-400">' + s.name + '</span></div>' +
+                        '<div class="flex items-center gap-2">' +
+                        '<div class="tc-modal-skill-bar flex-1"><div class="tc-modal-skill-fill" data-val="' + s.val + '" data-idx="' + idx + '"></div></div>' +
+                        '<span class="text-xs text-sci-cyan font-orbitron tc-modal-skill-value" id="tc-skill-val-' + idx + '" style="min-width:2.5em;text-align:right;">0%</span>' +
+                        '</div>' +
+                        '</div>';
+                }).join('');
+                document.getElementById('tc-modal-skills-wrap').style.display = '';
+            } else {
+                document.getElementById('tc-modal-skills-wrap').style.display = 'none';
+            }
+
+            /* Achievements */
+            var achEl = document.getElementById('tc-modal-achievements');
+            if (c.achievements && c.achievements.length) {
+                achEl.innerHTML = c.achievements.map(function(a) {
+                    return '<div class="flex items-start gap-2 mb-2 text-sm text-gray-300">' +
+                        '<span class="tc-ach-blink" style="flex-shrink:0;margin-top:2px;">▶</span><span>' + a + '</span></div>';
+                }).join('');
+                document.getElementById('tc-modal-achievements-wrap').style.display = '';
+            } else {
+                document.getElementById('tc-modal-achievements-wrap').style.display = 'none';
+            }
+
+            /* Show modal */
+            modalOverlay.classList.add('tc-modal-open');
+            modalOverlay.focus();
+            document.body.style.overflow = 'hidden';
+            stopAutoplay();
+
+            /* Startup text animation */
+            var startupEl = document.getElementById('tc-modal-startup');
+            if (startupEl) {
+                startupEl.classList.remove('tc-startup-animate');
+                void startupEl.offsetWidth;
+                startupEl.classList.add('tc-startup-animate');
+            }
+
+            /* Animate skill bars after a short delay — step-by-step fill */
+            setTimeout(function() {
+                var fills = modalBox.querySelectorAll('.tc-modal-skill-fill');
+                fills.forEach(function(fill, i) {
+                    setTimeout(function() {
+                        fill.style.width = fill.dataset.val + '%';
+                        var valSpan = document.getElementById('tc-skill-val-' + fill.dataset.idx);
+                        if (valSpan) valSpan.textContent = fill.dataset.val + '%';
+                    }, i * 150);
+                });
+            }, SKILL_ANIM_DELAY_MS);
+
+            /* Counter animation for record numbers */
+            if (c.record) {
+                var recWrap = document.getElementById('tc-modal-record-wrap');
+                var wTarget = c.record.w;
+                var lTarget = c.record.l;
+                var wEl = recWrap.querySelector('[data-counter="w"]');
+                var lEl = recWrap.querySelector('[data-counter="l"]');
+                if (wEl && lEl) {
+                    var start = 0;
+                    var duration = 800;
+                    var startTime = null;
+                    function animCounter(ts) {
+                        if (!startTime) startTime = ts;
+                        var progress = Math.min((ts - startTime) / duration, 1);
+                        var eased = 1 - Math.pow(1 - progress, 3);
+                        wEl.textContent = Math.round(eased * wTarget);
+                        lEl.textContent = Math.round(eased * lTarget);
+                        if (progress < 1) requestAnimationFrame(animCounter);
+                    }
+                    requestAnimationFrame(animCounter);
+                }
+            }
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('tc-modal-open');
+            modalCoachIdx = -1;
+            document.body.style.overflow = '';
+            startAutoplay();
+        }
+
+        /* Close button */
+        document.getElementById('tc-modal-close-btn').addEventListener('click', closeModal);
+
+        /* Close on overlay click */
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) closeModal();
+        });
+
+        /* "View detail" button → scroll to Fighter Select and select coach */
+        document.getElementById('tc-modal-view-detail').addEventListener('click', function() {
+            var idx = modalCoachIdx;
+            closeModal();
+            var fsSection = document.getElementById('coaches');
+            if (fsSection) {
+                fsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            /* Trigger Fighter Select to select the corresponding coach after scroll */
+            setTimeout(function() {
+                var thumbs = document.querySelectorAll('.fs-fighter-thumb');
+                if (thumbs[idx]) thumbs[idx].click();
+            }, FIGHTER_SELECT_DELAY_MS);
+        });
+
+        /* ── Init ── */
+        buildCards();
+        buildDots();
+        applyRotation(false);
+        startAutoplay();
+        window.addEventListener('resize', onResize);
+    })();
+    </script>
+    <!-- Fighter Select JS -->
+    <script>
+    (function() {
+        'use strict';
+
+        var coaches = [
+            {
+                name: '黃謙和',
+                role: 'HEAD COACH / 總教練',
+                specialty: '泰拳 / Muay Thai', specialtyIcon: 'fa-fire-flame-curved',
+                nickname: '「格鬥鋼鐵人」',
+                quote: '「我的教學沒有空話，只有 42 場勝利累積出的真理。」',
+                bio: '這副身體經歷過無數次擂台的重擊與考驗，依然屹立不搖。精通泰拳、踢拳、散打、MMA，擁有從台灣一路打進泰國、韓國、越南職業賽的資歷。',
+                record: { w: 42, l: 12 },
+                img: 'coach_huang.jpg',
+                skills: [{ name: '泰拳技術', val: 95 }, { name: '踢拳格鬥', val: 88 }, { name: '散打實戰', val: 82 }, { name: '體能訓練', val: 78 }],
+                achievements: ['WBC 冠軍級別膝肘破壞力', '全國冠軍等級接腿摔技', 'MAX FC 越南站冠軍', 'WOTD 雙料優勝']
+            },
+            {
+                name: 'Allen',
+                role: 'KICKBOXING / 踢拳',
+                specialty: '踢拳 / Kickboxing', specialtyIcon: 'fa-bolt',
+                nickname: '「竹科戰神」',
+                quote: '「寫程式講求邏輯，格鬥也是。讓我幫你 Debug 你的發力結構。」',
+                bio: '具備竹科工程師與散打社社長雙重身份。將「Debug」的精準思維帶入教學，格鬥不是蠻力，而是物理學與人體工學的極致展現。',
+                record: null,
+                img: 'coach_allen.jpg',
+                skills: [{ name: '踢拳技術', val: 90 }, { name: '發力邏輯', val: 88 }, { name: '防守架構', val: 82 }, { name: '體能體適', val: 75 }],
+                achievements: ['動作精密拆解 · Debug 教學法', '戰術邏輯思維建立', '零基礎高速建立肌肉記憶']
+            },
+            {
+                name: '鄭豫',
+                role: 'SANDA / 散打',
+                specialty: '散打 / Sanda', specialtyIcon: 'fa-shield-halved',
+                nickname: '「重型坦克」',
+                quote: '「我不拘泥於門派。我教的，是能保護自己、真正學以致用的全方位攻防。」',
+                bio: '擁有布農族天生的爆發力與超乎常人的紀律。極少數能將「詠春拳」近身短打完美融合「散打」遠距離重擊的實戰派。',
+                record: null,
+                img: 'coach_zhengyu.jpg',
+                skills: [{ name: '散打技術', val: 92 }, { name: '詠春短打', val: 85 }, { name: '接腿摔技', val: 90 }, { name: '綜合實戰', val: 85 }],
+                achievements: ['世界南少林詠春大賽 85kg 冠軍', 'T1 踢拳之王', '80kg+ 絕對霸主']
+            },
+            {
+                name: '高大可',
+                role: 'MUAY THAI / 泰拳',
+                specialty: '泰拳 / Muay Thai', specialtyIcon: 'fa-fire-flame-curved',
+                nickname: '「逆襲狂人」',
+                quote: '「秩序源於能敲斷霸凌者鼻樑的實力。」',
+                bio: '一年內從 104 公斤的上班族蛻變成 74 公斤並站上擂台奪勝的傳說。他證明了「只要開始，永遠不嫌晚」。',
+                record: null,
+                img: 'coach_kao.jpg',
+                skills: [{ name: '泰拳技術', val: 85 }, { name: '體能蛻變', val: 95 }, { name: '拳擊精度', val: 80 }, { name: '心理建設', val: 90 }],
+                achievements: ['一年內狂減 30KG (104→74)', '立青泰拳精英挑戰賽優勝', '享受合法揍人的快感']
+            },
+            {
+                name: '胡脩誠',
+                role: 'ASST. COACH / 散打',
+                specialty: '散打 / Sanda', specialtyIcon: 'fa-shield-halved',
+                nickname: '「臨火無懼」',
+                quote: '「想學會怎麼破壞，先學會怎麼保護。」',
+                bio: '擂台下是守護生命的打火英雄，擂台上是對手眼中的夢魘。兼具重砲力量與輕量級速度，擁有無數次實戰打磨出的「黃金比例」戰士身材。',
+                record: null,
+                img: 'coach_hu.jpg',
+                skills: [{ name: '散打格鬥', val: 88 }, { name: '搏擊速度', val: 90 }, { name: '體能體格', val: 92 }, { name: '鐵籠搏擊', val: 85 }],
+                achievements: ['WOTD-09 鐵籠搏擊優勝', 'Rise Nova 冠軍', 'T1 積分賽常勝軍']
+            },
+            {
+                name: '小米',
+                role: 'ASST. COACH / 女子格鬥',
+                specialty: '肌力體能 / S&C', specialtyIcon: 'fa-dumbbell',
+                nickname: '「重生女鬥士」',
+                quote: '「天賦只是輔助，堅持才能成為贏家。擂台，是我對抗深淵的唯一解藥。」',
+                bio: '27歲才踏入擂台克服重度憂鬱症，化繭成蝶。不靠身高優勢，專注磨練極具壓迫感的近身重拳重腿。',
+                record: null,
+                img: 'coach_mi.jpg',
+                skills: [{ name: '泰拳技術', val: 82 }, { name: '肌力體能', val: 90 }, { name: '心理韌性', val: 95 }, { name: '女子格鬥', val: 88 }],
+                achievements: ['114桃園市長盃泰國拳 48kg 冠軍', 'T1踢拳 50kg 挑戰組 勝出', '第六屆泰威 交流賽 勝出']
+            }
+        ];
+
+        var activeIdx = 0;
+        var fsSkillsInitialized = false;
+
+        function buildThumbs() {
+            var row = document.getElementById('fs-thumb-row');
+            if (!row) return;
+            coaches.forEach(function(c, i) {
+                var btn = document.createElement('button');
+                btn.className = 'fs-fighter-thumb' + (i === 0 ? ' fs-active' : '');
+                btn.setAttribute('role', 'option');
+                btn.setAttribute('aria-label', c.name);
+                btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+                btn.setAttribute('tabindex', i === 0 ? '0' : '-1');
+                btn.setAttribute('data-idx', i);
+
+                var img = document.createElement('img');
+                img.src = c.img; img.alt = c.name; img.loading = 'lazy'; img.width = 88; img.height = 110;
+
+                var idxSpan = document.createElement('span');
+                idxSpan.className = 'fs-thumb-index';
+                idxSpan.textContent = String(i + 1).padStart(2, '0');
+
+                var nameSpan = document.createElement('span');
+                nameSpan.className = 'fs-thumb-name';
+                nameSpan.textContent = c.name;
+
+                btn.appendChild(img);
+                btn.appendChild(idxSpan);
+                btn.appendChild(nameSpan);
+
+                btn.addEventListener('click', function() { selectCoach(i); });
+                btn.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowRight') { e.preventDefault(); selectCoach((i + 1) % coaches.length); }
+                    if (e.key === 'ArrowLeft')  { e.preventDefault(); selectCoach((i - 1 + coaches.length) % coaches.length); }
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCoach(i); }
+                });
+
+                row.appendChild(btn);
+            });
+        }
+
+        function selectCoach(idx) {
+            if (idx === activeIdx) return;
+            activeIdx = idx;
+            var c = coaches[idx];
+
+            // Update thumbnails
+            document.querySelectorAll('.fs-fighter-thumb').forEach(function(btn, i) {
+                var isActive = i === idx;
+                btn.classList.toggle('fs-active', isActive);
+                btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                btn.setAttribute('tabindex', isActive ? '0' : '-1');
+                if (isActive) {
+                    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                    btn.focus();
+                }
+            });
+
+            // Update coach indicator
+            var indEl = document.getElementById('fs-coach-indicator');
+            if (indEl) indEl.textContent = 'COACH ' + String(idx + 1).padStart(2, '0') + ' / ' + String(coaches.length).padStart(2, '0');
+
+            // Scan-wipe animation
+            var sw = document.getElementById('fs-scan-wipe');
+            if (sw) { sw.classList.remove('fs-scan-wipe-el'); void sw.offsetWidth; sw.classList.add('fs-scan-wipe-el'); }
+
+            // Update center image with entering animation and error handling
+            var mainImg = document.getElementById('fs-main-img');
+            if (mainImg) {
+                mainImg.classList.remove('fs-entering');
+                void mainImg.offsetWidth;
+                mainImg.onerror = function() { this.style.opacity = '0.3'; };
+                mainImg.src = c.img;
+                mainImg.alt = c.name;
+                mainImg.classList.add('fs-entering');
+            }
+
+            // Update left panel
+            var roleEl = document.getElementById('fs-role-label');
+            if (roleEl) roleEl.textContent = c.role;
+
+            var nameEl = document.getElementById('fs-name');
+            if (nameEl) {
+                nameEl.classList.remove('fs-typewriter-cursor', 'fs-panel-entering');
+                nameEl.textContent = c.name;
+                void nameEl.offsetWidth;
+                nameEl.classList.add('fs-typewriter-cursor', 'fs-panel-entering');
+            }
+
+            var nickEl = document.getElementById('fs-nickname');
+            if (nickEl) { nickEl.classList.remove('fs-panel-entering'); void nickEl.offsetWidth; nickEl.textContent = c.nickname; nickEl.classList.add('fs-panel-entering'); }
+
+            var spEl = document.getElementById('fs-specialty');
+            if (spEl) { spEl.classList.remove('fs-panel-entering'); void spEl.offsetWidth; spEl.innerHTML = '<i class="fa-solid ' + c.specialtyIcon + ' mr-1"></i> ' + c.specialty; spEl.classList.add('fs-panel-entering'); }
+
+            var quoteEl = document.getElementById('fs-quote');
+            if (quoteEl) { quoteEl.classList.remove('fs-panel-entering'); void quoteEl.offsetWidth; quoteEl.textContent = c.quote; quoteEl.classList.add('fs-panel-entering'); }
+
+            var bioEl = document.getElementById('fs-bio');
+            if (bioEl) { bioEl.classList.remove('fs-panel-entering'); void bioEl.offsetWidth; bioEl.textContent = c.bio; bioEl.classList.add('fs-panel-entering'); }
+
+            var recEl = document.getElementById('fs-record');
+            if (recEl) {
+                if (c.record) {
+                    recEl.innerHTML = '<span class="fs-record-w">' + c.record.w + '</span><span class="fs-record-tag">勝</span><span class="fs-record-l">' + c.record.l + '</span><span class="fs-record-tag">敗</span>';
+                } else {
+                    recEl.innerHTML = '';
+                }
+            }
+
+            // Update right panel
+            renderSkills(c.skills);
+
+            var achEl = document.getElementById('fs-achievements');
+            if (achEl) {
+                achEl.innerHTML = c.achievements.map(function(a) {
+                    return '<div class="flex items-start gap-2"><span class="text-sci-cyan mt-0.5 flex-shrink-0">▶</span><span>' + a + '</span></div>';
+                }).join('');
+            }
+
+            // P0-2: Update CTA button name
+            var confirmNameEl = document.getElementById('fs-confirm-name');
+            if (confirmNameEl) confirmNameEl.textContent = c.name;
+
+            // P1-5: Update FOMO viewer count (random 8-25)
+            var fomoCount = Math.floor(Math.random() * 18) + 8;
+            var fomoCountEl = document.getElementById('fs-fomo-count');
+            if (fomoCountEl) fomoCountEl.textContent = fomoCount;
+            var fomoCoachNameEl = document.getElementById('fs-fomo-coach-name');
+            if (fomoCoachNameEl) fomoCoachNameEl.textContent = c.name;
+
+            // P0-3: Update mobile sticky CTA bar
+            var stickyNameEl = document.getElementById('fs-sticky-name');
+            if (stickyNameEl) stickyNameEl.textContent = c.name;
+            var stickySpecEl = document.getElementById('fs-sticky-specialty');
+            if (stickySpecEl) stickySpecEl.textContent = c.specialty;
+        }
+
+        function renderSkills(skills) {
+            var container = document.getElementById('fs-skills');
+            if (!container) return;
+            container.innerHTML = skills.map(function(s) {
+                var color = s.val >= 90 ? 'var(--theme-cyan)' : s.val >= 80 ? 'rgba(var(--theme-cyan-rgb),0.7)' : 'rgba(var(--theme-cyan-rgb),0.45)';
+                return '<div class="fs-skill-item">' +
+                    '<div class="fs-skill-row"><span class="text-white/70">' + s.name + '</span><span style="color:var(--theme-cyan)">' + s.val + '</span></div>' +
+                    '<div class="fs-skill-track"><div class="fs-skill-fill" data-width="' + s.val + '" style="background:' + color + ';width:0%;"></div></div>' +
+                    '</div>';
+            }).join('');
+            // P1-4 Phase 3: sequential bar fill — 400ms delay for coach-switch, 80ms for initial reveal
+            var delay = fsSkillsInitialized ? 400 : 80;
+            fsSkillsInitialized = true;
+            setTimeout(function() {
+                container.querySelectorAll('.fs-skill-fill').forEach(function(fill, i) {
+                    setTimeout(function() {
+                        fill.style.width = fill.dataset.width + '%';
+                    }, i * 80);
+                });
+            }, delay);
+        }
+
+        // Scroll-based skill bar reveal for initial state
+        var fsSection = document.querySelector('.fighter-select-section');
+        if (fsSection) {
+            var revealObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        renderSkills(coaches[activeIdx].skills);
+                        revealObs.disconnect();
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealObs.observe(fsSection);
+        }
+
+        // Initial achievements
+        var achEl = document.getElementById('fs-achievements');
+        if (achEl) {
+            achEl.innerHTML = coaches[0].achievements.map(function(a) {
+                return '<div class="flex items-start gap-2"><span class="text-sci-cyan mt-0.5 flex-shrink-0">▶</span><span>' + a + '</span></div>';
+            }).join('');
+        }
+
+        // P1-5: Initialize FOMO count for first coach
+        var initFomoCount = Math.floor(Math.random() * 18) + 8;
+        var initFomoCountEl = document.getElementById('fs-fomo-count');
+        if (initFomoCountEl) initFomoCountEl.textContent = initFomoCount;
+
+        buildThumbs();
+    })();
+    </script>
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('[SW] Registered:', reg.scope))
+          .catch(err => console.warn('[SW] Failed:', err));
+      });
+    }
+    // Status bar clock
+    (function() {
+        var el = document.getElementById('status-bar-time');
+        if (!el) return;
+        function tick() {
+            var now = new Date();
+            el.textContent = now.toLocaleTimeString('zh-TW', { hour12: false });
+        }
+        tick();
+        setInterval(tick, 1000);
+    })();
+    </script>
+</body>
+</html>
